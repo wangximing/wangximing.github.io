@@ -156,6 +156,90 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/08/use-togglz-in-java/" itemprop="url">
+                use togglz in project
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-08T14:01:35+05:30" content="2015-09-08">
+            2015-09-08
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><h1 id="Feature_Toggle_in_Java">Feature Toggle in Java</h1><p>In our project, we choose <a href="http://www.togglz.org/" target="_blank" rel="external">togglz</a> as a framework for feature toggle.</p>
+<h2 id="import_togglz_in_project">import togglz in project</h2><p>We need to add these dependencies in project file <code>build.gradle</code><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &#39;org.togglz:togglz-core:2.2.0.Final&#39;&#10;compile &#39;org.togglz:togglz-servlet:2.2.0.Final&#39;&#10;compile &#39;org.togglz:togglz-jsp:2.2.0.Final&#39; //support jsp&#10;compile &#39;org.togglz:togglz-console:2.2.0.Final&#39;  //support togglz console&#10;compile &#39;org.togglz:togglz-spring-security:2.2.0.Final&#39; //support user authentication&#10;&#10;testCompile &#39;org.togglz:togglz-testing:2.2.0.Final&#39; //support togglz test&#10;testCompile &#39;org.togglz:togglz-junit:2.2.0.Final&#39; //support togglz test</span><br></pre></td></tr></table></figure></p>
+<h2 id="config_togglz_in_project">config togglz in project</h2><h3 id="Add_a_new_class_ToggledFeature_implements_Feature">Add a new class <code>ToggledFeature</code> implements Feature</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ToggledFeature implements Feature &#123;</span><br><span class="line">    <span class="annotation">@Label</span>(<span class="string">"CONFIRM_PASSWORD"</span>)</span><br><span class="line">    CONFIRM_PASSWORD,</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Label</span>(<span class="string">"ADDRESS"</span>)</span><br><span class="line">    ADDRESS,</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Label</span>(<span class="string">"AGREE_TERMS"</span>)</span><br><span class="line">    AGREE_TERMS,</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Label</span>(<span class="string">"EMAIL_CONFIRMATION"</span>)</span><br><span class="line">    EMAIL_CONFIRMATION;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isActive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> FeatureContext.getFeatureManager().isActive(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Add_a_new_class_ToggledFeatureConfiguration_implements_TogglzConfig">Add a new class <code>ToggledFeatureConfiguration</code>  implements TogglzConfig</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ToggledFeatureConfiguration</span> <span class="keyword">implements</span> <span class="title">TogglzConfig</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Class&lt;? extends Feature&gt; getFeatureClass() &#123;</span><br><span class="line">        <span class="keyword">return</span> ToggledFeature.class;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> StateRepository <span class="title">getStateRepository</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ClassLoader classLoader = getClass().getClassLoader();</span><br><span class="line">        File file = <span class="keyword">new</span> File(classLoader.getResource(<span class="string">"features.properties"</span>).getFile());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> FileBasedStateRepository(file);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserProvider <span class="title">getUserProvider</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SpringSecurityUserProvider(<span class="string">"ROLE_ADMIN"</span>) &#123;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Add_a_features-peoperties_file_to_set_togglz_status">Add a <code>features.peoperties</code> file to set togglz status</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONFIRM_PASSWORD=true&#10;ADDRESS=true&#10;AGREE_TERMS=true&#10;EMAIL_CONFIRMATION=true</span><br></pre></td></tr></table></figure>
+<h3 id="Then_config_togglz_in_web-xml">Then config togglz in <code>web.xml</code></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">context-param</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">param-name</span>&gt;</span>org.togglz.core.manager.TogglzConfig<span class="tag">&lt;/<span class="title">param-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">param-value</span>&gt;</span>com.trailblazers.freewheelers.utils.ToggledFeature.ToggledFeatureConfiguration<span class="tag">&lt;/<span class="title">param-value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="title">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="title">filter</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">filter-name</span>&gt;</span>TogglzFilter<span class="tag">&lt;/<span class="title">filter-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">filter-class</span>&gt;</span>org.togglz.servlet.TogglzFilter<span class="tag">&lt;/<span class="title">filter-class</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="title">filter</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">filter-mapping</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">filter-name</span>&gt;</span>TogglzFilter<span class="tag">&lt;/<span class="title">filter-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="title">url-pattern</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="title">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Now_we_can_use_&lt;togglz:feature&gt;_in_JSP_file">Now we can use <code>&lt;togglz:feature&gt;</code> in JSP file</h3><ul>
+<li><p>First, we need to add togglz tags to jsp file</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">%@</span> <span class="attribute">taglib</span> <span class="attribute">prefix</span>=<span class="value">"togglz"</span> <span class="attribute">uri</span>=<span class="value">"http://togglz.org/taglib"</span><span class="value">%</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Then we can use togglz to hide elements</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">togglz:feature</span> <span class="attribute">name</span>=<span class="value">"AGREE_TERMS"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">togglz:feature</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="How_to_use_togglz_in_Unit_Test">How to use togglz in Unit Test</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ToggledFeaturesTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Rule</span></span><br><span class="line">    <span class="keyword">public</span> TogglzRule togglzRule = TogglzRule.allEnabled(ToggledFeature.class);</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToggleFeature</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        assertTrue(ToggledFeature.CONFIRM_PASSWORD.isActive());</span><br><span class="line"></span><br><span class="line">        togglzRule.disable(ToggledFeature.CONFIRM_PASSWORD);</span><br><span class="line">        assertFalse(ToggledFeature.CONFIRM_PASSWORD.isActive());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        togglzRule.disableAll();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="How_to_show_toggle_console_in_browser">How to show toggle console in browser</h2><ul>
+<li><p>First, we need to add toggle servlet in <code>web.xml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">servlet-name</span>&gt;</span>TogglzConsoleServlet<span class="tag">&lt;/<span class="title">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">servlet-class</span>&gt;</span>org.togglz.console.TogglzConsoleServlet<span class="tag">&lt;/<span class="title">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">servlet-name</span>&gt;</span>TogglzConsoleServlet<span class="tag">&lt;/<span class="title">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">url-pattern</span>&gt;</span>/togglz/*<span class="tag">&lt;/<span class="title">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Then login with admin role and open <a href="http://localhost:8080/togglz/" target="_blank" rel="external">http://localhost:8080/togglz/</a></p>
+</li>
+<li>Now we can use this page to toggle feature<br><img src="/image/togglz-console.png" alt="Image of Togglz console"></li>
+</ul>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/16/hello-world/" itemprop="url">
                 Hello World
               </a>
@@ -676,90 +760,6 @@
               阅读全文 &raquo;
             </a>
           </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/02/02/use-togglz-in-java/" itemprop="url">
-                use togglz in project
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-02-02T14:01:35+05:30" content="2015-02-02">
-            2015-02-02
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><h1 id="Feature_Toggle_in_Java">Feature Toggle in Java</h1><p>In our project, we choose <a href="http://www.togglz.org/" target="_blank" rel="external">togglz</a> as a framework for feature toggle.</p>
-<h2 id="import_togglz_in_project">import togglz in project</h2><p>We need to add these dependencies in project file <code>build.gradle</code><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &#39;org.togglz:togglz-core:2.2.0.Final&#39;&#10;compile &#39;org.togglz:togglz-servlet:2.2.0.Final&#39;&#10;compile &#39;org.togglz:togglz-jsp:2.2.0.Final&#39; //support jsp&#10;compile &#39;org.togglz:togglz-console:2.2.0.Final&#39;  //support togglz console&#10;compile &#39;org.togglz:togglz-spring-security:2.2.0.Final&#39; //support user authentication&#10;&#10;testCompile &#39;org.togglz:togglz-testing:2.2.0.Final&#39; //support togglz test&#10;testCompile &#39;org.togglz:togglz-junit:2.2.0.Final&#39; //support togglz test</span><br></pre></td></tr></table></figure></p>
-<h2 id="config_togglz_in_project">config togglz in project</h2><h3 id="Add_a_new_class_ToggledFeature_implements_Feature">Add a new class <code>ToggledFeature</code> implements Feature</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ToggledFeature implements Feature &#123;</span><br><span class="line">    <span class="annotation">@Label</span>(<span class="string">"CONFIRM_PASSWORD"</span>)</span><br><span class="line">    CONFIRM_PASSWORD,</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Label</span>(<span class="string">"ADDRESS"</span>)</span><br><span class="line">    ADDRESS,</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Label</span>(<span class="string">"AGREE_TERMS"</span>)</span><br><span class="line">    AGREE_TERMS,</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Label</span>(<span class="string">"EMAIL_CONFIRMATION"</span>)</span><br><span class="line">    EMAIL_CONFIRMATION;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isActive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> FeatureContext.getFeatureManager().isActive(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Add_a_new_class_ToggledFeatureConfiguration_implements_TogglzConfig">Add a new class <code>ToggledFeatureConfiguration</code>  implements TogglzConfig</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ToggledFeatureConfiguration</span> <span class="keyword">implements</span> <span class="title">TogglzConfig</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Class&lt;? extends Feature&gt; getFeatureClass() &#123;</span><br><span class="line">        <span class="keyword">return</span> ToggledFeature.class;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> StateRepository <span class="title">getStateRepository</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ClassLoader classLoader = getClass().getClassLoader();</span><br><span class="line">        File file = <span class="keyword">new</span> File(classLoader.getResource(<span class="string">"features.properties"</span>).getFile());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> FileBasedStateRepository(file);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserProvider <span class="title">getUserProvider</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SpringSecurityUserProvider(<span class="string">"ROLE_ADMIN"</span>) &#123;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Add_a_features-peoperties_file_to_set_togglz_status">Add a <code>features.peoperties</code> file to set togglz status</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONFIRM_PASSWORD=true&#10;ADDRESS=true&#10;AGREE_TERMS=true&#10;EMAIL_CONFIRMATION=true</span><br></pre></td></tr></table></figure>
-<h3 id="Then_config_togglz_in_web-xml">Then config togglz in <code>web.xml</code></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">context-param</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">param-name</span>&gt;</span>org.togglz.core.manager.TogglzConfig<span class="tag">&lt;/<span class="title">param-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">param-value</span>&gt;</span>com.trailblazers.freewheelers.utils.ToggledFeature.ToggledFeatureConfiguration<span class="tag">&lt;/<span class="title">param-value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="title">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="title">filter</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">filter-name</span>&gt;</span>TogglzFilter<span class="tag">&lt;/<span class="title">filter-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">filter-class</span>&gt;</span>org.togglz.servlet.TogglzFilter<span class="tag">&lt;/<span class="title">filter-class</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="title">filter</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">filter-mapping</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">filter-name</span>&gt;</span>TogglzFilter<span class="tag">&lt;/<span class="title">filter-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="title">url-pattern</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="title">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="Now_we_can_use_&lt;togglz:feature&gt;_in_JSP_file">Now we can use <code>&lt;togglz:feature&gt;</code> in JSP file</h3><ul>
-<li><p>First, we need to add togglz tags to jsp file</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">%@</span> <span class="attribute">taglib</span> <span class="attribute">prefix</span>=<span class="value">"togglz"</span> <span class="attribute">uri</span>=<span class="value">"http://togglz.org/taglib"</span><span class="value">%</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Then we can use togglz to hide elements</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">togglz:feature</span> <span class="attribute">name</span>=<span class="value">"AGREE_TERMS"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">togglz:feature</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="How_to_use_togglz_in_Unit_Test">How to use togglz in Unit Test</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ToggledFeaturesTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Rule</span></span><br><span class="line">    <span class="keyword">public</span> TogglzRule togglzRule = TogglzRule.allEnabled(ToggledFeature.class);</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToggleFeature</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        assertTrue(ToggledFeature.CONFIRM_PASSWORD.isActive());</span><br><span class="line"></span><br><span class="line">        togglzRule.disable(ToggledFeature.CONFIRM_PASSWORD);</span><br><span class="line">        assertFalse(ToggledFeature.CONFIRM_PASSWORD.isActive());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        togglzRule.disableAll();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="How_to_show_toggle_console_in_browser">How to show toggle console in browser</h2><ul>
-<li><p>First, we need to add toggle servlet in <code>web.xml</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">servlet-name</span>&gt;</span>TogglzConsoleServlet<span class="tag">&lt;/<span class="title">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">servlet-class</span>&gt;</span>org.togglz.console.TogglzConsoleServlet<span class="tag">&lt;/<span class="title">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">servlet-name</span>&gt;</span>TogglzConsoleServlet<span class="tag">&lt;/<span class="title">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">url-pattern</span>&gt;</span>/togglz/*<span class="tag">&lt;/<span class="title">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Then login with admin role and open (<a href="http://localhost:8080/togglz/)[http://localhost:8080/togglz/" target="_blank" rel="external">http://localhost:8080/togglz/)[http://localhost:8080/togglz/</a>]</p>
-</li>
-<li>Now we can use this page to toggle feature<br><img src="https://github.com/sighWang/feature-toggle-in-java/blob/master/togglz-console.png" alt="Image of Togglz console"></li>
-</ul>
-</span>
         
       
     </div>
