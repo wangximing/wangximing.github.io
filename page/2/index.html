@@ -32,6 +32,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="sigh" type="application/atom+xml" />
+
 
 
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
@@ -204,8 +206,17 @@
 
       
         
-          <span itemprop="articleBody"><h4 id="环境搭建">环境搭建</h4><p>  <a href="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></p>
-</span>
+          <span itemprop="articleBody">
+            
+            环境搭建  环境搭建
+
+            
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/01/04/Ruby-on-Rails-从零到部署/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -273,12 +284,17 @@
 
       
         
-          <span itemprop="articleBody"><h4 id="异常处理的写法">异常处理的写法</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span></span><br><span class="line">	可能会发生异常的处理</span><br><span class="line"><span class="keyword">rescue</span> =&gt; ex</span><br><span class="line">	print ex.message, <span class="string">"\n"</span>	发生异常的处理</span><br><span class="line"><span class="keyword">ensure</span></span><br><span class="line">	不管是否发生异常都希望执行的处理</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<h4 id="主动抛出异常">主动抛出异常</h4><p>raise message  抛出RuntimeError异常，并把字符串作为message设置给新生成的异常对象</p>
-<p>raise 异常类 抛出指定异常</p>
-<p>raise 异常类， message</p>
-<p>raise</p>
-</span>
+          <span itemprop="articleBody">
+            
+            异常处理的写法1234567begin	可能会发生异常的处理rescue =&gt; ex	print ex.message, "\n"	发生异常的处理ensure	不管是否发生异常都希望执行的处理end
+主动抛出异常raise message  抛出RuntimeError异常，并把字符串作为me
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/12/28/Ruby-基础学习-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -346,16 +362,20 @@
 
       
         
-          <span itemprop="articleBody"><p>Ruby基础教程第九章</p>
-<h4 id="赋值运算符">赋值运算符</h4><p>= += -= &amp;&amp;= &amp;= **= 。。。。</p>
-<h4 id="逻辑运算符">逻辑运算符</h4><p>如果逻辑表达式的真假已经确定，则不会再判断剩余的表达式。</p>
-<h4 id="条件运算符(三元运算符）">条件运算符(三元运算符）</h4><p>条件 ？表达式1 ：表达式2</p>
-<h4 id="范围运算符">范围运算符</h4><p>在Ruby中，生成表示1到10的范围对象<br>Range.new(1, 10)   1..10  1…11</p>
-<blockquote>
-<p>x..y 和 x…y  的区别是x..y 是x到y（包括y），x…y是x到y-1（不包括y)</p>
-</blockquote>
-<h4 id="定义运算符">定义运算符</h4><p>Ruby中可以自己定义或者重定义运算符</p>
-</span>
+          <span itemprop="articleBody">
+            
+            Ruby基础教程第九章
+赋值运算符= += -= &amp;&amp;= &amp;= **= 。。。。
+逻辑运算符如果逻辑表达式的真假已经确定，则不会再判断剩余的表达式。
+条件运算符(三元运算符）条件 ？表达式1 ：表达式2
+范围运算符在Ruby中，生成表示1到10的范围对象Range.new(1
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/12/28/Ruby-基础学习-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -423,38 +443,25 @@
 
       
         
-          <span itemprop="articleBody"><h4 id="开发环境">开发环境</h4><ol>
-<li>IDE RubyMine</li>
-<li>文本编辑器和命令行</li>
-<li>Chrome浏览器</li>
-</ol>
-<h4 id="Ruby，_RubyGems，_Rails，_Git_安装（MacOS）">Ruby， RubyGems， Rails， Git 安装（MacOS）</h4><ol>
-<li><a href="https://rvm.io/rvm/install" target="_blank" rel="external">RVM</a><ol>
-<li><code>curl -sSL https://get.rvm.io | bash -s</code> 进行安装。</li>
-<li><code>rvm get stable</code> 确保是最新版本。</li>
-<li><code>rvm requirements</code> 减产安装Ruby的需要条件。<blockquote>
-<p>若提示 <code>command not found</code>, 运行 <code>source ~/.rvm/scripts/rvm</code>。并根据提示安装相关环境。</p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li><code>rvm install 版本号</code> 安装Ruby。</li>
-<li><code>rvm use 版本号@别名 --create --default</code> 设置默认genset。</li>
-<li><p>安装RubyGems</p>
-<ol>
-<li>检查是否安装</li>
-<li>下载RubyGems，解压文件，并运行<code>ruby setup.rb</code></li>
-<li>在~/.gemrc 中配置不生成ri和rdoc文档<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install: --<span class="keyword">no</span>-rdoc --<span class="keyword">no</span>-ri</span><br><span class="line"><span class="keyword">update</span>: --<span class="keyword">no</span>-rdoc --<span class="keyword">no</span>-ri</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>安装Rails<code>gem install rails --version 4.0.4 --no-ri --no-rdoc</code></p>
-<blockquote>
-<p>rails -v 检查安装</p>
-</blockquote>
-</li>
-</ol>
-</span>
+          <span itemprop="articleBody">
+            
+            开发环境
+IDE RubyMine
+文本编辑器和命令行
+Chrome浏览器
+
+Ruby， RubyGems， Rails， Git 安装（MacOS）
+RVM
+curl -sSL https://get.rvm.io | bash -s 进行安装。
+rvm get stable 确保是最新版本。
+r
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/12/19/Ruby-on-Rails-环境搭建/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -683,8 +690,33 @@
         </nav>
 
         
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sighwang" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iamsigh" target="_blank">weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">douban</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">zhihu</a>
+              </span>
+            
           
         </div>
 
@@ -692,6 +724,13 @@
         
 
         <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://github.com/sighwang" target="_blank">github</a>
+              </span>
+            
           
         </div>
 

@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[sigh]]></title>
+  <subtitle><![CDATA[音乐是情感的独白]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://wangximing.github.io/"/>
+  <updated>2015-09-10T17:09:45.000Z</updated>
+  <id>http://wangximing.github.io/</id>
+  
+  <author>
+    <name><![CDATA[王西明]]></name>
+    <email><![CDATA[sighwang@outlook.com]]></email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[测试多说]]></title>
+    <link href="http://wangximing.github.io/2015/09/10/%E6%B5%8B%E8%AF%95%E5%A4%9A%E8%AF%B4/"/>
+    <id>http://wangximing.github.io/2015/09/10/测试多说/</id>
+    <published>2015-09-10T17:09:45.000Z</published>
+    <updated>2015-09-10T17:09:45.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[use togglz in project]]></title>
+    <link href="http://wangximing.github.io/2015/09/08/use-togglz-in-java/"/>
+    <id>http://wangximing.github.io/2015/09/08/use-togglz-in-java/</id>
+    <published>2015-09-08T08:31:35.000Z</published>
+    <updated>2015-09-08T17:34:22.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="Feature_Toggle_in_Java">Feature Toggle in Java</h1><p>In our project, we choose <a href="http://www.togglz.org/" target="_blank" rel="external">togglz</a> as a framework for feature toggle.</p>
+<h2 id="import_togglz_in_project">import togglz in project</h2><p>We need to add these dependencies in project file <code>build.gradle</code><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &#39;org.togglz:togglz-core:2.2.0.Final&#39;&#10;compile &#39;org.togglz:togglz-servlet:2.2.0.Final&#39;&#10;compile &#39;org.togglz:togglz-jsp:2.2.0.Final&#39; //support jsp&#10;compile &#39;org.togglz:togglz-console:2.2.0.Final&#39;  //support togglz console&#10;compile &#39;org.togglz:togglz-spring-security:2.2.0.Final&#39; //support user authentication&#10;&#10;testCompile &#39;org.togglz:togglz-testing:2.2.0.Final&#39; //support togglz test&#10;testCompile &#39;org.togglz:togglz-junit:2.2.0.Final&#39; //support togglz test</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="config_togglz_in_project">config togglz in project</h2><h3 id="Add_a_new_class_ToggledFeature_implements_Feature">Add a new class <code>ToggledFeature</code> implements Feature</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ToggledFeature implements Feature &#123;</span><br><span class="line">    <span class="annotation">@Label</span>(<span class="string">"CONFIRM_PASSWORD"</span>)</span><br><span class="line">    CONFIRM_PASSWORD,</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Label</span>(<span class="string">"ADDRESS"</span>)</span><br><span class="line">    ADDRESS,</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Label</span>(<span class="string">"AGREE_TERMS"</span>)</span><br><span class="line">    AGREE_TERMS,</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Label</span>(<span class="string">"EMAIL_CONFIRMATION"</span>)</span><br><span class="line">    EMAIL_CONFIRMATION;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isActive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> FeatureContext.getFeatureManager().isActive(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Add_a_new_class_ToggledFeatureConfiguration_implements_TogglzConfig">Add a new class <code>ToggledFeatureConfiguration</code>  implements TogglzConfig</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ToggledFeatureConfiguration</span> <span class="keyword">implements</span> <span class="title">TogglzConfig</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Class&lt;? extends Feature&gt; getFeatureClass() &#123;</span><br><span class="line">        <span class="keyword">return</span> ToggledFeature.class;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> StateRepository <span class="title">getStateRepository</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ClassLoader classLoader = getClass().getClassLoader();</span><br><span class="line">        File file = <span class="keyword">new</span> File(classLoader.getResource(<span class="string">"features.properties"</span>).getFile());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> FileBasedStateRepository(file);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserProvider <span class="title">getUserProvider</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SpringSecurityUserProvider(<span class="string">"ROLE_ADMIN"</span>) &#123;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Add_a_features-peoperties_file_to_set_togglz_status">Add a <code>features.peoperties</code> file to set togglz status</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONFIRM_PASSWORD=true&#10;ADDRESS=true&#10;AGREE_TERMS=true&#10;EMAIL_CONFIRMATION=true</span><br></pre></td></tr></table></figure>
+<h3 id="Then_config_togglz_in_web-xml">Then config togglz in <code>web.xml</code></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">context-param</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">param-name</span>&gt;</span>org.togglz.core.manager.TogglzConfig<span class="tag">&lt;/<span class="title">param-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">param-value</span>&gt;</span>com.trailblazers.freewheelers.utils.ToggledFeature.ToggledFeatureConfiguration<span class="tag">&lt;/<span class="title">param-value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="title">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="title">filter</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">filter-name</span>&gt;</span>TogglzFilter<span class="tag">&lt;/<span class="title">filter-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">filter-class</span>&gt;</span>org.togglz.servlet.TogglzFilter<span class="tag">&lt;/<span class="title">filter-class</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="title">filter</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">filter-mapping</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">filter-name</span>&gt;</span>TogglzFilter<span class="tag">&lt;/<span class="title">filter-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="title">url-pattern</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="title">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Now_we_can_use_&lt;togglz:feature&gt;_in_JSP_file">Now we can use <code>&lt;togglz:feature&gt;</code> in JSP file</h3><ul>
+<li><p>First, we need to add togglz tags to jsp file</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">%@</span> <span class="attribute">taglib</span> <span class="attribute">prefix</span>=<span class="value">"togglz"</span> <span class="attribute">uri</span>=<span class="value">"http://togglz.org/taglib"</span><span class="value">%</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Then we can use togglz to hide elements</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">togglz:feature</span> <span class="attribute">name</span>=<span class="value">"AGREE_TERMS"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">togglz:feature</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="How_to_use_togglz_in_Unit_Test">How to use togglz in Unit Test</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ToggledFeaturesTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Rule</span></span><br><span class="line">    <span class="keyword">public</span> TogglzRule togglzRule = TogglzRule.allEnabled(ToggledFeature.class);</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToggleFeature</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        assertTrue(ToggledFeature.CONFIRM_PASSWORD.isActive());</span><br><span class="line"></span><br><span class="line">        togglzRule.disable(ToggledFeature.CONFIRM_PASSWORD);</span><br><span class="line">        assertFalse(ToggledFeature.CONFIRM_PASSWORD.isActive());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        togglzRule.disableAll();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="How_to_show_toggle_console_in_browser">How to show toggle console in browser</h2><ul>
+<li><p>First, we need to add toggle servlet in <code>web.xml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">servlet-name</span>&gt;</span>TogglzConsoleServlet<span class="tag">&lt;/<span class="title">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">servlet-class</span>&gt;</span>org.togglz.console.TogglzConsoleServlet<span class="tag">&lt;/<span class="title">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">servlet-name</span>&gt;</span>TogglzConsoleServlet<span class="tag">&lt;/<span class="title">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">url-pattern</span>&gt;</span>/togglz/*<span class="tag">&lt;/<span class="title">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Then login with admin role and open <a href="http://localhost:8080/togglz/" target="_blank" rel="external">http://localhost:8080/togglz/</a></p>
+</li>
+<li>Now we can use this page to toggle feature<br><img src="/image/togglz-console.png" alt="Image of Togglz console"></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="Feature_Toggle_in_Java">Feature Toggle in Java</h1><p>In our project, we choose <a href="http://www.togglz.org/">togglz</a> as a framework for feature toggle.</p>
+<h2 id="import_togglz_in_project">import togglz in project</h2><p>We need to add these dependencies in project file <code>build.gradle</code><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &#39;org.togglz:togglz-core:2.2.0.Final&#39;&#10;compile &#39;org.togglz:togglz-servlet:2.2.0.Final&#39;&#10;compile &#39;org.togglz:togglz-jsp:2.2.0.Final&#39; //support jsp&#10;compile &#39;org.togglz:togglz-console:2.2.0.Final&#39;  //support togglz console&#10;compile &#39;org.togglz:togglz-spring-security:2.2.0.Final&#39; //support user authentication&#10;&#10;testCompile &#39;org.togglz:togglz-testing:2.2.0.Final&#39; //support togglz test&#10;testCompile &#39;org.togglz:togglz-junit:2.2.0.Final&#39; //support togglz test</span><br></pre></td></tr></table></figure></p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JavaScript 小知识]]></title>
+    <link href="http://wangximing.github.io/2015/07/29/JavaScript-%E5%B0%8F%E7%9F%A5%E8%AF%86/"/>
+    <id>http://wangximing.github.io/2015/07/29/JavaScript-小知识/</id>
+    <published>2015-07-29T05:54:01.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<p>立即执行函数（IIFE -Immediately Invoked Function Expression）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="pi">    'use strict'</span>;</span><br><span class="line"></span><br><span class="line">    angular</span><br><span class="line">        .module(<span class="string">'app'</span>)</span><br><span class="line">        .factory(<span class="string">'storage'</span>, storage);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">storage</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>注：IIFE阻止了测试代码访问私有成员（正则表达式、helper函数等），这对于自身测试是非常友好的。然而你可以把这些私有成员暴露到可访问成员中进行测试，例如把私有成员（正则表达式、helper函数等）放到factory或是constant中。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>立即执行函数（IIFE -Immediately Invoked Function Expression）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span cl]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[gradle file lock]]></title>
+    <link href="http://wangximing.github.io/2015/07/29/gradle-file-lock/"/>
+    <id>http://wangximing.github.io/2015/07/29/gradle-file-lock/</id>
+    <published>2015-07-29T05:00:41.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<p>运行gradle idea 下载依赖的时候报下面的错误<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Timeout waiting to <span class="operator"><span class="keyword">lock</span> buildscript <span class="keyword">class</span> <span class="keyword">cache</span> <span class="keyword">for</span> <span class="keyword">build</span> <span class="keyword">file</span> <span class="string">'/Users/twer/works/javaee/core/build.gradle'</span> (/<span class="keyword">Users</span>/twer/.gradle/caches/<span class="number">2.2</span><span class="number">.1</span>/scripts/build_dqoptxiza8a734uwm8mpmbw5h/ProjectScript/buildscript). It <span class="keyword">is</span> currently <span class="keyword">in</span> <span class="keyword">use</span> <span class="keyword">by</span> another Gradle <span class="keyword">instance</span>.</span><br><span class="line">     Owner PID: <span class="keyword">unknown</span></span><br><span class="line">     Our PID: <span class="number">4202</span></span><br><span class="line">     Owner Operation: <span class="keyword">unknown</span></span><br><span class="line">     Our operation: Initialize <span class="keyword">cache</span></span><br><span class="line">     <span class="keyword">Lock</span> <span class="keyword">file</span>: /<span class="keyword">Users</span>/twer/.gradle/caches/<span class="number">2.2</span>.</span><br><span class="line">     <span class="number">1</span>/scripts/build_dqoptxiza8a734uwm8mpmbw5h/ProjectScript/buildscript/<span class="keyword">cache</span>.properties.<span class="keyword">lock</span></span></span><br></pre></td></tr></table></figure></p>
+<p>这是因为我还开着其他的gradle 服务（jetty），关闭后gradle就可以正常下载依赖了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>运行gradle idea 下载依赖的时候报下面的错误<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span clas]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[AnjularJS]]></title>
+    <link href="http://wangximing.github.io/2015/07/28/AnjularJS/"/>
+    <id>http://wangximing.github.io/2015/07/28/AnjularJS/</id>
+    <published>2015-07-28T11:03:45.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="AngularJS配置：">AngularJS配置：</h2><ul>
+<li>下载AngularJS源文件，<code>angular.js</code>, <code>angular-router.js</code>等必须使用的源文件。</li>
+<li>在跟路径（可以是其他路径，建议根路径）新建index.html文件，index.html的目录，将会作为整个angular的根路径。</li>
+<li>在index.html 中标记出ng-app=”appname”,和ng-views=” “。ng-app的 <code>appname</code>将会作为为整个angular的项目名称。在app.js和controller、service的配置文件中要保持一致。</li>
+<li>新建app.js文件，app.js中写的是angular的配置信息。如router等。</li>
+<li>新建一个Controller。</li>
+<li>新建一个Service。</li>
+<li>在index.html中引入angula.js angular-router.js 相关js。和自己实现的app.js ,controller 的js，service的js。</li>
+</ul>
+<a id="more"></a>
+<h2 id="AngularJS启动机制：">AngularJS启动机制：</h2><p>一直有一个疑问就是：在index.html文件中引入了要用的js文件后，怎么就可以确定AngularJS已经配置好了，它是怎么管理前台的呢？怎么的就会启动AngularJS了呢？</p>
+<p>查了一些资料后整理如下。</p>
+<ul>
+<li>系统加载文档结构，加载所有引用的js。</li>
+<li>文档加载完成后，angular.js自动执行去寻找 “ng-app”确认系统边界。</li>
+<li>根据ng-app的名称去app.js里面寻找相同名称的模块，并注入。</li>
+<li>根据模块名称寻找controller，service。</li>
+<li>项目被AngularJS接手。<br>要注意的是index.js 和app.js 是默认名称，不可更改。</li>
+</ul>
+<p><a href="https://github.com/johnpapa/angular-styleguide/blob/master/i18n/zh-CN.md" target="_blank" rel="external">https://github.com/johnpapa/angular-styleguide/blob/master/i18n/zh-CN.md</a> 很好的教程。</p>
+<h2 id="AngularJS_小知识">AngularJS 小知识</h2><ul>
+<li>$location.path(“要去页面的AngularJS路由”) 可以实现controller内页面跳转。</li>
+<li>AngularJS scope,研究下AngularJS的scope。<blockquote>
+<p>有两个页面（页面A，页面B）绑定的是相同的controller（commonController），<br>在一个页面（页面A）中触发commonController.changePage()方法，<br>changePage()方法，先给scope赋值（$scope.user = user）,再跳转到页面B。<br>这时在页面B中无法获取$scope.user的值。<br>排除写错的可能后，页面也没有刷新。认为是scope范围的问题：<br>两个页面共用一个controller时，controller作用于不同页面的时候，$scope是不同的两个$scope。</p>
+</blockquote>
+</li>
+<li>AngularJS多选（select）提供默认值。<blockquote>
+<p>注意ng-model的类型和ng-option中for和in中间的变量类型要一致。即<code>addedUser.employee</code>和<code>employee</code>都是employee。还有就是ng-model的值必须是ng-option的一个index的值，否则也会造成类型的不一致。<br>如下面的值。</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-------------JavaScript------------</span><br><span class="line"><span class="variable">$scope</span>.employees = data;</span><br><span class="line"><span class="variable">$scope</span>.addedUser = &#123;employee: data[<span class="number">0</span>]&#125;;</span><br><span class="line"></span><br><span class="line">----------HTML---------------------</span><br><span class="line">&lt;select ng-model=<span class="string">"addedUser.employee"</span> ng-options = <span class="string">"employee.name for employee in employees"</span>&gt;&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">----------HTML---------------------</span><br><span class="line">&lt;select ng-model=<span class="string">"employee"</span> ng-options = <span class="string">"employee.name for employee in employees"</span>&gt;&lt;/select&gt;</span><br><span class="line">---------JavaScript----------------</span><br><span class="line"><span class="variable">$scope</span>.employees = employees;// 从后台获取的api/employees</span><br><span class="line"><span class="variable">$scope</span>.employee = employee;// 从后台获取的 api/employees/employee</span><br><span class="line">//这样子获取的话AngularJS对数组和普通对象的值封装是不同的</span><br><span class="line">console.log(employees[<span class="number">0</span>]);//Object &#123;class: <span class="string">"com.tw.core.model.Employee"</span>, gender: <span class="string">"男"</span>, id: <span class="number">4</span>, name: <span class="string">"周杰伦"</span>, role: <span class="string">"Coach"</span>&#125;</span><br><span class="line">console.log(employee);//Object &#123;id: <span class="number">4</span>, name: <span class="string">"周杰伦"</span>, gender: <span class="string">"男"</span>, role: <span class="string">"Coach"</span>, $<span class="variable">$hashKey</span>: <span class="string">"object:6"</span>&#125;</span><br><span class="line">// 可以看到我们以为的一样其实是错的。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://docs.angularjs.org/api/ng/directive/ngOptions" target="_blank" rel="external">官网例子是这么写的</a></p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="AngularJS配置：">AngularJS配置：</h2><ul>
+<li>下载AngularJS源文件，<code>angular.js</code>, <code>angular-router.js</code>等必须使用的源文件。</li>
+<li>在跟路径（可以是其他路径，建议根路径）新建index.html文件，index.html的目录，将会作为整个angular的根路径。</li>
+<li>在index.html 中标记出ng-app=”appname”,和ng-views=” “。ng-app的 <code>appname</code>将会作为为整个angular的项目名称。在app.js和controller、service的配置文件中要保持一致。</li>
+<li>新建app.js文件，app.js中写的是angular的配置信息。如router等。</li>
+<li>新建一个Controller。</li>
+<li>新建一个Service。</li>
+<li>在index.html中引入angula.js angular-router.js 相关js。和自己实现的app.js ,controller 的js，service的js。</li>
+</ul>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[DOM event]]></title>
+    <link href="http://wangximing.github.io/2015/07/28/jQuery-event/"/>
+    <id>http://wangximing.github.io/2015/07/28/jQuery-event/</id>
+    <published>2015-07-28T08:18:23.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-flow" target="_blank" rel="external">http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</a>  w3c事件派遣与事件流<br><a href="http://chajn.org/project/javascript-events-responding-user/" target="_blank" rel="external">http://chajn.org/project/javascript-events-responding-user/</a> 事件<br><a href="http://segmentfault.com/a/1190000002613617" target="_blank" rel="external">http://segmentfault.com/a/1190000002613617</a> 事件委托与代理</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-flow" target="_blank" rel="external">http://www.w3.org/TR/DOM-Level-3-Events/#eve]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Test Double]]></title>
+    <link href="http://wangximing.github.io/2015/07/27/Test-Double/"/>
+    <id>http://wangximing.github.io/2015/07/27/Test-Double/</id>
+    <published>2015-07-27T16:18:24.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="什么是Test_Double？为什么要用Test_Double？">什么是Test Double？为什么要用Test Double？</h2><p>Test Double即是测试替身。<br>讲测试替身之前，先要明确两个概念。<br><code>待测程序</code>和<code>测试依赖</code>。<br>待测程序就是要被测试的程序，测试依赖就是待测程序所依赖的程序。<br>为什么要使用测试替身：要测试“待测程序”，测试依赖也必须存在，这使得测试变得更复杂。</p>
+<p>测试替身的概念： Test Double是一种让“待测程序”可以不依靠“测试依赖”而被单独测试的做法。</p>
+<a id="more"></a>
+<h2 id="简单理解：">简单理解：</h2><p>Test Double有五种，分别是<code>Dummy Object</code>， <code>Test Stub</code>， <code>Test Spy</code>， <code>Fake Object</code>， <code>Mock Object</code>。</p>
+<ul>
+<li>Dummy：不包含实体的对象，在测试中需要传入但不会被用到的参数。</li>
+<li>Stub： 传回固定值。</li>
+<li>Spy： 类似Stub，但会记录盗用。</li>
+<li>Mock：提供Dummy， Stub，Spy的功能，开发人员看不到TestDouble的程序，只可以设定Mock一提供返回值，预期的调用等。</li>
+<li>Fake:通过提供接近原始对象单比较简单的实现。</li>
+</ul>
+<h2 id="区别：">区别：</h2><p>从Test Double与本体之间的功能相似度来区分，</p>
+<ul>
+<li>Dummy Object根本没有实现，是[假到非常假]的替身。</li>
+<li>Stub有实现，但其实现方式通常是写死某个特想的返回值。</li>
+<li>Spy和Stub有类似的实现，但是Stub用来处理状态验证，<br>而Spy则是用来处理行为验证的。Spy会记录待测程序和测试依赖的行为互动</li>
+<li>Fake是与本尊行为非常接近的替身。差别在与Fake采用比较简单的方式类实现。</li>
+<li>Mock，Mock技术可以做到Dummy，Stub，Spy的功能，无法做到Fake，Mock可以自动产生Dummy，Stub，Spy这三种TEST Double。<br>参考资料：<a href="http://teddy-chen-tw.blogspot.hk/2014/09/test-double1.html" target="_blank" rel="external">http://teddy-chen-tw.blogspot.hk/2014/09/test-double1.html</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="什么是Test_Double？为什么要用Test_Double？">什么是Test Double？为什么要用Test Double？</h2><p>Test Double即是测试替身。<br>讲测试替身之前，先要明确两个概念。<br><code>待测程序</code>和<code>测试依赖</code>。<br>待测程序就是要被测试的程序，测试依赖就是待测程序所依赖的程序。<br>为什么要使用测试替身：要测试“待测程序”，测试依赖也必须存在，这使得测试变得更复杂。</p>
+<p>测试替身的概念： Test Double是一种让“待测程序”可以不依靠“测试依赖”而被单独测试的做法。</p>]]>
+    
+    </summary>
+    
+      <category term="test" scheme="http://wangximing.github.io/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[jQuery 教程]]></title>
+    <link href="http://wangximing.github.io/2015/07/25/Jquery-%E6%95%99%E7%A8%8B/"/>
+    <id>http://wangximing.github.io/2015/07/25/Jquery-教程/</id>
+    <published>2015-07-25T13:11:11.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="简单介绍">简单介绍</h2><h3 id="什么是jQuery">什么是jQuery</h3><p>jQuery是一个JavaScript库，它通过封装原生JavaScript函数得到了一整套定义好的方法。这些方法能有效地帮助Web设计师和开发者快捷编写和扩展JavaScript交互组件。jQuery没有提供任何新的功能，它最大的贡献是把JavaScript难懂难用的API整理成了易懂易用的jQuery语法，从而赢得了无数的用户。</p>
+<h3 id="为什么要用jQuery">为什么要用jQuery</h3><ul>
+<li>开源</li>
+<li>无与伦比的文档</li>
+<li>更少的代码</li>
+<li>链式调用</li>
+<li>兼容各种浏览器</li>
+<li>与CSS相近的属性选择器</li>
+<li>不突兀的JavaScript（例如：事件绑定全部在JavaScript代码中完成，不需要在HTML中出现JavaScript代码）。</li>
+</ul>
+<h3 id="主要功能">主要功能</h3><ul>
+<li>处理DOM</li>
+<li>Ajax</li>
+<li>事件处理</li>
+<li>易于扩展</li>
+<li>特殊效果（淡入淡出， 滑动）</li>
+<li>动画</li>
+</ul>
+<a id="more"></a>
+<p>下面分别简单介绍下jQuery的处理DOM、Ajax、事件处理的主要功能。</p>
+<h2 id="处理DOM">处理DOM</h2><h3 id="jQuery选择器">jQuery选择器</h3><h4 id="Id选择器">Id选择器</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#34;#id&#34;)</span><br></pre></td></tr></table></figure>
+<h4 id="类选择器">类选择器</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">".class"</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="标签选择器">标签选择器</h4><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span><span class="string">"标签名"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="遍历">遍历</h3><h4 id="父元素">父元素</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.<span class="function"><span class="title">parent</span><span class="params">()</span></span></span><br><span class="line">.<span class="function"><span class="title">closest</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="子元素">子元素</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.<span class="function"><span class="title">children</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="筛选">筛选</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.<span class="function"><span class="title">find</span><span class="params">()</span></span>获得当前匹配元素集合中每个元素的后代，由选择器进行筛选</span><br></pre></td></tr></table></figure>
+<h3 id="操作">操作</h3><h4 id="删除">删除</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.<span class="function"><span class="title">remove</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="替换">替换</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.<span class="function"><span class="title">replaceWith</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="取值赋值">取值赋值</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.<span class="function"><span class="title">val</span><span class="params">()</span></span></span><br><span class="line">.<span class="function"><span class="title">text</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="控制样式">控制样式</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.addClass</span>()</span><br><span class="line"><span class="class">.removeClass</span>()</span><br><span class="line"><span class="class">.toggleClass</span>(<span class="string">'active'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="Ajax">Ajax</h2><h3 id="Ajax基础">Ajax基础</h3><h4 id="什么是Ajax">什么是Ajax</h4><p>Ajax是指在不需要刷新(重新加载)页面的情况下，允许客户端应用程序传送数据给服务器并从服务器获取数据的一组模式和技术。</p>
+<h4 id="coreApi">coreApi</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="function"><span class="title">ajax</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>option<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="typedef"><span class="keyword">data</span></span></span><br><span class="line"><span class="title">error</span></span><br><span class="line"><span class="title">success</span></span><br><span class="line"><span class="title">error</span></span><br><span class="line"><span class="typedef"><span class="keyword">type</span></span></span><br><span class="line"><span class="title">url</span></span><br><span class="line"><span class="title">cache</span></span><br><span class="line"><span class="title">async</span></span><br></pre></td></tr></table></figure></p>
+<p>####Ajax-Related methods<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="function"><span class="title">load</span><span class="params">()</span></span></span><br><span class="line">$.<span class="function"><span class="title">get</span><span class="params">()</span></span></span><br><span class="line">$.<span class="function"><span class="title">post</span><span class="params">()</span></span></span><br><span class="line">$.<span class="function"><span class="title">getScript</span><span class="params">()</span></span></span><br><span class="line">$.<span class="function"><span class="title">getJson</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Ajax+Deferred对象">Ajax+Deferred对象</h3><p>在这里将deferred对象与Ajax回调结合，来介绍deffered对象与Ajax的联合使用。</p>
+<h4 id="什么是Deffered">什么是Deffered</h4><p>Deferred翻译成中文是延迟的意思，是jQuery 中用来处理回调函数的解决方案。延迟到摸个点在执行。<br>决绝jQUery的<code>回调地狱</code>的问题。</p>
+<h4 id="Deffered对象的方法（methods）">Deffered对象的方法（methods）</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="function"><span class="title">Deferred</span><span class="params">()</span></span>生成一个deferred对象</span><br><span class="line">.<span class="function"><span class="title">done</span><span class="params">()</span></span> 执行成功时的回调</span><br><span class="line">.<span class="function"><span class="title">fail</span><span class="params">()</span></span> 执行失败时的回调</span><br><span class="line">.<span class="function"><span class="title">resolve</span><span class="params">()</span></span> 手动改变deferred对象 运行状态为“已成功”，从而触发.done（）回调。</span><br><span class="line">.<span class="function"><span class="title">reject</span><span class="params">()</span></span> 手动改变deferred对象运行状态为“已失败”，从而触发.<span class="function"><span class="title">fail</span><span class="params">()</span></span>回调。</span><br><span class="line">.<span class="function"><span class="title">then</span><span class="params">()</span></span></span><br><span class="line">.<span class="function"><span class="title">always</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="事件处理">事件处理</h2><h3 id="系统事件">系统事件</h3><p>将系统事件分为四类</p>
+<h4 id="文档和窗口事件">文档和窗口事件</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.<span class="function"><span class="title">ready</span><span class="params">()</span></span>当HTML文档加载完成时触发</span><br><span class="line">.<span class="function"><span class="title">load</span><span class="params">()</span><span class="title">HTML</span></span>所有组件加载完成时触发</span><br><span class="line">.<span class="function"><span class="title">unload</span><span class="params">()</span></span>当浏览器窗口关闭或用户点击一个连接/在地址栏输入网址关闭本页面打开新页面时</span><br><span class="line">.<span class="function"><span class="title">resize</span><span class="params">()</span></span>当用户改变浏览器窗口大小时</span><br><span class="line">.<span class="function"><span class="title">scroll</span><span class="params">()</span></span>当用户滚动窗口时触发</span><br><span class="line">.<span class="function"><span class="title">error</span><span class="params">()</span></span>当http请求遇到错误时</span><br></pre></td></tr></table></figure>
+<h4 id="鼠标事件">鼠标事件</h4><h4 id="键盘事件">键盘事件</h4><h4 id="表单事件">表单事件</h4><h3 id="自定义事件">自定义事件</h3><h4 id="自定义事件的定义与触发">自定义事件的定义与触发</h4><ul>
+<li>定义 <code>$(&quot;#id&quot;).on(‘自定义事件名称’)</code></li>
+<li>触发 <code>this.trigger(&quot;name&quot;)</code><h4 id="事件代理">事件代理</h4><h5 id="什么是事件代理">什么是事件代理</h5></li>
+</ul>
+<p>把事件绑定到父级元素。然后等待事件通过DOM冒泡到该元素时再执行</p>
+<h5 id="事件代理的优点">事件代理的优点</h5><p>减少绑定事件的数量，<br>减少意外发生次数.</p>
+<h4 id="事件代理的语法">事件代理的语法</h4><p>on()绑定<br>off()解绑<br>one()仅触发一次</p>
+<p>####事件命名空间</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="简单介绍">简单介绍</h2><h3 id="什么是jQuery">什么是jQuery</h3><p>jQuery是一个JavaScript库，它通过封装原生JavaScript函数得到了一整套定义好的方法。这些方法能有效地帮助Web设计师和开发者快捷编写和扩展JavaScript交互组件。jQuery没有提供任何新的功能，它最大的贡献是把JavaScript难懂难用的API整理成了易懂易用的jQuery语法，从而赢得了无数的用户。</p>
+<h3 id="为什么要用jQuery">为什么要用jQuery</h3><ul>
+<li>开源</li>
+<li>无与伦比的文档</li>
+<li>更少的代码</li>
+<li>链式调用</li>
+<li>兼容各种浏览器</li>
+<li>与CSS相近的属性选择器</li>
+<li>不突兀的JavaScript（例如：事件绑定全部在JavaScript代码中完成，不需要在HTML中出现JavaScript代码）。</li>
+</ul>
+<h3 id="主要功能">主要功能</h3><ul>
+<li>处理DOM</li>
+<li>Ajax</li>
+<li>事件处理</li>
+<li>易于扩展</li>
+<li>特殊效果（淡入淡出， 滑动）</li>
+<li>动画</li>
+</ul>]]>
+    
+    </summary>
+    
+      <category term="JavaScript jQuery" scheme="http://wangximing.github.io/tags/JavaScript-jQuery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[mongoDB hello world]]></title>
+    <link href="http://wangximing.github.io/2015/02/02/mongoDB-hello-world/"/>
+    <id>http://wangximing.github.io/2015/02/02/mongoDB-hello-world/</id>
+    <published>2015-02-02T08:31:35.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="mongoDB学习">mongoDB学习</h2><p>练习项目位置<a href="https://github.com/wangximing/mongoDB-quick-start" target="_blank" rel="external">https://github.com/wangximing/mongoDB-quick-start</a></p>
+<h3 id="安装">安装</h3><p>OSX下运行下列命令<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span>update</span><br><span class="line"><span class="keyword">brew </span>install mongodb</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h3 id="运行该项目">运行该项目</h3><p>在项目根路径下运行下列命令<br><code>npm install</code>, <code>mongod --dbpath=./data --port 27017</code>, <code>node app.js</code>。</p>
+<p>参考：<br><a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/" target="_blank" rel="external">mongoDB install</a></p>
+<p><a href="http://mongodb.github.io/node-mongodb-native/2.0/overview/quickstart/" target="_blank" rel="external">mongoDB quick start</a></p>
+<h3 id="疑问">疑问</h3><p>运行教程中的<code>mongod --dbpath=/data --port 27017</code>命令时错误</p>
+<p>不理解mongoDB的存储位置</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="mongoDB学习">mongoDB学习</h2><p>练习项目位置<a href="https://github.com/wangximing/mongoDB-quick-start">https://github.com/wangximing/mongoDB-quick-start</a></p>
+<h3 id="安装">安装</h3><p>OSX下运行下列命令<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span>update</span><br><span class="line"><span class="keyword">brew </span>install mongodb</span><br></pre></td></tr></table></figure></p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[装饰者模式学习笔记]]></title>
+    <link href="http://wangximing.github.io/2015/01/16/The%20Decorator%20Pattern/"/>
+    <id>http://wangximing.github.io/2015/01/16/The Decorator Pattern/</id>
+    <published>2015-01-16T06:38:58.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<p>from <a href="http://www.cnblogs.com/justinw/archive/2007/06/11/779356.html" target="_blank" rel="external">Justin’s Tech Blog</a></p>
+<p>装饰者模式： 动态的给一个对象添加额外的职责，就增加功能来说，Decorator比增加子类更灵活</p>
+<blockquote>
+<p>优先使用组合，而不是继承(Favor composition over inheritance);</p>
+</blockquote>
+<p>####举一个饮品的记账系统来引出装饰者模式。<br><img src="https://wangximing.github.io/pictures/decorator1.jpg" alt="decorator1"></p>
+<p>Brverage是所有饮料的基类，cost()是抽象方法，<br>所有子类都需要定义自己的cost() 实现来返回特定饮料的价钱，<br>description变量也是在子类里赋值，表示特定饮料的描述信息。<br>getDescription()方法可以返回这个描述。</p>
+<a id="more"></a>
+<p>除了咖啡以外，炼乳，巧克力，砂糖，牛奶等调味品也是要单独收费的，所以调味品也是订单系统中重要的一部分。<br>于是。。。。。。</p>
+<p><img src="https://wangximing.github.io/pictures/decorator2.jpg" alt="decorator2"></p>
+<p>这样的设计明显很不合适。于是又有了下面的设计方案。</p>
+<p><img src="https://wangximing.github.io/pictures/decorator3.jpg" alt="decorator3"></p>
+<p>首先在基类里增加了表示是否包含特定调味品的布尔变量如milk, soy等，然后提供了一些has(get)和set方法来设置这些布尔值；其次在Beverage类里实现cost()方法来计算调味品的价钱。所有咖啡子类将仍然覆盖cost()方法，只是这次它们需要同时调用基类的cost()方法，以便获得咖啡加上调味品后的总价。<br>看上去似乎这是一个不错的设计，那么下面我们再来给Beverage增加子类，如下图所示：</p>
+<p><img src="https://wangximing.github.io/pictures/decorator4.jpg" alt="decorator4"></p>
+<p>基类的cost()方法将计算所有调味品的价钱(当然是只包括布尔值为true的调味品)，子类里的cost()方法将扩展其功能，以包含特定类型饮料的价钱。<br>OK! 现在我们似乎已经有了一个看上去还不错的设计，那么Central Perk的这个记账系统就按这个设计来实现就万事大吉了吗？等一下，还是让我们先从以前学习过的“找到系统中变化的部分，将变化的部分同其它稳定的部分隔开。”这个设计原则出发，重新推敲一下这个设计。<br>那么对于一家咖啡店来说，都有那些变化点呢？调味品的品种和价格会变吗？咖啡的品种和价格会变吗？咖啡和调味品的组合方式会变吗？YES! 对于一家咖啡店来说，这些方面肯定会经常发生改变的！那么，当这些改变发生的时候，我们的记账系统要如何应对呢？ 如果调味品发生改变，那么我们只能从代码的层次重新调整Beverage基类，这太糟糕了；如果咖啡发生改变，我们可以增加或删除一个子类即可，这个似乎还可以忍受；那么咖啡和调味品的组合方式发生改变呢？如果顾客点了一杯纯黑咖啡外加两份砂糖和一份巧克力，或者顾客点了一杯脱咖啡因咖啡(Decaf)外加三份炼乳和一份砂糖呢？我倒！突然意识到，上面的设计根本不支持组合一份以上同种调味品的情况，因为基类里的布尔值只能记录是否包含某种调味品，而并不能表示包含几份，连基本的功能需求都没有满足，看来这些开发者可以卷铺盖滚蛋了！(似乎他们改行去做炸弹更合适！)<br>好吧！让我们来接手这个设计！我们已经分析了前面设计的失败之处，我们应该实现支持调味品的品种和价格任意改变而不需要修改已有代码的设计；我们还要实现支持咖啡品种和价格任意改变而不需要修改已有代码的设计(这点上面的设计通过继承算是实现了)；还有就是支持咖啡和调味品的品种和份数任意组合而不需要修改已有代码的设计；还有就是代码重用越多越好了，内聚越高越好了，耦合越低越好了；(还有最重要的，报酬越高越好啦！)<br>看来我们要实现的目标还真不少，那么我们到底该怎么做呢？说实话，我现在也不知道！我们需要先去拜访一下今天的主角—装饰者模式，看看她能给我们带来什么惊喜吧！</p>
+<h4 id="装饰着模式">装饰着模式</h4><p>我们还是先看一下官方的定义：<br>The Decorator Pattern attaches additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality. (装饰者模式可以动态地给一个对象增加其他职责。就扩展对象功能来说，装饰者模式比生成子类更为灵活。)<br>这里我们要重点注意那个dynamically（动态的），什么是动态？静态又是什么？这是我们要重点区分的地方，后面我们还会专门讨论这个问题。下面先看看装饰者模式的类图和顺序图：</p>
+<p><img src="https://wangximing.github.io/pictures/decorator5.gif" alt="decorator5"></p>
+<p>Component（被装饰对象基类）<br>l         定义对象的接口，可以给这些对象动态增加职责；<br>ConcreteComponent（具体被装饰对象）<br>l         定义具体的对象，Decorator可以给它增加额外的职责；<br>Decorator（装饰者抽象类）<br>l         维护一个指向Component实例的引用，并且定义了与Component一致的接口；<br>ConcreteDecorator（具体装饰者）<br>l         具体的装饰对象，给内部持有的具体被装饰对象增加具体的职责；<br><img src="https://wangximing.github.io/pictures/decorator6.gif" alt="decorator6"></p>
+<p>我们先来说说上面提到的动态和静态的问题，所谓动态是说可以在系统运行时(RunTime)动态给对象增加其它职责而不需要修改代码或重新编译；所谓静态是说必须通过调整代码(DesignTime)才能给对象增加职责,而且系统还需要重新编译；从具体技术层面来说，对象的组合和继承正好对应于前面的动态和静态，因为通过对象组合建立的交互关系不是在代码中(DesignTime)固定死的，而是在运行时(RunTime)动态组合的；而通过继承建立的关系是僵硬的难以改变的，因为它是在代码中(DesignTime)固定死了的，根本不存在运行时(RunTime)改变的可能。换个角度说：我们应该多使用对象组合来保持系统的运行时扩展性，尽量少使继承，因为继承让程序变得僵硬！这句话听着是不是很熟悉啊？恩！这就是我们前面文章里提过多次的一个设计原则：Favor composition over inheritance.（优先使用对象组合，而非类继承），更多的就不需要再解释了吧？<br>那么回到装饰者模式，跟前面介绍过的模式一样，装饰者同样是一个很简单的模式，特别是画出类图和顺序图之后，一切都很清楚明了。这里只有一个地方需要特殊强调一下：Decorator是装饰者模式里非常特殊的一个类，它既继承于Component【IS A关系】,又维护一个指向Component实例的引用【HAS A关系】，换个角度来说，Decorator跟Component之间，既有动态组合关系又有静态继承关系，WHY? 这里为什么要这么来设计？上面我们说过，组合的好处是可以在运行时给对象增加职责，Decorator【HAS A】Component的目的是让ConcreteDecorator可以在运行时动态给ConcreteComponent增加职责，这一点相对来说还比较好理解；那么Decorator继承于Component的目的是什么？在这里，继承的目的只有一个，那就是可以统一装饰者和被装饰者的接口，换个角度来说，不管是ConcretComponent还是ConcreteDecorator，它们都是 Component，用户代码可以把它们统一看作Component来处理，这样带来的更深一层的好处就是，装饰者对象对被装饰者对象的功能职责扩展对用户代码来说是完全透明的，因为用户代码引用的都是Component，所以就不会因为被装饰者对象在被装饰后，引用它的用户代码发生错误，实际上不会有任何影响，因为装饰前后，用户代码引用的都是Component类型的对象，这真是太完美了！装饰者模式通过继承实现统一了装饰者和被装饰者的接口，通过组合获得了在运行时动态扩展被装饰者对象的能力。<br>我们再举个生活中的例子，俗话说“人在衣着马在鞍”，把这就话用装饰者模式的语境翻译一下，“人通过漂亮的衣服装饰后，男人变帅了，女人变漂亮了；”。对应上面的类图，这里人对应于ConcreteComponent,而漂亮衣服则对应于ConcreteDecorator；换个角度来说，人和漂亮衣服组合在一起【HAS A】，有了帅哥或美女，但是他们还是人【IS A】，还要做人该做的事情，但是可能会对异性更有吸引力了(扩展功能)！<br>现在我们已经认识了装饰者模式，知道了动态关系和静态关系是怎么回事，是时候该解决咖啡店的问题了，从装饰者模式的角度来考虑问题，咖啡和调味品的关系应该是：咖啡是被装饰对象而调味品是装饰者，咖啡和调味品可以任意组合，但是不管怎么组合，咖啡还是咖啡！原来这么简单啊！具体看下面的类图</p>
+<p><img src="https://wangximing.github.io/pictures/decorator7.jpg" alt="decorator7"></p>
+<p>如图所示，Beverage还是所有饮料的基类，它对应于装饰者模式类图里的Component,是所有被装饰对象的基类；HouseBlend, DarkRoast, Espresso, Decaf是具体的饮料(咖啡)种类，对应于前面的ConcreteComponent，即是具体的被装饰对象；CondimentDecorator对应于前面的Decorator，是装饰者的抽象类；而Milk，Mocha，Soy，Whip则都是具体的调味品，对于前面的ConcreteDecorator，也就是具体的装饰者。下面我们通过具体的代码再进一步理解一下基于装饰者模式的记账系统的实现.</p>
+<p>饮品的基类（被装饰者）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基类</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Beverage</span>(<span class="params">size</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.size = size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Beverage.prototype.getDiscription = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'Unknown Beverage'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Beverage.prototype.getSize = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Beverage.prototype.setSize = <span class="function"><span class="keyword">function</span> (<span class="params">size</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.setSize = size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>装饰者基类（继承饮料基类，并有一个饮料基类的属性）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CondimentDecorator</span> (<span class="params">beverage</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.beverage = beverage;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CondimentDecorator.prototype = <span class="built_in">Object</span>.create(Beverage.prototype);</span><br><span class="line">CondimentDecorator.prototype.constructor = CondimentDecorator;</span><br></pre></td></tr></table></figure></p>
+<p>饮料类，继承Beverage</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Decaf</span>(<span class="params">beverage</span>) </span>&#123;</span><br><span class="line">  Beverage.call(<span class="keyword">this</span>, beverage);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Decaf.prototype = <span class="built_in">Object</span>.create(Beverage.prototype);</span><br><span class="line">Decaf.prototype.constructor = Decaf;</span><br><span class="line"><span class="comment">//其他饮品类类类似</span></span><br></pre></td></tr></table></figure>
+<p>具体调味品类，继承CondimeDecorator类<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Mocha</span>(<span class="params">beverage</span>) </span>&#123;</span><br><span class="line">  CondimentDecorator.call(beverage);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Mocha.prototype = <span class="built_in">Object</span>.create(Mocha.prototype);</span><br><span class="line">Mocha.prototype.constructor = Mocha;</span><br><span class="line"></span><br><span class="line">Mocha.prototype.getDescription = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> beverage.GetDescription() + <span class="string">',Mocha'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Mocha.prototype.cost = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">10</span> + beverage.cost();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面只是具体的实现代码，并没有具体的结果的演示。于是这里提供一个基于Jasmine的测试</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">describe(&#39;Decaf&#39;, function() &#123;&#10;  it(&#39;#cost()&#39;, function () &#123;&#10;    var beverage = new Deaf();&#10;    beverage = new Mocha(beverage);&#10;    beverage = new Whip(beverage);&#10;    expect(beverage.cost()).toBe(3.5);&#10;    &#125;)&#10;  &#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="装饰模式的应用场景和优缺点">装饰模式的应用场景和优缺点</h4><p>上面已经对装饰者模式做了比较详细的介绍，还是那句话，人无完人，模式也不是万能的，我们要用好设计模式来解决我们的实际问题，就必须熟知模式的应用场景和优缺点：</p>
+<h5 id="装饰者模式的应用场景：">装饰者模式的应用场景：</h5><ol>
+<li>想透明并且动态地给对象增加新的职责的时候。</li>
+<li>给对象增加的职责，在未来存在增加或减少可能。</li>
+<li>用继承扩展功能不太现实的情况下，应该考虑用组合的方式。<h5 id="装饰者模式的优点：">装饰者模式的优点：</h5></li>
+<li>通过组合而非继承的方式，实现了动态扩展对象的功能的能力。</li>
+<li>有效避免了使用继承的方式扩展对象功能而带来的灵活性差，子类无限制扩张的问题。</li>
+<li>充分利用了继承和组合的长处和短处，在灵活性和扩展性之间找到完美的平衡点。</li>
+<li>装饰者和被装饰者之间虽然都是同一类型，但是它们彼此是完全独立并可以各自独立任意改变的。<br>5  遵守大部分GRASP原则和常用设计原则，高内聚、低偶合。<h5 id="装饰者模式的缺点：">装饰者模式的缺点：</h5></li>
+<li>装饰链不能过长，否则会影响效率。</li>
+<li>因为所有对象都是Component,所以如果Component内部结构发生改变，则不可避免地影响所有子类(装饰者和被装饰者)，也就是说，通过继承建立的关系总是脆弱地，如果基类改变，势必影响对象的内部，而通过组合(Decoator HAS A Component)建立的关系只会影响被装饰对象的外部特征。<br>3.只在必要的时候使用装饰者模式，否则会提高程序的复杂性，增加系统维护难度。</li>
+</ol>
+<h4 id="相关设计原则">相关设计原则</h4><p>相信大家现在对装饰者模式都应该很清楚了吧！那么，就像我们在前面的文章里反复强调的一样，设计原则远比模式重要，学习设计模式的同时一定要注意体会设计原则的应用。这里我们再来看看装饰者模式里都符合那些主要的设计原则。</p>
+<ol>
+<li>Identify the aspects of your application that vary and separate them from what stays the same. (找到系统中变化的部分，将变化的部分同其它稳定的部分隔开。)<br>在装饰者模式的应用场景里变化的部分是Component的扩展功能。使用Decorator模式可以很好地将装饰者同被装饰者完全隔离开，我们可以任意改变ConcreteComponent或ConcreteDecorator，它们之间不会有任何相互影响。</li>
+<li>Program to an interface,not an implementation.（面向接口编程，而不要面向实现编程。）<br>Component和Decorator都是抽象类实现，其实相当于起到很好的接口隔离作用，在运行时具体操作的也是Component类型的变量引用，这完全是面向接口编程的。</li>
+<li>Favor composition over inheritance.（优先使用对象组合，而非类继承）<br>装饰者模式最成功的地方就是合理地使用了对象组合，通过组合灵活地扩展了Component的功能，所有的扩展的功能都是通过组合而非继承获得的，这从根本上决定了这种实现是高内聚低耦合的。</li>
+<li>Classes should be open for extension, but closed for modification (类应该对扩展开发，对修改关闭)<br>这是大名鼎鼎的OCP原则，我们在这个系列的第一篇【模式和原则】里就有专门的介绍。在装饰者模式里充分体现了OCP原则，在需要扩展Component的功能的时候，只需要实现一个新的特定的ConcreteDecorator即可，这完全是一种增量开发，不会对原来代码造成任何影响，对用户代码完全是透明的。<br>Code should be closed (to change) like the lotus flower in the evening, yet open (to extension) like the lotus flower in the morning. — From HFDP</li>
+</ol>
+<p>本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>from <a href="http://www.cnblogs.com/justinw/archive/2007/06/11/779356.html">Justin’s Tech Blog</a></p>
+<p>装饰者模式： 动态的给一个对象添加额外的职责，就增加功能来说，Decorator比增加子类更灵活</p>
+<blockquote>
+<p>优先使用组合，而不是继承(Favor composition over inheritance);</p>
+</blockquote>
+<p>####举一个饮品的记账系统来引出装饰者模式。<br><img src="https://wangximing.github.io/pictures/decorator1.jpg" alt="decorator1"></p>
+<p>Brverage是所有饮料的基类，cost()是抽象方法，<br>所有子类都需要定义自己的cost() 实现来返回特定饮料的价钱，<br>description变量也是在子类里赋值，表示特定饮料的描述信息。<br>getDescription()方法可以返回这个描述。</p>]]>
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://wangximing.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Ruby on Rails 从零到部署]]></title>
+    <link href="http://wangximing.github.io/2015/01/04/Ruby-on-Rails-%E4%BB%8E%E9%9B%B6%E5%88%B0%E9%83%A8%E7%BD%B2/"/>
+    <id>http://wangximing.github.io/2015/01/04/Ruby-on-Rails-从零到部署/</id>
+    <published>2015-01-04T16:52:49.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="环境搭建">环境搭建</h4><p>  <a href="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="环境搭建">环境搭建</h4><p>  <a href="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></p]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Ruby 基础学习 2]]></title>
+    <link href="http://wangximing.github.io/2014/12/28/Ruby-%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-2/"/>
+    <id>http://wangximing.github.io/2014/12/28/Ruby-基础学习-2/</id>
+    <published>2014-12-28T10:23:25.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="异常处理的写法">异常处理的写法</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span></span><br><span class="line">	可能会发生异常的处理</span><br><span class="line"><span class="keyword">rescue</span> =&gt; ex</span><br><span class="line">	print ex.message, <span class="string">"\n"</span>	发生异常的处理</span><br><span class="line"><span class="keyword">ensure</span></span><br><span class="line">	不管是否发生异常都希望执行的处理</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h4 id="主动抛出异常">主动抛出异常</h4><p>raise message  抛出RuntimeError异常，并把字符串作为message设置给新生成的异常对象</p>
+<p>raise 异常类 抛出指定异常</p>
+<p>raise 异常类， message</p>
+<p>raise</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="异常处理的写法">异常处理的写法</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="l]]>
+    </summary>
+    
+      <category term="Ruby 错误处理与异常" scheme="http://wangximing.github.io/tags/Ruby-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E4%B8%8E%E5%BC%82%E5%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Ruby 基础学习 1]]></title>
+    <link href="http://wangximing.github.io/2014/12/28/Ruby-%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-1/"/>
+    <id>http://wangximing.github.io/2014/12/28/Ruby-基础学习-1/</id>
+    <published>2014-12-28T09:51:42.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<p>Ruby基础教程第九章</p>
+<h4 id="赋值运算符">赋值运算符</h4><p>= += -= &amp;&amp;= &amp;= **= 。。。。</p>
+<h4 id="逻辑运算符">逻辑运算符</h4><p>如果逻辑表达式的真假已经确定，则不会再判断剩余的表达式。</p>
+<h4 id="条件运算符(三元运算符）">条件运算符(三元运算符）</h4><p>条件 ？表达式1 ：表达式2</p>
+<h4 id="范围运算符">范围运算符</h4><p>在Ruby中，生成表示1到10的范围对象<br>Range.new(1, 10)   1..10  1…11</p>
+<blockquote>
+<p>x..y 和 x…y  的区别是x..y 是x到y（包括y），x…y是x到y-1（不包括y)</p>
+</blockquote>
+<h4 id="定义运算符">定义运算符</h4><p>Ruby中可以自己定义或者重定义运算符</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Ruby基础教程第九章</p>
+<h4 id="赋值运算符">赋值运算符</h4><p>= += -= &amp;&amp;= &amp;= **= 。。。。</p>
+<h4 id="逻辑运算符">逻辑运算符</h4><p>如果逻辑表达式的真假已经确定，则不会再判断剩余的表]]>
+    </summary>
+    
+      <category term="Ruby 运算符" scheme="http://wangximing.github.io/tags/Ruby-%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Ruby on Rails 环境搭建]]></title>
+    <link href="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>http://wangximing.github.io/2014/12/19/Ruby-on-Rails-环境搭建/</id>
+    <published>2014-12-19T11:10:50.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="开发环境">开发环境</h4><ol>
+<li>IDE RubyMine</li>
+<li>文本编辑器和命令行</li>
+<li>Chrome浏览器</li>
+</ol>
+<h4 id="Ruby，_RubyGems，_Rails，_Git_安装（MacOS）">Ruby， RubyGems， Rails， Git 安装（MacOS）</h4><ol>
+<li><a href="https://rvm.io/rvm/install" target="_blank" rel="external">RVM</a><ol>
+<li><code>curl -sSL https://get.rvm.io | bash -s</code> 进行安装。</li>
+<li><code>rvm get stable</code> 确保是最新版本。</li>
+<li><code>rvm requirements</code> 减产安装Ruby的需要条件。<blockquote>
+<p>若提示 <code>command not found</code>, 运行 <code>source ~/.rvm/scripts/rvm</code>。并根据提示安装相关环境。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><code>rvm install 版本号</code> 安装Ruby。</li>
+<li><code>rvm use 版本号@别名 --create --default</code> 设置默认genset。</li>
+<li><p>安装RubyGems</p>
+<ol>
+<li>检查是否安装</li>
+<li>下载RubyGems，解压文件，并运行<code>ruby setup.rb</code></li>
+<li>在~/.gemrc 中配置不生成ri和rdoc文档<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install: --<span class="keyword">no</span>-rdoc --<span class="keyword">no</span>-ri</span><br><span class="line"><span class="keyword">update</span>: --<span class="keyword">no</span>-rdoc --<span class="keyword">no</span>-ri</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>安装Rails<code>gem install rails --version 4.0.4 --no-ri --no-rdoc</code></p>
+<blockquote>
+<p>rails -v 检查安装</p>
+</blockquote>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="开发环境">开发环境</h4><ol>
+<li>IDE RubyMine</li>
+<li>文本编辑器和命令行</li>
+<li>Chrome浏览器</li>
+</ol>
+<h4 id="Ruby，_RubyGems，_Rails，_Git_安装（MacOS）">]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[周日游]]></title>
+    <link href="http://wangximing.github.io/2014/12/07/%E5%91%A8%E6%97%A5%E6%B8%B8/"/>
+    <id>http://wangximing.github.io/2014/12/07/周日游/</id>
+    <published>2014-12-07T14:30:14.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<p>好吧，逛了一天回来坐在电脑前，打开心爱的Atom，记录下这在成长路上迈出得一小步。</p>
+<a id="more"></a>
+<p>成长，具体到现在的我就是改变自己的一些不好的习惯，这个改变我一直都在做。但从今天开始算是认真的对待这件事情，放到了一个更重要的位置。</p>
+<p>哈哈，欢乐下，今天总共逛了两个地方，陕西省历史博物馆和大唐芙蓉园。</p>
+<p>陕西省历史博物馆的展厅是暗色调的，里面基本上都是文物，包括从半坡人类起源到后来的隋唐盛世的农业，建筑，军事，生活，文化等各个方面的文物，看完了后再回忆影响中最深的就是看了好多盛具和武器。</p>
+<p>古代也没有想象的那么落后，各种生活用具什么的还是很齐全的，各式各样的充满艺术感的盛具，还有很精致的装饰品。可惜就是去忘了戴眼镜，有得看的不太清楚，有不少展品都是在历史课本上见到过得。</p>
+<p>令我特别尴尬的时丝绸之路原来有两条，一个汉的一个唐的，都是中国历史上出现过盛世的朝代。还有个超（diao）厉（zha）害（tian）的孤独信的26面印。</p>
+<p>感觉里面最熟悉的还是各种农业用具，里面的汉代的织布机，还有斧头了，铁锹了，铁犁，磨面用的磨盘了什么的，看到这些过后，真真切切的认识到了自己真是一个传统的汉人，强烈的归属感来的只需要逛一遍历史博物馆。</p>
+<p>比较吃惊的时参观是看到的“铜合页”，记得以前家里的门上都没有合页，一直没想到这玩意竟然是自己老祖宗创造的。</p>
+<p>然后到出来的时候还碰到了高中同学，还竟然是在里面工作，意外收获。</p>
+<p>出了暗色调的展厅，就看到了晴朗的天空和暖暖的阳光。OK ，nice day。</p>
+<p>大唐芙蓉园，刚进去就被惊喜了，迎面的一个假山，上面还有个小瀑布，关键是小瀑布底下还形成了一个小彩虹，土鳖的我立即就兴奋了。哈哈，值得一提的是大唐芙蓉园的景色还是不错的，冬天了还是满目的绿色。</p>
+<p>在里面看了当时的长安城的布局，原来现在被城墙包围的是当时的皇城，还有大明宫和兴庆宫在当时还是一个档次的。剩下的就是那些宫廷剧里面演得场景。</p>
+<p>在西门附近还看了鹤孔雀和鹿，很土鳖的说都是第一次见。</p>
+<p>最后在在西门看了三场锣鼓表演，真心精彩，不夸张的说，比春晚什么的好看多了，这样的中国传统文化才是春晚所需要的。</p>
+<p>总结一下，下次出来一定要记得带上眼镜，提前做下功课，有个导游了讲解了什么也是极好的。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>好吧，逛了一天回来坐在电脑前，打开心爱的Atom，记录下这在成长路上迈出得一小步。</p>]]>
+    
+    </summary>
+    
+      <category term="游览" scheme="http://wangximing.github.io/tags/%E6%B8%B8%E8%A7%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Java Date Format]]></title>
+    <link href="http://wangximing.github.io/2014/12/06/Java-Date-Format/"/>
+    <id>http://wangximing.github.io/2014/12/06/Java-Date-Format/</id>
+    <published>2014-12-06T17:16:35.000Z</published>
+    <updated>2015-08-16T16:39:19.000Z</updated>
+    <content type="html"><![CDATA[<p>Use SimpleDateFormat#parse() to parse a String in a certain pattern into a Date.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String oldstring = <span class="string">"2011-01-18 00:00:00.0"</span>;</span><br><span class="line">Date date = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss.S"</span>).parse(oldstring);</span><br></pre></td></tr></table></figure>
+<p>Use SimpleDateFormat#format() to format a Date into a String in a certain pattern.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String newstring = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>).format(date);</span><br><span class="line">System.out.Jprintln(newstring); <span class="comment">// 2011-01-18</span></span><br></pre></td></tr></table></figure>
+<p>Update: as per your failed attempt: the patterns are case sensitive. Read the SimpleDateFormatjavadoc what the individual parts stands for. So stands for example M for months and m for minutes. Also, years exist of four digits, not five. Look closer at the code snippets I posted here above.</p>
+<a id="more"></a>
+<p>from Stack Overflow</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Use SimpleDateFormat#parse() to parse a String in a certain pattern into a Date.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String oldstring = <span class="string">"2011-01-18 00:00:00.0"</span>;</span><br><span class="line">Date date = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss.S"</span>).parse(oldstring);</span><br></pre></td></tr></table></figure>
+<p>Use SimpleDateFormat#format() to format a Date into a String in a certain pattern.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String newstring = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>).format(date);</span><br><span class="line">System.out.Jprintln(newstring); <span class="comment">// 2011-01-18</span></span><br></pre></td></tr></table></figure>
+<p>Update: as per your failed attempt: the patterns are case sensitive. Read the SimpleDateFormatjavadoc what the individual parts stands for. So stands for example M for months and m for minutes. Also, years exist of four digits, not five. Look closer at the code snippets I posted here above.</p>]]>
+    
+    </summary>
+    
+      <category term="Java" scheme="http://wangximing.github.io/tags/Java/"/>
+    
+  </entry>
+  
+</feed>
