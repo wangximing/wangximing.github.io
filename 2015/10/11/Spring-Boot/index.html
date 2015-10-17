@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="Spring Boot," />
 
 
 
@@ -39,46 +39,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="开发环境
-IDE RubyMine
-文本编辑器和命令行
-Chrome浏览器
-
-Ruby， RubyGems， Rails， Git 安装（MacOS）
-RVM
-curl -sSL https://get.rvm.io | bash -s 进行安装。
-rvm get stable 确保是最新版本。
-rvm requirements 减产安装Ruby的需要条件。
-若提示 command not fou">
+<meta name="description" content="进公司的第一个项目在使用Spring Boot，所以这里就总结一下Spring Boot 使用时的一些小技能。
+SpringBoot简介 我理解的SpringBoot是Spring的另一个产品，建立Spring MVC 之上的一个框架，与Spring MVC相比 它在开始使用的时候就使用了Java 配置的方式（之前学的Spring MVC 还是使用xml进行的配置)。而且Spring Boot 集">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ruby on Rails 环境搭建">
-<meta property="og:url" content="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-环境搭建/index.html">
+<meta property="og:title" content="Spring Boot">
+<meta property="og:url" content="http://wangximing.github.io/2015/10/11/Spring-Boot/index.html">
 <meta property="og:site_name" content="sigh">
-<meta property="og:description" content="开发环境
-IDE RubyMine
-文本编辑器和命令行
-Chrome浏览器
-
-Ruby， RubyGems， Rails， Git 安装（MacOS）
-RVM
-curl -sSL https://get.rvm.io | bash -s 进行安装。
-rvm get stable 确保是最新版本。
-rvm requirements 减产安装Ruby的需要条件。
-若提示 command not fou">
-<meta property="og:updated_time" content="2015-08-16T16:39:19.000Z">
+<meta property="og:description" content="进公司的第一个项目在使用Spring Boot，所以这里就总结一下Spring Boot 使用时的一些小技能。
+SpringBoot简介 我理解的SpringBoot是Spring的另一个产品，建立Spring MVC 之上的一个框架，与Spring MVC相比 它在开始使用的时候就使用了Java 配置的方式（之前学的Spring MVC 还是使用xml进行的配置)。而且Spring Boot 集">
+<meta property="og:updated_time" content="2015-10-17T03:16:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ruby on Rails 环境搭建">
-<meta name="twitter:description" content="开发环境
-IDE RubyMine
-文本编辑器和命令行
-Chrome浏览器
-
-Ruby， RubyGems， Rails， Git 安装（MacOS）
-RVM
-curl -sSL https://get.rvm.io | bash -s 进行安装。
-rvm get stable 确保是最新版本。
-rvm requirements 减产安装Ruby的需要条件。
-若提示 command not fou">
+<meta name="twitter:title" content="Spring Boot">
+<meta name="twitter:description" content="进公司的第一个项目在使用Spring Boot，所以这里就总结一下Spring Boot 使用时的一些小技能。
+SpringBoot简介 我理解的SpringBoot是Spring的另一个产品，建立Spring MVC 之上的一个框架，与Spring MVC相比 它在开始使用的时候就使用了Java 配置的方式（之前学的Spring MVC 还是使用xml进行的配置)。而且Spring Boot 集">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -88,7 +61,7 @@ rvm requirements 减产安装Ruby的需要条件。
   };
 </script>
 
-  <title> Ruby on Rails 环境搭建 | sigh </title>
+  <title> Spring Boot | sigh </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -197,7 +170,7 @@ rvm requirements 减产安装Ruby的需要条件。
           
           
             
-              Ruby on Rails 环境搭建
+              Spring Boot
             
           
         </h1>
@@ -206,8 +179,8 @@ rvm requirements 减产安装Ruby的需要条件。
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2014-12-19T16:40:50+08:00" content="2014-12-19">
-            2014-12-19
+          <time itemprop="dateCreated" datetime="2015-10-11T15:32:23+08:00" content="2015-10-11">
+            2015-10-11
           </time>
         </span>
 
@@ -217,8 +190,8 @@ rvm requirements 减产安装Ruby的需要条件。
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2014/12/19/Ruby-on-Rails-环境搭建/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/19/Ruby-on-Rails-环境搭建/" itemprop="commentsCount"></span>
+              <a href="/2015/10/11/Spring-Boot/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/11/Spring-Boot/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -232,55 +205,52 @@ rvm requirements 减产安装Ruby的需要条件。
       
 
       
-        <span itemprop="articleBody"><h4 id="开发环境">开发环境</h4><ol>
-<li>IDE RubyMine</li>
-<li>文本编辑器和命令行</li>
-<li>Chrome浏览器</li>
-</ol>
-<h4 id="Ruby，_RubyGems，_Rails，_Git_安装（MacOS）">Ruby， RubyGems， Rails， Git 安装（MacOS）</h4><ol>
-<li><a href="https://rvm.io/rvm/install" target="_blank" rel="external">RVM</a><ol>
-<li><code>curl -sSL https://get.rvm.io | bash -s</code> 进行安装。</li>
-<li><code>rvm get stable</code> 确保是最新版本。</li>
-<li><code>rvm requirements</code> 减产安装Ruby的需要条件。<blockquote>
-<p>若提示 <code>command not found</code>, 运行 <code>source ~/.rvm/scripts/rvm</code>。并根据提示安装相关环境。</p>
-</blockquote>
+        <span itemprop="articleBody"><p>进公司的第一个项目在使用Spring Boot，所以这里就总结一下Spring Boot 使用时的一些小技能。</p>
+<h3 id="SpringBoot简介">SpringBoot简介</h3><p> 我理解的SpringBoot是Spring的另一个产品，建立Spring MVC 之上的一个框架，与Spring MVC相比<br> 它在开始使用的时候就使用了Java 配置的方式（之前学的Spring MVC 还是使用xml进行的配置)。而且Spring<br> Boot 集成了基本上所有的Web开发需要的基础jar包，比如说hibernate等。Spring Boot还为项目提供了很多的<br> 默认配置方式，比如说项目的静态资源的路径，视图解析器，还有ORM等。值得一提的是Spring Boot 使用的Spring Data JPA<br> 的ORM，这个ORM在项目使用中比Hibernate还要简单（至少在我们这个简单项目中是这个样子）。下面会有更详细的实例。</p>
+<h3 id="新建一个SpringBoot项目">新建一个SpringBoot项目</h3><p>详细的项目建立步骤可以参考Spring官网的 <a href="http://spring.io/guides/gs/spring-boot/" target="_blank" rel="external">Building an Application with Spring Boot</a></p>
+<h4 id="新建一个Gradle项目">新建一个Gradle项目</h4><ul>
+<li>建立Gradle 项目文件结构</li>
+<li>给build.gradle 中添加设置以及依赖<figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">group <span class="string">'com.h5'</span></span><br><span class="line">version <span class="string">'1.0-SNAPSHOT'</span></span><br><span class="line"></span><br><span class="line"><span class="name">buildscript</span> &#123;</span><br><span class="line">    ext &#123;</span><br><span class="line">        springbootVersion = <span class="string">'1.2.6.RELEASE'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="name">repositories</span> &#123;</span><br><span class="line">        mavenCentral()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="name">dependencies</span> &#123;</span><br><span class="line">        classpath(<span class="string">"org.springframework.boot:spring-boot-gradle-plugin:<span class="variable">$springbootVersion</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="name">ext</span> &#123;</span><br><span class="line">    springbootVersion = <span class="string">'1.2.6.RELEASE'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="name">apply</span> <span class="name">plugin</span>: <span class="string">'java'</span></span><br><span class="line">apply plugin: <span class="string">'idea'</span></span><br><span class="line">apply plugin: <span class="string">'spring-boot'</span></span><br><span class="line"></span><br><span class="line"><span class="name">repositories</span> &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="name">sourceCompatibility</span> = 1.8</span><br><span class="line">targetCompatibility = 1.8</span><br><span class="line"></span><br><span class="line"><span class="name">dependencies</span> &#123;</span><br><span class="line">    compile <span class="string">"org.springframework.boot:spring-boot-starter-web:<span class="variable">$springbootVersion</span>"</span></span><br><span class="line">    compile <span class="string">"org.springframework.boot:spring-boot-starter-data-jpa:<span class="variable">$springbootVersion</span>"</span></span><br><span class="line">    compile <span class="string">"org.springframework.boot:spring-boot-starter-thymeleaf:<span class="variable">$springbootVersion</span>"</span></span><br><span class="line">    compile <span class="string">"org.springframework.boot:spring-boot-starter-security:<span class="variable">$springbootVersion</span>"</span></span><br><span class="line">    compile <span class="string">'mysql:mysql-connector-java:5.1.36'</span></span><br><span class="line"></span><br><span class="line">    testCompile <span class="string">'junit:junit:4.12'</span></span><br><span class="line">    testCompile <span class="string">'commons-io:commons-io:2.4'</span></span><br><span class="line">    testCompile <span class="string">"org.springframework.boot:spring-boot-starter-test:<span class="variable">$springbootVersion</span>"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="name">task</span> <span class="name">wrapper</span>(type: Wrapper) &#123;</span><br><span class="line">    gradleVersion = <span class="string">'2.5'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
+</ul>
+<ul>
+<li>下载依赖</li>
+<li><p>新建Application类，并添加SpringBoot配置，注意Application类要在所有其它Java类的上一层</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><code>rvm install 版本号</code> 安装Ruby。</li>
-<li><code>rvm use 版本号@别名 --create --default</code> 设置默认genset。</li>
-<li><p>安装RubyGems</p>
-<ol>
-<li>检查是否安装</li>
-<li>下载RubyGems，解压文件，并运行<code>ruby setup.rb</code></li>
-<li>在~/.gemrc 中配置不生成ri和rdoc文档<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install: --<span class="keyword">no</span>-rdoc --<span class="keyword">no</span>-ri</span><br><span class="line"><span class="keyword">update</span>: --<span class="keyword">no</span>-rdoc --<span class="keyword">no</span>-ri</span><br></pre></td></tr></table></figure>
+<li><p>编写第一个Controller类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@RequestMapping</span>(<span class="string">"/"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Greetings from Spring Boot!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-</li>
-<li><p>安装Rails<code>gem install rails --version 4.0.4 --no-ri --no-rdoc</code></p>
-<blockquote>
-<p>rails -v 检查安装</p>
-</blockquote>
-</li>
-</ol>
+<li><p>启动项目<code>Spring bootRun</code>,在浏览器输入<code>http://localhost:8080</code>测试项目是否新建成功。</p>
+<h4 id="为项目添加Thymeleaf模板引擎">为项目添加<code>Thymeleaf</code>模板引擎</h4></li>
+<li>在gradle中添加 <code>Thymeleaf</code>依赖<code>compile &quot;org.springframework.boot:spring-boot-starter-security:$springbootVersion&quot;</code>;</li>
+<li>SpringBoot 会自动配置使用 <code>Thymeleaf</code>模板引擎，并配置模板路径到<code>main/resources/templates</code>，后缀为 <code>.html</code></li>
+<li>在Controller中使用<code>@Controller</code>(不是<code>@RestController</code>),返回值为String，然后 return “template name”;</li>
+</ul>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Spring-Boot/" rel="tag">#Spring Boot</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/12/28/Ruby-基础学习-1/" rel="prev">Ruby 基础学习 1</a>
+              <a href="/2015/10/17/Thymeleaf/" rel="prev">Thymeleaf</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/12/07/周日游/" rel="next">周日游</a>
+              <a href="/2015/09/14/English-learning-plan/" rel="next">English learning plan</a>
             
           </div>
         </div>
@@ -332,8 +302,8 @@ rvm requirements 减产安装Ruby的需要条件。
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2014/12/19/Ruby-on-Rails-环境搭建/"
-                   data-title="Ruby on Rails 环境搭建" data-url="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-环境搭建/">
+              <div class="ds-thread" data-thread-key="2015/10/11/Spring-Boot/"
+                   data-title="Spring Boot" data-url="http://wangximing.github.io/2015/10/11/Spring-Boot/">
               </div>
             
           </div>
@@ -447,7 +417,7 @@ rvm requirements 减产安装Ruby的需要条件。
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#开发环境"><span class="nav-number">1.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ruby，_RubyGems，_Rails，_Git_安装（MacOS）"><span class="nav-number">2.</span> <span class="nav-text">Ruby， RubyGems， Rails， Git 安装（MacOS）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot简介"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建一个SpringBoot项目"><span class="nav-number">2.</span> <span class="nav-text">新建一个SpringBoot项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新建一个Gradle项目"><span class="nav-number">2.1.</span> <span class="nav-text">新建一个Gradle项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为项目添加Thymeleaf模板引擎"><span class="nav-number">2.2.</span> <span class="nav-text">为项目添加Thymeleaf模板引擎</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

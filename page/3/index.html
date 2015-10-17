@@ -42,7 +42,7 @@
 <meta name="description" content="sigh | 王西明 | wangximing">
 <meta property="og:type" content="website">
 <meta property="og:title" content="sigh">
-<meta property="og:url" content="http://wangximing.github.io/tags/设计模式/index.html">
+<meta property="og:url" content="http://wangximing.github.io/page/3/index.html">
 <meta property="og:site_name" content="sigh">
 <meta property="og:description" content="sigh | 王西明 | wangximing">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   };
 </script>
 
-  <title> 标签: 设计模式 | sigh </title>
+  <title> sigh </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -85,7 +85,9 @@
 
 
 
-  <div class="container one-column ">
+  <div class="container one-column 
+   page-home 
+">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -153,41 +155,165 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div id="content" class="content"> 
-
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        设计模式
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <section id="posts" class="posts-expand">
     
       
 
-  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/01/16/The Decorator Pattern/" itemprop="url">
-              <span itemprop="name">装饰者模式学习笔记</span>
-            </a>
-        
-      </h1>
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2014/12/07/周日游/" itemprop="url">
+                周日游
+              </a>
+            
+          
+        </h1>
+      
 
       <div class="post-meta">
-        <time class="post-time" datetime="2015-01-16T04:08:58.000Z" itemprop="dateCreated" content="2015-01-16"> 01-16 </time>
-      </div>
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2014-12-07T20:00:14+08:00" content="2014-12-07">
+            2014-12-07
+          </time>
+        </span>
 
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/12/07/周日游/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/07/周日游/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
     </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>好吧，逛了一天回来坐在电脑前，打开心爱的Atom，记录下这在成长路上迈出得一小步。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/12/07/周日游/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </article>
 
 
     
-  </div>
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2014/12/06/Java-Date-Format/" itemprop="url">
+                Java Date Format
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2014-12-06T22:46:35+08:00" content="2014-12-06">
+            2014-12-06
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/12/06/Java-Date-Format/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/06/Java-Date-Format/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>Use SimpleDateFormat#parse() to parse a String in a certain pattern into a Date.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String oldstring = <span class="string">"2011-01-18 00:00:00.0"</span>;</span><br><span class="line">Date date = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss.S"</span>).parse(oldstring);</span><br></pre></td></tr></table></figure>
+<p>Use SimpleDateFormat#format() to format a Date into a String in a certain pattern.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String newstring = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>).format(date);</span><br><span class="line">System.out.Jprintln(newstring); <span class="comment">// 2011-01-18</span></span><br></pre></td></tr></table></figure>
+<p>Update: as per your failed attempt: the patterns are case sensitive. Read the SimpleDateFormatjavadoc what the individual parts stands for. So stands for example M for months and m for minutes. Also, years exist of four digits, not five. Look closer at the code snippets I posted here above.</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/12/06/Java-Date-Format/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
  </div>
 
         
@@ -328,12 +454,6 @@
 
   
   
-  
-    <script type="text/javascript">
-      postMotionOptions = {stagger: 100, drag: true};
-    </script>
-  
-
   
     
 

@@ -39,46 +39,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="开发环境
-IDE RubyMine
-文本编辑器和命令行
-Chrome浏览器
-
-Ruby， RubyGems， Rails， Git 安装（MacOS）
-RVM
-curl -sSL https://get.rvm.io | bash -s 进行安装。
-rvm get stable 确保是最新版本。
-rvm requirements 减产安装Ruby的需要条件。
-若提示 command not fou">
+<meta name="description" content="闲谈写这段文字的时候，想起了之前的一个小故事。以前在做一个项目的时候，要做一个翻页功能，就翻页关键字再一直搜索，可想而知搜出来的都是一些CSDN上的博客，帮助不大，没有直观认识。自从学会了Pagination关键字，一搜索就出来了可以用的插件。对，你没有看错，这段字就是想说我不知道翻页的英语是pagination,也想说下英语多么的重要。翻页===pagination
+正文这里主要介绍一下一个jQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ruby on Rails 环境搭建">
-<meta property="og:url" content="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-环境搭建/index.html">
+<meta property="og:title" content="JavaScript Pagination">
+<meta property="og:url" content="http://wangximing.github.io/2015/10/17/JavaScript-Pagination/index.html">
 <meta property="og:site_name" content="sigh">
-<meta property="og:description" content="开发环境
-IDE RubyMine
-文本编辑器和命令行
-Chrome浏览器
-
-Ruby， RubyGems， Rails， Git 安装（MacOS）
-RVM
-curl -sSL https://get.rvm.io | bash -s 进行安装。
-rvm get stable 确保是最新版本。
-rvm requirements 减产安装Ruby的需要条件。
-若提示 command not fou">
-<meta property="og:updated_time" content="2015-08-16T16:39:19.000Z">
+<meta property="og:description" content="闲谈写这段文字的时候，想起了之前的一个小故事。以前在做一个项目的时候，要做一个翻页功能，就翻页关键字再一直搜索，可想而知搜出来的都是一些CSDN上的博客，帮助不大，没有直观认识。自从学会了Pagination关键字，一搜索就出来了可以用的插件。对，你没有看错，这段字就是想说我不知道翻页的英语是pagination,也想说下英语多么的重要。翻页===pagination
+正文这里主要介绍一下一个jQ">
+<meta property="og:updated_time" content="2015-10-17T07:59:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ruby on Rails 环境搭建">
-<meta name="twitter:description" content="开发环境
-IDE RubyMine
-文本编辑器和命令行
-Chrome浏览器
-
-Ruby， RubyGems， Rails， Git 安装（MacOS）
-RVM
-curl -sSL https://get.rvm.io | bash -s 进行安装。
-rvm get stable 确保是最新版本。
-rvm requirements 减产安装Ruby的需要条件。
-若提示 command not fou">
+<meta name="twitter:title" content="JavaScript Pagination">
+<meta name="twitter:description" content="闲谈写这段文字的时候，想起了之前的一个小故事。以前在做一个项目的时候，要做一个翻页功能，就翻页关键字再一直搜索，可想而知搜出来的都是一些CSDN上的博客，帮助不大，没有直观认识。自从学会了Pagination关键字，一搜索就出来了可以用的插件。对，你没有看错，这段字就是想说我不知道翻页的英语是pagination,也想说下英语多么的重要。翻页===pagination
+正文这里主要介绍一下一个jQ">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -88,7 +61,7 @@ rvm requirements 减产安装Ruby的需要条件。
   };
 </script>
 
-  <title> Ruby on Rails 环境搭建 | sigh </title>
+  <title> JavaScript Pagination | sigh </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -197,7 +170,7 @@ rvm requirements 减产安装Ruby的需要条件。
           
           
             
-              Ruby on Rails 环境搭建
+              JavaScript Pagination
             
           
         </h1>
@@ -206,8 +179,8 @@ rvm requirements 减产安装Ruby的需要条件。
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2014-12-19T16:40:50+08:00" content="2014-12-19">
-            2014-12-19
+          <time itemprop="dateCreated" datetime="2015-10-17T14:34:10+08:00" content="2015-10-17">
+            2015-10-17
           </time>
         </span>
 
@@ -217,8 +190,8 @@ rvm requirements 减产安装Ruby的需要条件。
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2014/12/19/Ruby-on-Rails-环境搭建/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/19/Ruby-on-Rails-环境搭建/" itemprop="commentsCount"></span>
+              <a href="/2015/10/17/JavaScript-Pagination/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/17/JavaScript-Pagination/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -232,37 +205,19 @@ rvm requirements 减产安装Ruby的需要条件。
       
 
       
-        <span itemprop="articleBody"><h4 id="开发环境">开发环境</h4><ol>
-<li>IDE RubyMine</li>
-<li>文本编辑器和命令行</li>
-<li>Chrome浏览器</li>
-</ol>
-<h4 id="Ruby，_RubyGems，_Rails，_Git_安装（MacOS）">Ruby， RubyGems， Rails， Git 安装（MacOS）</h4><ol>
-<li><a href="https://rvm.io/rvm/install" target="_blank" rel="external">RVM</a><ol>
-<li><code>curl -sSL https://get.rvm.io | bash -s</code> 进行安装。</li>
-<li><code>rvm get stable</code> 确保是最新版本。</li>
-<li><code>rvm requirements</code> 减产安装Ruby的需要条件。<blockquote>
-<p>若提示 <code>command not found</code>, 运行 <code>source ~/.rvm/scripts/rvm</code>。并根据提示安装相关环境。</p>
-</blockquote>
+        <span itemprop="articleBody"><h3 id="闲谈">闲谈</h3><p>写这段文字的时候，想起了之前的一个小故事。以前在做一个项目的时候，要做一个翻页功能，就<strong>翻页</strong>关键字再一直搜索，可想而知搜出来的都是一些CSDN上的博客，帮助不大，没有直观认识。<br>自从学会了<strong>Pagination</strong>关键字，一搜索就出来了可以用的插件。对，你没有看错，这段字就是想说我不知道翻页的英语是pagination,也想说下英语多么的重要<br>。翻页===pagination</p>
+<h3 id="正文">正文</h3><p>这里主要介绍一下一个jQuery pagination plugin，<a href="http://esimakin.github.io/twbs-pagination/" target="_blank" rel="external">twbspagination</a><br>一个非常好用的翻页工具。</p>
+<ul>
+<li>下载twbspagination文件，引入到要用的HTML文件中。</li>
+<li><p>在HTML和js中分别添加下面的代码，就可以显示出分页效果。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"pagination-demo"</span> <span class="attribute">class</span>=<span class="value">"pagination-sm"</span>&gt;</span><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>启动并初始化插件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#pagination-demo'</span>).twbsPagination(&#123;</span><br><span class="line">        totalPages: <span class="number">35</span>,</span><br><span class="line">        visiblePages: <span class="number">7</span>,</span><br><span class="line">        onPageClick: <span class="function"><span class="keyword">function</span> (<span class="params">event, page</span>) </span>&#123;</span><br><span class="line">            $(<span class="string">'#page-content'</span>).text(<span class="string">'Page '</span> + page);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
+<li><p>一个使用pagination插件的实例代码(差一点掉入回调地狱的代码)；</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(<span class="string">'/apps/totalNumber'</span>)</span><br><span class="line">      .done(<span class="function"><span class="keyword">function</span> (<span class="params">total</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">var</span> totalPages = total % <span class="number">20</span> === <span class="number">0</span> ? total / <span class="number">20</span> : total / <span class="number">20</span> + <span class="number">1</span>;</span><br><span class="line">          $(<span class="string">'#pagination-app'</span>).twbsPagination(&#123;</span><br><span class="line">              totalPages: totalPages,</span><br><span class="line">              visiblePages: <span class="number">5</span> &gt; totalPages ? <span class="number">5</span> : totalPages,</span><br><span class="line">              first: <span class="string">'首页'</span>,</span><br><span class="line">              prev: <span class="string">'前一页'</span>,</span><br><span class="line">              next: <span class="string">'下一页'</span>,</span><br><span class="line">              last: <span class="string">'末页'</span>,</span><br><span class="line">              onPageClick: <span class="function"><span class="keyword">function</span> (<span class="params">event, page</span>) </span>&#123;</span><br><span class="line">                  $.ajax(<span class="string">'/apps'</span>, &#123;data: &#123;pageSize: <span class="number">20</span>, pageNumber: page&#125;&#125;)</span><br><span class="line">                      .done(<span class="function"><span class="keyword">function</span> (<span class="params">apps</span>) </span>&#123;</span><br><span class="line">                          <span class="keyword">var</span> html;</span><br><span class="line">                          apps.content.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">app</span>) </span>&#123;</span><br><span class="line">                              html += getAppTr(app);</span><br><span class="line">                          &#125;);</span><br><span class="line"></span><br><span class="line">                          <span class="keyword">var</span> result = <span class="string">'&lt;tbody&gt;'</span> + html + <span class="string">'&lt;/tbody&gt;'</span>;</span><br><span class="line">                          $(<span class="string">'tbody'</span>).replaceWith(result);</span><br><span class="line"></span><br><span class="line">                          setUpBootstrapSwitch();</span><br><span class="line">                          imageOnError();</span><br><span class="line">                      &#125;)</span><br><span class="line">                      .error(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">                      &#125;);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
 </li>
-<li><code>rvm install 版本号</code> 安装Ruby。</li>
-<li><code>rvm use 版本号@别名 --create --default</code> 设置默认genset。</li>
-<li><p>安装RubyGems</p>
-<ol>
-<li>检查是否安装</li>
-<li>下载RubyGems，解压文件，并运行<code>ruby setup.rb</code></li>
-<li>在~/.gemrc 中配置不生成ri和rdoc文档<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install: --<span class="keyword">no</span>-rdoc --<span class="keyword">no</span>-ri</span><br><span class="line"><span class="keyword">update</span>: --<span class="keyword">no</span>-rdoc --<span class="keyword">no</span>-ri</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>安装Rails<code>gem install rails --version 4.0.4 --no-ri --no-rdoc</code></p>
-<blockquote>
-<p>rails -v 检查安装</p>
-</blockquote>
-</li>
-</ol>
+</ul>
 </span>
       
     </div>
@@ -274,13 +229,13 @@ rvm requirements 减产安装Ruby的需要条件。
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/12/28/Ruby-基础学习-1/" rel="prev">Ruby 基础学习 1</a>
+              <a href="/2015/10/17/Bootstrap-switch/" rel="prev">Bootstrap switch</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/12/07/周日游/" rel="next">周日游</a>
+              <a href="/2015/10/17/image-upload-and-download-with-jQuery-and-SpringMVC-Myslq-Blob/" rel="next">image upload and download with jQuery and SpringMVC MySQL Blob</a>
             
           </div>
         </div>
@@ -332,8 +287,8 @@ rvm requirements 减产安装Ruby的需要条件。
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2014/12/19/Ruby-on-Rails-环境搭建/"
-                   data-title="Ruby on Rails 环境搭建" data-url="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-环境搭建/">
+              <div class="ds-thread" data-thread-key="2015/10/17/JavaScript-Pagination/"
+                   data-title="JavaScript Pagination" data-url="http://wangximing.github.io/2015/10/17/JavaScript-Pagination/">
               </div>
             
           </div>
@@ -447,7 +402,7 @@ rvm requirements 减产安装Ruby的需要条件。
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#开发环境"><span class="nav-number">1.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ruby，_RubyGems，_Rails，_Git_安装（MacOS）"><span class="nav-number">2.</span> <span class="nav-text">Ruby， RubyGems， Rails， Git 安装（MacOS）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#闲谈"><span class="nav-number">1.</span> <span class="nav-text">闲谈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

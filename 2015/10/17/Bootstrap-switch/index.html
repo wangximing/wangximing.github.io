@@ -39,46 +39,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="开发环境
-IDE RubyMine
-文本编辑器和命令行
-Chrome浏览器
-
-Ruby， RubyGems， Rails， Git 安装（MacOS）
-RVM
-curl -sSL https://get.rvm.io | bash -s 进行安装。
-rvm get stable 确保是最新版本。
-rvm requirements 减产安装Ruby的需要条件。
-若提示 command not fou">
+<meta name="description" content="先写一下使用BootStrap Switch使用中得一个问题，在写BootStrap的使用。
+问题在BootStrap Switch 的switchChange方法中调用Ajax请求，请求的的error回调中调用statechange把状态改回之前的样子。回造成一个循环调用的错误，也就是如果Ajax调用错误，这个Ajax会一直请求下去。好可怕，赶紧关了浏览器窗口12345678910$(&apos;#app">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ruby on Rails 环境搭建">
-<meta property="og:url" content="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-环境搭建/index.html">
+<meta property="og:title" content="Bootstrap switch">
+<meta property="og:url" content="http://wangximing.github.io/2015/10/17/Bootstrap-switch/index.html">
 <meta property="og:site_name" content="sigh">
-<meta property="og:description" content="开发环境
-IDE RubyMine
-文本编辑器和命令行
-Chrome浏览器
-
-Ruby， RubyGems， Rails， Git 安装（MacOS）
-RVM
-curl -sSL https://get.rvm.io | bash -s 进行安装。
-rvm get stable 确保是最新版本。
-rvm requirements 减产安装Ruby的需要条件。
-若提示 command not fou">
-<meta property="og:updated_time" content="2015-08-16T16:39:19.000Z">
+<meta property="og:description" content="先写一下使用BootStrap Switch使用中得一个问题，在写BootStrap的使用。
+问题在BootStrap Switch 的switchChange方法中调用Ajax请求，请求的的error回调中调用statechange把状态改回之前的样子。回造成一个循环调用的错误，也就是如果Ajax调用错误，这个Ajax会一直请求下去。好可怕，赶紧关了浏览器窗口12345678910$(&apos;#app">
+<meta property="og:updated_time" content="2015-10-17T07:57:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ruby on Rails 环境搭建">
-<meta name="twitter:description" content="开发环境
-IDE RubyMine
-文本编辑器和命令行
-Chrome浏览器
-
-Ruby， RubyGems， Rails， Git 安装（MacOS）
-RVM
-curl -sSL https://get.rvm.io | bash -s 进行安装。
-rvm get stable 确保是最新版本。
-rvm requirements 减产安装Ruby的需要条件。
-若提示 command not fou">
+<meta name="twitter:title" content="Bootstrap switch">
+<meta name="twitter:description" content="先写一下使用BootStrap Switch使用中得一个问题，在写BootStrap的使用。
+问题在BootStrap Switch 的switchChange方法中调用Ajax请求，请求的的error回调中调用statechange把状态改回之前的样子。回造成一个循环调用的错误，也就是如果Ajax调用错误，这个Ajax会一直请求下去。好可怕，赶紧关了浏览器窗口12345678910$(&apos;#app">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -88,7 +61,7 @@ rvm requirements 减产安装Ruby的需要条件。
   };
 </script>
 
-  <title> Ruby on Rails 环境搭建 | sigh </title>
+  <title> Bootstrap switch | sigh </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -197,7 +170,7 @@ rvm requirements 减产安装Ruby的需要条件。
           
           
             
-              Ruby on Rails 环境搭建
+              Bootstrap switch
             
           
         </h1>
@@ -206,8 +179,8 @@ rvm requirements 减产安装Ruby的需要条件。
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2014-12-19T16:40:50+08:00" content="2014-12-19">
-            2014-12-19
+          <time itemprop="dateCreated" datetime="2015-10-17T15:10:07+08:00" content="2015-10-17">
+            2015-10-17
           </time>
         </span>
 
@@ -217,8 +190,8 @@ rvm requirements 减产安装Ruby的需要条件。
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2014/12/19/Ruby-on-Rails-环境搭建/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/19/Ruby-on-Rails-环境搭建/" itemprop="commentsCount"></span>
+              <a href="/2015/10/17/Bootstrap-switch/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/17/Bootstrap-switch/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -232,37 +205,20 @@ rvm requirements 减产安装Ruby的需要条件。
       
 
       
-        <span itemprop="articleBody"><h4 id="开发环境">开发环境</h4><ol>
-<li>IDE RubyMine</li>
-<li>文本编辑器和命令行</li>
-<li>Chrome浏览器</li>
-</ol>
-<h4 id="Ruby，_RubyGems，_Rails，_Git_安装（MacOS）">Ruby， RubyGems， Rails， Git 安装（MacOS）</h4><ol>
-<li><a href="https://rvm.io/rvm/install" target="_blank" rel="external">RVM</a><ol>
-<li><code>curl -sSL https://get.rvm.io | bash -s</code> 进行安装。</li>
-<li><code>rvm get stable</code> 确保是最新版本。</li>
-<li><code>rvm requirements</code> 减产安装Ruby的需要条件。<blockquote>
-<p>若提示 <code>command not found</code>, 运行 <code>source ~/.rvm/scripts/rvm</code>。并根据提示安装相关环境。</p>
-</blockquote>
+        <span itemprop="articleBody"><p>先写一下使用BootStrap Switch使用中得一个问题，在写BootStrap的使用。</p>
+<h3 id="问题">问题</h3><p>在BootStrap Switch 的switchChange方法中调用Ajax请求，请求的的error回调中调用<br>statechange把状态改回之前的样子。回造成一个循环调用的错误，也就是如果Ajax调用错误，这个Ajax会一直请求下去。好可怕，赶紧关了浏览器窗口<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#app-table-id'</span>).on(<span class="string">'switchChange.bootstrapSwitch'</span>, <span class="string">'[name="my-checkbox"]'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event, state</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">            $.ajax(<span class="string">"/app/statechange"</span>)</span><br><span class="line">                .done(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">                &#125;)</span><br><span class="line">                .error(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">                    $(self).bootstrapSwitch(<span class="string">'state'</span>, !state);<span class="comment">//把状态改回去</span></span><br><span class="line">                &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="解决方式">解决方式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> userClick = <span class="literal">true</span>;</span><br><span class="line">$(<span class="string">'#app-table-id'</span>).on(<span class="string">'switchChange.bootstrapSwitch'</span>, <span class="string">'[name="my-checkbox"]'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event, state</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> id = $(<span class="keyword">this</span>).data(<span class="string">'id'</span>);</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">if</span> (userClick) &#123;</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">                url: <span class="string">'/apps/'</span> + id + <span class="string">'/available'</span>,</span><br><span class="line">                type: <span class="string">'put'</span>,</span><br><span class="line">                data: <span class="built_in">JSON</span>.stringify(&#123;isAvailable: state&#125;),</span><br><span class="line">                contentType: <span class="string">"application/json"</span></span><br><span class="line">            &#125;</span><br><span class="line">        )</span><br><span class="line">            .done(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">                toastr.info(<span class="string">'状态更改成功'</span>);</span><br><span class="line">            &#125;)</span><br><span class="line">            .error(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">                toastr.info(<span class="string">'状态更改失败'</span>);</span><br><span class="line">                userClick = <span class="literal">false</span>;</span><br><span class="line">                $(self).bootstrapSwitch(<span class="string">'state'</span>, !state);</span><br><span class="line">            &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    userClick = <span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="使用">使用</h3><ul>
+<li>下载BootStrap Switch 到项目中</li>
+<li><p>在HTML中使用,HTML和js中得代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span>  <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">name</span>=<span class="value">"my-checkbox"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>启动插件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"[name='my-checkbox']"</span>).bootstrapSwitch(<span class="string">'size'</span>, <span class="string">'small'</span>);</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
+<li><p>点击switch后的处理<br>BootStrap Switch 屏蔽了click事件，要处理click后的处理要使用BootStrap Switch 的switchChange事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#app-table-id'</span>).on(<span class="string">'switchChange.bootstrapSwitch'</span>, <span class="string">'[name="my-checkbox"]'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event, state</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 </li>
-<li><code>rvm install 版本号</code> 安装Ruby。</li>
-<li><code>rvm use 版本号@别名 --create --default</code> 设置默认genset。</li>
-<li><p>安装RubyGems</p>
-<ol>
-<li>检查是否安装</li>
-<li>下载RubyGems，解压文件，并运行<code>ruby setup.rb</code></li>
-<li>在~/.gemrc 中配置不生成ri和rdoc文档<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install: --<span class="keyword">no</span>-rdoc --<span class="keyword">no</span>-ri</span><br><span class="line"><span class="keyword">update</span>: --<span class="keyword">no</span>-rdoc --<span class="keyword">no</span>-ri</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>安装Rails<code>gem install rails --version 4.0.4 --no-ri --no-rdoc</code></p>
-<blockquote>
-<p>rails -v 检查安装</p>
-</blockquote>
-</li>
-</ol>
+</ul>
 </span>
       
     </div>
@@ -274,13 +230,13 @@ rvm requirements 减产安装Ruby的需要条件。
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/12/28/Ruby-基础学习-1/" rel="prev">Ruby 基础学习 1</a>
+              <a href="/2015/10/17/Java-File/" rel="prev">Java File</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/12/07/周日游/" rel="next">周日游</a>
+              <a href="/2015/10/17/JavaScript-Pagination/" rel="next">JavaScript Pagination</a>
             
           </div>
         </div>
@@ -332,8 +288,8 @@ rvm requirements 减产安装Ruby的需要条件。
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2014/12/19/Ruby-on-Rails-环境搭建/"
-                   data-title="Ruby on Rails 环境搭建" data-url="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-环境搭建/">
+              <div class="ds-thread" data-thread-key="2015/10/17/Bootstrap-switch/"
+                   data-title="Bootstrap switch" data-url="http://wangximing.github.io/2015/10/17/Bootstrap-switch/">
               </div>
             
           </div>
@@ -447,7 +403,7 @@ rvm requirements 减产安装Ruby的需要条件。
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#开发环境"><span class="nav-number">1.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ruby，_RubyGems，_Rails，_Git_安装（MacOS）"><span class="nav-number">2.</span> <span class="nav-text">Ruby， RubyGems， Rails， Git 安装（MacOS）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方式"><span class="nav-number">2.</span> <span class="nav-text">解决方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

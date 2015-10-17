@@ -4,7 +4,7 @@
   <subtitle><![CDATA[音乐是情感的独白]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wangximing.github.io/"/>
-  <updated>2015-09-14T02:01:56.000Z</updated>
+  <updated>2015-10-17T07:56:17.000Z</updated>
   <id>http://wangximing.github.io/</id>
   
   <author>
@@ -15,10 +15,174 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Java File]]></title>
+    <link href="http://wangximing.github.io/2015/10/17/Java-File/"/>
+    <id>http://wangximing.github.io/2015/10/17/Java-File/</id>
+    <published>2015-10-17T07:55:50.000Z</published>
+    <updated>2015-10-17T07:56:17.000Z</updated>
+    <content type="html"><![CDATA[<p>文件操作是永远的痛啊，特别是Java的文件操作</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>文件操作是永远的痛啊，特别是Java的文件操作</p>
+]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Bootstrap switch]]></title>
+    <link href="http://wangximing.github.io/2015/10/17/Bootstrap-switch/"/>
+    <id>http://wangximing.github.io/2015/10/17/Bootstrap-switch/</id>
+    <published>2015-10-17T07:10:07.000Z</published>
+    <updated>2015-10-17T07:57:37.000Z</updated>
+    <content type="html"><![CDATA[<p>先写一下使用BootStrap Switch使用中得一个问题，在写BootStrap的使用。</p>
+<h3 id="问题">问题</h3><p>在BootStrap Switch 的switchChange方法中调用Ajax请求，请求的的error回调中调用<br>statechange把状态改回之前的样子。回造成一个循环调用的错误，也就是如果Ajax调用错误，这个Ajax会一直请求下去。好可怕，赶紧关了浏览器窗口<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#app-table-id'</span>).on(<span class="string">'switchChange.bootstrapSwitch'</span>, <span class="string">'[name="my-checkbox"]'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event, state</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">            $.ajax(<span class="string">"/app/statechange"</span>)</span><br><span class="line">                .done(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">                &#125;)</span><br><span class="line">                .error(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">                    $(self).bootstrapSwitch(<span class="string">'state'</span>, !state);<span class="comment">//把状态改回去</span></span><br><span class="line">                &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="解决方式">解决方式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> userClick = <span class="literal">true</span>;</span><br><span class="line">$(<span class="string">'#app-table-id'</span>).on(<span class="string">'switchChange.bootstrapSwitch'</span>, <span class="string">'[name="my-checkbox"]'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event, state</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> id = $(<span class="keyword">this</span>).data(<span class="string">'id'</span>);</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">if</span> (userClick) &#123;</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">                url: <span class="string">'/apps/'</span> + id + <span class="string">'/available'</span>,</span><br><span class="line">                type: <span class="string">'put'</span>,</span><br><span class="line">                data: <span class="built_in">JSON</span>.stringify(&#123;isAvailable: state&#125;),</span><br><span class="line">                contentType: <span class="string">"application/json"</span></span><br><span class="line">            &#125;</span><br><span class="line">        )</span><br><span class="line">            .done(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">                toastr.info(<span class="string">'状态更改成功'</span>);</span><br><span class="line">            &#125;)</span><br><span class="line">            .error(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">                toastr.info(<span class="string">'状态更改失败'</span>);</span><br><span class="line">                userClick = <span class="literal">false</span>;</span><br><span class="line">                $(self).bootstrapSwitch(<span class="string">'state'</span>, !state);</span><br><span class="line">            &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    userClick = <span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="使用">使用</h3><ul>
+<li>下载BootStrap Switch 到项目中</li>
+<li><p>在HTML中使用,HTML和js中得代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span>  <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">name</span>=<span class="value">"my-checkbox"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>启动插件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"[name='my-checkbox']"</span>).bootstrapSwitch(<span class="string">'size'</span>, <span class="string">'small'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>点击switch后的处理<br>BootStrap Switch 屏蔽了click事件，要处理click后的处理要使用BootStrap Switch 的switchChange事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#app-table-id'</span>).on(<span class="string">'switchChange.bootstrapSwitch'</span>, <span class="string">'[name="my-checkbox"]'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event, state</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>先写一下使用BootStrap Switch使用中得一个问题，在写BootStrap的使用。</p>
+<h3 id="问题">问题</h3><p>在BootStrap Switch 的switchChange方法中调用Ajax请求，请求的的error回调中调用<br>sta]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JavaScript Pagination]]></title>
+    <link href="http://wangximing.github.io/2015/10/17/JavaScript-Pagination/"/>
+    <id>http://wangximing.github.io/2015/10/17/JavaScript-Pagination/</id>
+    <published>2015-10-17T06:34:10.000Z</published>
+    <updated>2015-10-17T07:59:44.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="闲谈">闲谈</h3><p>写这段文字的时候，想起了之前的一个小故事。以前在做一个项目的时候，要做一个翻页功能，就<strong>翻页</strong>关键字再一直搜索，可想而知搜出来的都是一些CSDN上的博客，帮助不大，没有直观认识。<br>自从学会了<strong>Pagination</strong>关键字，一搜索就出来了可以用的插件。对，你没有看错，这段字就是想说我不知道翻页的英语是pagination,也想说下英语多么的重要<br>。翻页===pagination</p>
+<h3 id="正文">正文</h3><p>这里主要介绍一下一个jQuery pagination plugin，<a href="http://esimakin.github.io/twbs-pagination/" target="_blank" rel="external">twbspagination</a><br>一个非常好用的翻页工具。</p>
+<ul>
+<li>下载twbspagination文件，引入到要用的HTML文件中。</li>
+<li><p>在HTML和js中分别添加下面的代码，就可以显示出分页效果。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"pagination-demo"</span> <span class="attribute">class</span>=<span class="value">"pagination-sm"</span>&gt;</span><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>启动并初始化插件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#pagination-demo'</span>).twbsPagination(&#123;</span><br><span class="line">        totalPages: <span class="number">35</span>,</span><br><span class="line">        visiblePages: <span class="number">7</span>,</span><br><span class="line">        onPageClick: <span class="function"><span class="keyword">function</span> (<span class="params">event, page</span>) </span>&#123;</span><br><span class="line">            $(<span class="string">'#page-content'</span>).text(<span class="string">'Page '</span> + page);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一个使用pagination插件的实例代码(差一点掉入回调地狱的代码)；</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(<span class="string">'/apps/totalNumber'</span>)</span><br><span class="line">      .done(<span class="function"><span class="keyword">function</span> (<span class="params">total</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">var</span> totalPages = total % <span class="number">20</span> === <span class="number">0</span> ? total / <span class="number">20</span> : total / <span class="number">20</span> + <span class="number">1</span>;</span><br><span class="line">          $(<span class="string">'#pagination-app'</span>).twbsPagination(&#123;</span><br><span class="line">              totalPages: totalPages,</span><br><span class="line">              visiblePages: <span class="number">5</span> &gt; totalPages ? <span class="number">5</span> : totalPages,</span><br><span class="line">              first: <span class="string">'首页'</span>,</span><br><span class="line">              prev: <span class="string">'前一页'</span>,</span><br><span class="line">              next: <span class="string">'下一页'</span>,</span><br><span class="line">              last: <span class="string">'末页'</span>,</span><br><span class="line">              onPageClick: <span class="function"><span class="keyword">function</span> (<span class="params">event, page</span>) </span>&#123;</span><br><span class="line">                  $.ajax(<span class="string">'/apps'</span>, &#123;data: &#123;pageSize: <span class="number">20</span>, pageNumber: page&#125;&#125;)</span><br><span class="line">                      .done(<span class="function"><span class="keyword">function</span> (<span class="params">apps</span>) </span>&#123;</span><br><span class="line">                          <span class="keyword">var</span> html;</span><br><span class="line">                          apps.content.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">app</span>) </span>&#123;</span><br><span class="line">                              html += getAppTr(app);</span><br><span class="line">                          &#125;);</span><br><span class="line"></span><br><span class="line">                          <span class="keyword">var</span> result = <span class="string">'&lt;tbody&gt;'</span> + html + <span class="string">'&lt;/tbody&gt;'</span>;</span><br><span class="line">                          $(<span class="string">'tbody'</span>).replaceWith(result);</span><br><span class="line"></span><br><span class="line">                          setUpBootstrapSwitch();</span><br><span class="line">                          imageOnError();</span><br><span class="line">                      &#125;)</span><br><span class="line">                      .error(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">                      &#125;);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="闲谈">闲谈</h3><p>写这段文字的时候，想起了之前的一个小故事。以前在做一个项目的时候，要做一个翻页功能，就<strong>翻页</strong>关键字再一直搜索，可想而知搜出来的都是一些CSDN上的博客，帮助不大，没有直观认识。<br>自从学会了<stro]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[image upload and download with jQuery and SpringMVC MySQL Blob]]></title>
+    <link href="http://wangximing.github.io/2015/10/17/image-upload-and-download-with-jQuery-and-SpringMVC-Myslq-Blob/"/>
+    <id>http://wangximing.github.io/2015/10/17/image-upload-and-download-with-jQuery-and-SpringMVC-Myslq-Blob/</id>
+    <published>2015-10-17T03:21:19.000Z</published>
+    <updated>2015-10-17T08:01:15.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="需求">需求</h3><ul>
+<li>图片以blob 格式存储在MySQL 数据库中</li>
+<li>浏览器中使用jQuery读取图片，显示到网页上。</li>
+<li>将读取到的图片连同其他信息，如图片描述等信息一同上传到服务器</li>
+<li>从数据库读取图片，显示到浏览器。</li>
+<li><strong>新建一个app并将其显示出来，app包含字段name,icon(图片),description</strong></li>
+</ul>
+<h3 id="实现">实现</h3><h4 id="读取图片显示到浏览器中。">读取图片显示到浏览器中。</h4><ul>
+<li>使用 <code>&lt;input type=&#39;file&#39; id=&#39;icon&#39;&gt;</code> 来上传图片。</li>
+<li><p>使用下面的JS代码进行获取。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#fileIcon'</span>).on(<span class="string">'change'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> files = evt.target.files;</span><br><span class="line"><span class="keyword">var</span> file = files[<span class="number">0</span>]；</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>改变默认的上传外观<br>HTML中设置上传框隐藏</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">name</span>=<span class="value">""</span> <span class="attribute">type</span>=<span class="value">"file"</span> <span class="attribute">id</span>=<span class="value">"fileIcon"</span> <span class="attribute">style</span>=<span class="value">"display:none"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">"fileIconButton"</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">class</span>=<span class="value">"btn btn-default btn-sm"</span>&gt;</span>上传图标</span><br><span class="line"><span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>JS中调用上传框</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fileIcon = <span class="built_in">document</span>.getElementById(<span class="string">'fileIcon'</span>),</span><br><span class="line">        fileIconButton = <span class="built_in">document</span>.getElementById(<span class="string">'fileIconButton'</span>);</span><br><span class="line">    <span class="keyword">if</span> (fileIconButton) &#123;</span><br><span class="line">        fileIconButton.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (fileIcon) &#123;</span><br><span class="line">                fileIcon.click();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>设置input的<code>change</code>事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#fileIcon'</span>).on(<span class="string">'change'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> files = evt.target.files;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, f; f = files[i]; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!f.type.match(<span class="string">'image.*'</span>)) &#123;</span><br><span class="line">            toastr.error(<span class="string">'文件格式不符合要求'</span>);</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//显示到页面</span></span><br><span class="line">        <span class="keyword">if</span> (f.size &lt; <span class="number">100</span> * <span class="number">1024</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</span><br><span class="line"></span><br><span class="line">            reader.onload = (<span class="function"><span class="keyword">function</span> (<span class="params">theFile</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                    $(<span class="string">'#app-image-id'</span>).attr(<span class="string">'src'</span>, e.target.result);</span><br><span class="line">                    $(<span class="string">'#app-icon-name'</span>).val(theFile.name);</span><br><span class="line">                &#125;;</span><br><span class="line">            &#125;)(f);</span><br><span class="line"></span><br><span class="line">            reader.readAsDataURL(f);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            toastr.error(<span class="string">'文件过大,请选择小于100k的图片!'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="上传图片和其他信息到服务器">上传图片和其他信息到服务器</h4><p> 再次明确下需求，这里不是简单的上传一张图片到服务器，而是图片和其他信息一起。比如说：上传一个app的icon和app的名称，描述以及其他信息，一块到服务器<br> 这里在搜索解决办法的时候 是 <code>form image</code>。<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData();             </span><br><span class="line">formData.append(<span class="string">'icon'</span>, icon); <span class="comment">//图片            </span></span><br><span class="line">formData.append(<span class="string">'name'</span>, name);<span class="comment">//其他信息             </span></span><br><span class="line">formData.append(<span class="string">'describes'</span>, describes);             </span><br><span class="line">formData.append(<span class="string">'isAvailable'</span>, isAvailable);</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">'POST'</span>, <span class="string">'/apps'</span>, <span class="literal">true</span>);</span><br><span class="line"> xhr.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (xhr.status === <span class="number">200</span>) &#123;</span><br><span class="line">         <span class="keyword">var</span> appId = xhr.response;</span><br><span class="line">         insertAppToAppTable(&#123;id: appId, name: name, describes: describes, isAvailable: isAvailable&#125;);</span><br><span class="line">         $(<span class="string">'.first'</span>).trigger(<span class="string">'click'</span>);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;;</span><br><span class="line"> xhr.send(formData);</span><br></pre></td></tr></table></figure></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@RequestMapping</span>(value = <span class="string">"/apps"</span>, method = RequestMethod.POST)</span><br><span class="line"> <span class="annotation">@ResponseBody</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">createApp</span><span class="params">(@RequestBody MultipartFile icon, String name, String describes, <span class="keyword">boolean</span> isAvailable)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">byte</span>[] iconFile = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>];</span><br><span class="line">     <span class="keyword">if</span> (icon != <span class="keyword">null</span>) &#123;</span><br><span class="line">         <span class="keyword">try</span> &#123;</span><br><span class="line">             iconFile = icon.getBytes();</span><br><span class="line">         &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">             e.printStackTrace();</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     App app = <span class="keyword">new</span> App();</span><br><span class="line">     app.setIcon(iconFile);</span><br><span class="line">     app.setName(name);</span><br><span class="line">     app.setDescribes(describes);</span><br><span class="line">     app.setIsAvailable(isAvailable);</span><br><span class="line">     App result = appService.createApp(app);</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> result.getId();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="从数据库取出Blob图片，显示到页面">从数据库取出Blob图片，显示到页面</h4><p>在这里的时候，开始想的是从后台获取完整的app对象，然后得到app.icon字段。使用JS转码显示到页面。<br>但是在实现的时候遇到了很多的问题，查了很多资料，尝试了很多次，还是不能正确的显示出来。<br>最后改变了实现方式，<strong>图片显示的时候单独向后台发请求</strong> 就很迅速的完成了，总结一下是思路很重要。<br>前台代码<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">"app-icon"</span> <span class="attribute">src</span>=<span class="value">"'/apps/' + $&#123;app.id&#125; + '/icon'"</span>/&gt;</span><span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>SpringBoot Controller 代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@RequestMapping</span>(<span class="string">"apps/&#123;appId&#125;/icon"</span>)</span><br><span class="line">  <span class="keyword">public</span> ResponseEntity&lt;?&gt; getAppIcon(<span class="annotation">@PathVariable</span> <span class="keyword">long</span> appId) &#123;</span><br><span class="line">      HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">      headers.setContentType(MediaType.IMAGE_JPEG);</span><br><span class="line">      HttpStatus httpStatus = HttpStatus.OK;</span><br><span class="line">      <span class="keyword">byte</span>[] icon = appService.getAppById(appId).getIcon();</span><br><span class="line">      <span class="keyword">if</span> (icon == <span class="keyword">null</span>) &#123;</span><br><span class="line">          httpStatus = HttpStatus.NOT_FOUND;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;&gt;(</span><br><span class="line">              appService.getAppById(appId).getIcon(), headers,</span><br><span class="line">              httpStatus);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="需求">需求</h3><ul>
+<li>图片以blob 格式存储在MySQL 数据库中</li>
+<li>浏览器中使用jQuery读取图片，显示到网页上。</li>
+<li>将读取到的图片连同其他信息，如图片描述等信息一同上传到服务器</li>
+<li>从数据库读]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Thymeleaf]]></title>
+    <link href="http://wangximing.github.io/2015/10/17/Thymeleaf/"/>
+    <id>http://wangximing.github.io/2015/10/17/Thymeleaf/</id>
+    <published>2015-10-17T03:13:48.000Z</published>
+    <updated>2015-10-17T03:19:44.000Z</updated>
+    <content type="html"><![CDATA[<p>Thymeleaf是Java的一个模板引擎，和JSP类似。但是相比于JSP，Thymeleaf的语法更加语义化，而且写的是HTML代码（不是JSP）代码。<br>SpringBoot中默认支持ThymeLeaf 。</p>
+<h3 id="一些小语法">一些小语法</h3><p>th:src<br>th:attr=”data-id=9393”</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Thymeleaf是Java的一个模板引擎，和JSP类似。但是相比于JSP，Thymeleaf的语法更加语义化，而且写的是HTML代码（不是JSP）代码。<br>SpringBoot中默认支持ThymeLeaf 。</p>
+<h3 id="一些小语法">一些小语法</h3>]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Spring Boot]]></title>
+    <link href="http://wangximing.github.io/2015/10/11/Spring-Boot/"/>
+    <id>http://wangximing.github.io/2015/10/11/Spring-Boot/</id>
+    <published>2015-10-11T07:32:23.000Z</published>
+    <updated>2015-10-17T03:16:59.000Z</updated>
+    <content type="html"><![CDATA[<p>进公司的第一个项目在使用Spring Boot，所以这里就总结一下Spring Boot 使用时的一些小技能。</p>
+<h3 id="SpringBoot简介">SpringBoot简介</h3><p> 我理解的SpringBoot是Spring的另一个产品，建立Spring MVC 之上的一个框架，与Spring MVC相比<br> 它在开始使用的时候就使用了Java 配置的方式（之前学的Spring MVC 还是使用xml进行的配置)。而且Spring<br> Boot 集成了基本上所有的Web开发需要的基础jar包，比如说hibernate等。Spring Boot还为项目提供了很多的<br> 默认配置方式，比如说项目的静态资源的路径，视图解析器，还有ORM等。值得一提的是Spring Boot 使用的Spring Data JPA<br> 的ORM，这个ORM在项目使用中比Hibernate还要简单（至少在我们这个简单项目中是这个样子）。下面会有更详细的实例。</p>
+<h3 id="新建一个SpringBoot项目">新建一个SpringBoot项目</h3><p>详细的项目建立步骤可以参考Spring官网的 <a href="http://spring.io/guides/gs/spring-boot/" target="_blank" rel="external">Building an Application with Spring Boot</a></p>
+<h4 id="新建一个Gradle项目">新建一个Gradle项目</h4><ul>
+<li>建立Gradle 项目文件结构</li>
+<li>给build.gradle 中添加设置以及依赖<figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">group <span class="string">'com.h5'</span></span><br><span class="line">version <span class="string">'1.0-SNAPSHOT'</span></span><br><span class="line"></span><br><span class="line"><span class="name">buildscript</span> &#123;</span><br><span class="line">    ext &#123;</span><br><span class="line">        springbootVersion = <span class="string">'1.2.6.RELEASE'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="name">repositories</span> &#123;</span><br><span class="line">        mavenCentral()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="name">dependencies</span> &#123;</span><br><span class="line">        classpath(<span class="string">"org.springframework.boot:spring-boot-gradle-plugin:<span class="variable">$springbootVersion</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="name">ext</span> &#123;</span><br><span class="line">    springbootVersion = <span class="string">'1.2.6.RELEASE'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="name">apply</span> <span class="name">plugin</span>: <span class="string">'java'</span></span><br><span class="line">apply plugin: <span class="string">'idea'</span></span><br><span class="line">apply plugin: <span class="string">'spring-boot'</span></span><br><span class="line"></span><br><span class="line"><span class="name">repositories</span> &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="name">sourceCompatibility</span> = 1.8</span><br><span class="line">targetCompatibility = 1.8</span><br><span class="line"></span><br><span class="line"><span class="name">dependencies</span> &#123;</span><br><span class="line">    compile <span class="string">"org.springframework.boot:spring-boot-starter-web:<span class="variable">$springbootVersion</span>"</span></span><br><span class="line">    compile <span class="string">"org.springframework.boot:spring-boot-starter-data-jpa:<span class="variable">$springbootVersion</span>"</span></span><br><span class="line">    compile <span class="string">"org.springframework.boot:spring-boot-starter-thymeleaf:<span class="variable">$springbootVersion</span>"</span></span><br><span class="line">    compile <span class="string">"org.springframework.boot:spring-boot-starter-security:<span class="variable">$springbootVersion</span>"</span></span><br><span class="line">    compile <span class="string">'mysql:mysql-connector-java:5.1.36'</span></span><br><span class="line"></span><br><span class="line">    testCompile <span class="string">'junit:junit:4.12'</span></span><br><span class="line">    testCompile <span class="string">'commons-io:commons-io:2.4'</span></span><br><span class="line">    testCompile <span class="string">"org.springframework.boot:spring-boot-starter-test:<span class="variable">$springbootVersion</span>"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="name">task</span> <span class="name">wrapper</span>(type: Wrapper) &#123;</span><br><span class="line">    gradleVersion = <span class="string">'2.5'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>下载依赖</li>
+<li><p>新建Application类，并添加SpringBoot配置，注意Application类要在所有其它Java类的上一层</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写第一个Controller类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@RequestMapping</span>(<span class="string">"/"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Greetings from Spring Boot!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动项目<code>Spring bootRun</code>,在浏览器输入<code>http://localhost:8080</code>测试项目是否新建成功。</p>
+<h4 id="为项目添加Thymeleaf模板引擎">为项目添加<code>Thymeleaf</code>模板引擎</h4></li>
+<li>在gradle中添加 <code>Thymeleaf</code>依赖<code>compile &quot;org.springframework.boot:spring-boot-starter-security:$springbootVersion&quot;</code>;</li>
+<li>SpringBoot 会自动配置使用 <code>Thymeleaf</code>模板引擎，并配置模板路径到<code>main/resources/templates</code>，后缀为 <code>.html</code></li>
+<li>在Controller中使用<code>@Controller</code>(不是<code>@RestController</code>),返回值为String，然后 return “template name”;</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>进公司的第一个项目在使用Spring Boot，所以这里就总结一下Spring Boot 使用时的一些小技能。</p>
+<h3 id="SpringBoot简介">SpringBoot简介</h3><p> 我理解的SpringBoot是Spring的另一个产品，建立Spri]]>
+    </summary>
+    
+      <category term="Spring Boot" scheme="http://wangximing.github.io/tags/Spring-Boot/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[English learning plan]]></title>
     <link href="http://wangximing.github.io/2015/09/14/English-learning-plan/"/>
     <id>http://wangximing.github.io/2015/09/14/English-learning-plan/</id>
-    <published>2015-09-14T01:59:01.000Z</published>
+    <published>2015-09-13T23:29:01.000Z</published>
     <updated>2015-09-14T02:01:56.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li>时间：2015.9-2016.2</li>
@@ -47,7 +211,7 @@
     <title><![CDATA[use togglz in project]]></title>
     <link href="http://wangximing.github.io/2015/09/08/use-togglz-in-java/"/>
     <id>http://wangximing.github.io/2015/09/08/use-togglz-in-java/</id>
-    <published>2015-09-08T08:31:35.000Z</published>
+    <published>2015-09-08T06:01:35.000Z</published>
     <updated>2015-09-08T17:34:22.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Feature_Toggle_in_Java">Feature Toggle in Java</h1><p>In our project, we choose <a href="http://www.togglz.org/" target="_blank" rel="external">togglz</a> as a framework for feature toggle.</p>
 <h2 id="import_togglz_in_project">import togglz in project</h2><p>We need to add these dependencies in project file <code>build.gradle</code><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &#39;org.togglz:togglz-core:2.2.0.Final&#39;&#10;compile &#39;org.togglz:togglz-servlet:2.2.0.Final&#39;&#10;compile &#39;org.togglz:togglz-jsp:2.2.0.Final&#39; //support jsp&#10;compile &#39;org.togglz:togglz-console:2.2.0.Final&#39;  //support togglz console&#10;compile &#39;org.togglz:togglz-spring-security:2.2.0.Final&#39; //support user authentication&#10;&#10;testCompile &#39;org.togglz:togglz-testing:2.2.0.Final&#39; //support togglz test&#10;testCompile &#39;org.togglz:togglz-junit:2.2.0.Final&#39; //support togglz test</span><br></pre></td></tr></table></figure></p>
@@ -86,7 +250,7 @@
     <title><![CDATA[JavaScript 小知识]]></title>
     <link href="http://wangximing.github.io/2015/07/29/JavaScript-%E5%B0%8F%E7%9F%A5%E8%AF%86/"/>
     <id>http://wangximing.github.io/2015/07/29/JavaScript-小知识/</id>
-    <published>2015-07-29T05:54:01.000Z</published>
+    <published>2015-07-29T03:24:01.000Z</published>
     <updated>2015-08-16T16:39:19.000Z</updated>
     <content type="html"><![CDATA[<p>立即执行函数（IIFE -Immediately Invoked Function Expression）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="pi">    'use strict'</span>;</span><br><span class="line"></span><br><span class="line">    angular</span><br><span class="line">        .module(<span class="string">'app'</span>)</span><br><span class="line">        .factory(<span class="string">'storage'</span>, storage);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">storage</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
 <p>注：IIFE阻止了测试代码访问私有成员（正则表达式、helper函数等），这对于自身测试是非常友好的。然而你可以把这些私有成员暴露到可访问成员中进行测试，例如把私有成员（正则表达式、helper函数等）放到factory或是constant中。</p>
@@ -101,7 +265,7 @@
     <title><![CDATA[gradle file lock]]></title>
     <link href="http://wangximing.github.io/2015/07/29/gradle-file-lock/"/>
     <id>http://wangximing.github.io/2015/07/29/gradle-file-lock/</id>
-    <published>2015-07-29T05:00:41.000Z</published>
+    <published>2015-07-29T02:30:41.000Z</published>
     <updated>2015-08-16T16:39:19.000Z</updated>
     <content type="html"><![CDATA[<p>运行gradle idea 下载依赖的时候报下面的错误<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Timeout waiting to <span class="operator"><span class="keyword">lock</span> buildscript <span class="keyword">class</span> <span class="keyword">cache</span> <span class="keyword">for</span> <span class="keyword">build</span> <span class="keyword">file</span> <span class="string">'/Users/twer/works/javaee/core/build.gradle'</span> (/<span class="keyword">Users</span>/twer/.gradle/caches/<span class="number">2.2</span><span class="number">.1</span>/scripts/build_dqoptxiza8a734uwm8mpmbw5h/ProjectScript/buildscript). It <span class="keyword">is</span> currently <span class="keyword">in</span> <span class="keyword">use</span> <span class="keyword">by</span> another Gradle <span class="keyword">instance</span>.</span><br><span class="line">     Owner PID: <span class="keyword">unknown</span></span><br><span class="line">     Our PID: <span class="number">4202</span></span><br><span class="line">     Owner Operation: <span class="keyword">unknown</span></span><br><span class="line">     Our operation: Initialize <span class="keyword">cache</span></span><br><span class="line">     <span class="keyword">Lock</span> <span class="keyword">file</span>: /<span class="keyword">Users</span>/twer/.gradle/caches/<span class="number">2.2</span>.</span><br><span class="line">     <span class="number">1</span>/scripts/build_dqoptxiza8a734uwm8mpmbw5h/ProjectScript/buildscript/<span class="keyword">cache</span>.properties.<span class="keyword">lock</span></span></span><br></pre></td></tr></table></figure></p>
 <p>这是因为我还开着其他的gradle 服务（jetty），关闭后gradle就可以正常下载依赖了。</p>
@@ -116,7 +280,7 @@
     <title><![CDATA[AnjularJS]]></title>
     <link href="http://wangximing.github.io/2015/07/28/AnjularJS/"/>
     <id>http://wangximing.github.io/2015/07/28/AnjularJS/</id>
-    <published>2015-07-28T11:03:45.000Z</published>
+    <published>2015-07-28T08:33:45.000Z</published>
     <updated>2015-08-16T16:39:19.000Z</updated>
     <content type="html"><![CDATA[<h2 id="AngularJS配置：">AngularJS配置：</h2><ul>
 <li>下载AngularJS源文件，<code>angular.js</code>, <code>angular-router.js</code>等必须使用的源文件。</li>
@@ -174,7 +338,7 @@
     <title><![CDATA[DOM event]]></title>
     <link href="http://wangximing.github.io/2015/07/28/jQuery-event/"/>
     <id>http://wangximing.github.io/2015/07/28/jQuery-event/</id>
-    <published>2015-07-28T08:18:23.000Z</published>
+    <published>2015-07-28T05:48:23.000Z</published>
     <updated>2015-08-16T16:39:19.000Z</updated>
     <content type="html"><![CDATA[<p><a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-flow" target="_blank" rel="external">http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</a>  w3c事件派遣与事件流<br><a href="http://chajn.org/project/javascript-events-responding-user/" target="_blank" rel="external">http://chajn.org/project/javascript-events-responding-user/</a> 事件<br><a href="http://segmentfault.com/a/1190000002613617" target="_blank" rel="external">http://segmentfault.com/a/1190000002613617</a> 事件委托与代理</p>
 ]]></content>
@@ -188,7 +352,7 @@
     <title><![CDATA[Test Double]]></title>
     <link href="http://wangximing.github.io/2015/07/27/Test-Double/"/>
     <id>http://wangximing.github.io/2015/07/27/Test-Double/</id>
-    <published>2015-07-27T16:18:24.000Z</published>
+    <published>2015-07-27T13:48:24.000Z</published>
     <updated>2015-08-16T16:39:19.000Z</updated>
     <content type="html"><![CDATA[<h2 id="什么是Test_Double？为什么要用Test_Double？">什么是Test Double？为什么要用Test Double？</h2><p>Test Double即是测试替身。<br>讲测试替身之前，先要明确两个概念。<br><code>待测程序</code>和<code>测试依赖</code>。<br>待测程序就是要被测试的程序，测试依赖就是待测程序所依赖的程序。<br>为什么要使用测试替身：要测试“待测程序”，测试依赖也必须存在，这使得测试变得更复杂。</p>
 <p>测试替身的概念： Test Double是一种让“待测程序”可以不依靠“测试依赖”而被单独测试的做法。</p>
@@ -224,7 +388,7 @@
     <title><![CDATA[jQuery 教程]]></title>
     <link href="http://wangximing.github.io/2015/07/25/Jquery-%E6%95%99%E7%A8%8B/"/>
     <id>http://wangximing.github.io/2015/07/25/Jquery-教程/</id>
-    <published>2015-07-25T13:11:11.000Z</published>
+    <published>2015-07-25T10:41:11.000Z</published>
     <updated>2015-08-16T16:39:19.000Z</updated>
     <content type="html"><![CDATA[<h2 id="简单介绍">简单介绍</h2><h3 id="什么是jQuery">什么是jQuery</h3><p>jQuery是一个JavaScript库，它通过封装原生JavaScript函数得到了一整套定义好的方法。这些方法能有效地帮助Web设计师和开发者快捷编写和扩展JavaScript交互组件。jQuery没有提供任何新的功能，它最大的贡献是把JavaScript难懂难用的API整理成了易懂易用的jQuery语法，从而赢得了无数的用户。</p>
 <h3 id="为什么要用jQuery">为什么要用jQuery</h3><ul>
@@ -304,7 +468,7 @@
     <title><![CDATA[mongoDB hello world]]></title>
     <link href="http://wangximing.github.io/2015/02/02/mongoDB-hello-world/"/>
     <id>http://wangximing.github.io/2015/02/02/mongoDB-hello-world/</id>
-    <published>2015-02-02T08:31:35.000Z</published>
+    <published>2015-02-02T06:01:35.000Z</published>
     <updated>2015-08-16T16:39:19.000Z</updated>
     <content type="html"><![CDATA[<h2 id="mongoDB学习">mongoDB学习</h2><p>练习项目位置<a href="https://github.com/wangximing/mongoDB-quick-start" target="_blank" rel="external">https://github.com/wangximing/mongoDB-quick-start</a></p>
 <h3 id="安装">安装</h3><p>OSX下运行下列命令<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span>update</span><br><span class="line"><span class="keyword">brew </span>install mongodb</span><br></pre></td></tr></table></figure></p>
@@ -327,7 +491,7 @@
     <title><![CDATA[装饰者模式学习笔记]]></title>
     <link href="http://wangximing.github.io/2015/01/16/The%20Decorator%20Pattern/"/>
     <id>http://wangximing.github.io/2015/01/16/The Decorator Pattern/</id>
-    <published>2015-01-16T06:38:58.000Z</published>
+    <published>2015-01-16T04:08:58.000Z</published>
     <updated>2015-08-16T16:39:19.000Z</updated>
     <content type="html"><![CDATA[<p>from <a href="http://www.cnblogs.com/justinw/archive/2007/06/11/779356.html" target="_blank" rel="external">Justin’s Tech Blog</a></p>
 <p>装饰者模式： 动态的给一个对象添加额外的职责，就增加功能来说，Decorator比增加子类更灵活</p>
@@ -397,7 +561,7 @@
     <title><![CDATA[Ruby on Rails 从零到部署]]></title>
     <link href="http://wangximing.github.io/2015/01/04/Ruby-on-Rails-%E4%BB%8E%E9%9B%B6%E5%88%B0%E9%83%A8%E7%BD%B2/"/>
     <id>http://wangximing.github.io/2015/01/04/Ruby-on-Rails-从零到部署/</id>
-    <published>2015-01-04T16:52:49.000Z</published>
+    <published>2015-01-04T14:22:49.000Z</published>
     <updated>2015-08-16T16:39:19.000Z</updated>
     <content type="html"><![CDATA[<h4 id="环境搭建">环境搭建</h4><p>  <a href="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></p>
 ]]></content>
@@ -411,7 +575,7 @@
     <title><![CDATA[Ruby 基础学习 2]]></title>
     <link href="http://wangximing.github.io/2014/12/28/Ruby-%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-2/"/>
     <id>http://wangximing.github.io/2014/12/28/Ruby-基础学习-2/</id>
-    <published>2014-12-28T10:23:25.000Z</published>
+    <published>2014-12-28T07:53:25.000Z</published>
     <updated>2015-08-16T16:39:19.000Z</updated>
     <content type="html"><![CDATA[<h4 id="异常处理的写法">异常处理的写法</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span></span><br><span class="line">	可能会发生异常的处理</span><br><span class="line"><span class="keyword">rescue</span> =&gt; ex</span><br><span class="line">	print ex.message, <span class="string">"\n"</span>	发生异常的处理</span><br><span class="line"><span class="keyword">ensure</span></span><br><span class="line">	不管是否发生异常都希望执行的处理</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <h4 id="主动抛出异常">主动抛出异常</h4><p>raise message  抛出RuntimeError异常，并把字符串作为message设置给新生成的异常对象</p>
@@ -431,7 +595,7 @@
     <title><![CDATA[Ruby 基础学习 1]]></title>
     <link href="http://wangximing.github.io/2014/12/28/Ruby-%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-1/"/>
     <id>http://wangximing.github.io/2014/12/28/Ruby-基础学习-1/</id>
-    <published>2014-12-28T09:51:42.000Z</published>
+    <published>2014-12-28T07:21:42.000Z</published>
     <updated>2015-08-16T16:39:19.000Z</updated>
     <content type="html"><![CDATA[<p>Ruby基础教程第九章</p>
 <h4 id="赋值运算符">赋值运算符</h4><p>= += -= &amp;&amp;= &amp;= **= 。。。。</p>
@@ -457,7 +621,7 @@
     <title><![CDATA[Ruby on Rails 环境搭建]]></title>
     <link href="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     <id>http://wangximing.github.io/2014/12/19/Ruby-on-Rails-环境搭建/</id>
-    <published>2014-12-19T11:10:50.000Z</published>
+    <published>2014-12-19T08:40:50.000Z</published>
     <updated>2015-08-16T16:39:19.000Z</updated>
     <content type="html"><![CDATA[<h4 id="开发环境">开发环境</h4><ol>
 <li>IDE RubyMine</li>
@@ -499,65 +663,6 @@
 </ol>
 <h4 id="Ruby，_RubyGems，_Rails，_Git_安装（MacOS）">]]>
     </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[周日游]]></title>
-    <link href="http://wangximing.github.io/2014/12/07/%E5%91%A8%E6%97%A5%E6%B8%B8/"/>
-    <id>http://wangximing.github.io/2014/12/07/周日游/</id>
-    <published>2014-12-07T14:30:14.000Z</published>
-    <updated>2015-08-16T16:39:19.000Z</updated>
-    <content type="html"><![CDATA[<p>好吧，逛了一天回来坐在电脑前，打开心爱的Atom，记录下这在成长路上迈出得一小步。</p>
-<a id="more"></a>
-<p>成长，具体到现在的我就是改变自己的一些不好的习惯，这个改变我一直都在做。但从今天开始算是认真的对待这件事情，放到了一个更重要的位置。</p>
-<p>哈哈，欢乐下，今天总共逛了两个地方，陕西省历史博物馆和大唐芙蓉园。</p>
-<p>陕西省历史博物馆的展厅是暗色调的，里面基本上都是文物，包括从半坡人类起源到后来的隋唐盛世的农业，建筑，军事，生活，文化等各个方面的文物，看完了后再回忆影响中最深的就是看了好多盛具和武器。</p>
-<p>古代也没有想象的那么落后，各种生活用具什么的还是很齐全的，各式各样的充满艺术感的盛具，还有很精致的装饰品。可惜就是去忘了戴眼镜，有得看的不太清楚，有不少展品都是在历史课本上见到过得。</p>
-<p>令我特别尴尬的时丝绸之路原来有两条，一个汉的一个唐的，都是中国历史上出现过盛世的朝代。还有个超（diao）厉（zha）害（tian）的孤独信的26面印。</p>
-<p>感觉里面最熟悉的还是各种农业用具，里面的汉代的织布机，还有斧头了，铁锹了，铁犁，磨面用的磨盘了什么的，看到这些过后，真真切切的认识到了自己真是一个传统的汉人，强烈的归属感来的只需要逛一遍历史博物馆。</p>
-<p>比较吃惊的时参观是看到的“铜合页”，记得以前家里的门上都没有合页，一直没想到这玩意竟然是自己老祖宗创造的。</p>
-<p>然后到出来的时候还碰到了高中同学，还竟然是在里面工作，意外收获。</p>
-<p>出了暗色调的展厅，就看到了晴朗的天空和暖暖的阳光。OK ，nice day。</p>
-<p>大唐芙蓉园，刚进去就被惊喜了，迎面的一个假山，上面还有个小瀑布，关键是小瀑布底下还形成了一个小彩虹，土鳖的我立即就兴奋了。哈哈，值得一提的是大唐芙蓉园的景色还是不错的，冬天了还是满目的绿色。</p>
-<p>在里面看了当时的长安城的布局，原来现在被城墙包围的是当时的皇城，还有大明宫和兴庆宫在当时还是一个档次的。剩下的就是那些宫廷剧里面演得场景。</p>
-<p>在西门附近还看了鹤孔雀和鹿，很土鳖的说都是第一次见。</p>
-<p>最后在在西门看了三场锣鼓表演，真心精彩，不夸张的说，比春晚什么的好看多了，这样的中国传统文化才是春晚所需要的。</p>
-<p>总结一下，下次出来一定要记得带上眼镜，提前做下功课，有个导游了讲解了什么也是极好的。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>好吧，逛了一天回来坐在电脑前，打开心爱的Atom，记录下这在成长路上迈出得一小步。</p>]]>
-    
-    </summary>
-    
-      <category term="游览" scheme="http://wangximing.github.io/tags/%E6%B8%B8%E8%A7%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Java Date Format]]></title>
-    <link href="http://wangximing.github.io/2014/12/06/Java-Date-Format/"/>
-    <id>http://wangximing.github.io/2014/12/06/Java-Date-Format/</id>
-    <published>2014-12-06T17:16:35.000Z</published>
-    <updated>2015-08-16T16:39:19.000Z</updated>
-    <content type="html"><![CDATA[<p>Use SimpleDateFormat#parse() to parse a String in a certain pattern into a Date.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String oldstring = <span class="string">"2011-01-18 00:00:00.0"</span>;</span><br><span class="line">Date date = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss.S"</span>).parse(oldstring);</span><br></pre></td></tr></table></figure>
-<p>Use SimpleDateFormat#format() to format a Date into a String in a certain pattern.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String newstring = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>).format(date);</span><br><span class="line">System.out.Jprintln(newstring); <span class="comment">// 2011-01-18</span></span><br></pre></td></tr></table></figure>
-<p>Update: as per your failed attempt: the patterns are case sensitive. Read the SimpleDateFormatjavadoc what the individual parts stands for. So stands for example M for months and m for minutes. Also, years exist of four digits, not five. Look closer at the code snippets I posted here above.</p>
-<a id="more"></a>
-<p>from Stack Overflow</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Use SimpleDateFormat#parse() to parse a String in a certain pattern into a Date.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String oldstring = <span class="string">"2011-01-18 00:00:00.0"</span>;</span><br><span class="line">Date date = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss.S"</span>).parse(oldstring);</span><br></pre></td></tr></table></figure>
-<p>Use SimpleDateFormat#format() to format a Date into a String in a certain pattern.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String newstring = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>).format(date);</span><br><span class="line">System.out.Jprintln(newstring); <span class="comment">// 2011-01-18</span></span><br></pre></td></tr></table></figure>
-<p>Update: as per your failed attempt: the patterns are case sensitive. Read the SimpleDateFormatjavadoc what the individual parts stands for. So stands for example M for months and m for minutes. Also, years exist of four digits, not five. Look closer at the code snippets I posted here above.</p>]]>
-    
-    </summary>
-    
-      <category term="Java" scheme="http://wangximing.github.io/tags/Java/"/>
     
   </entry>
   
