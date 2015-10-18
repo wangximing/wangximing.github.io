@@ -16,6 +16,8 @@
 
 
 
+
+
   <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
@@ -45,7 +47,7 @@
 <meta property="og:url" content="http://wangximing.github.io/2015/07/29/JavaScript-小知识/index.html">
 <meta property="og:site_name" content="sigh">
 <meta property="og:description" content="立即执行函数（IIFE -Immediately Invoked Function Expression）123456789(function() &amp;#123;    &apos;use strict&apos;;    angular        .module(&apos;app&apos;)        .factory(&apos;storage&apos;, storage);    function storage() &amp;#123; &amp;#1">
-<meta property="og:updated_time" content="2015-08-16T16:39:19.000Z">
+<meta property="og:updated_time" content="2015-10-18T02:08:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 小知识">
 <meta name="twitter:description" content="立即执行函数（IIFE -Immediately Invoked Function Expression）123456789(function() &amp;#123;    &apos;use strict&apos;;    angular        .module(&apos;app&apos;)        .factory(&apos;storage&apos;, storage);    function storage() &amp;#123; &amp;#1">
@@ -57,6 +59,8 @@
     sidebar: 'post'
   };
 </script>
+
+
 
   <title> JavaScript 小知识 | sigh </title>
 </head>
@@ -74,6 +78,8 @@
 <![endif]-->
   
 
+
+
   <script type="text/javascript">
     var _hmt = _hmt || [];
     (function() {
@@ -83,6 +89,7 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+
 
 
 
@@ -193,6 +200,7 @@
             </span>
           
         
+        
       </div>
     </header>
 
@@ -202,7 +210,7 @@
       
 
       
-        <span itemprop="articleBody"><p>立即执行函数（IIFE -Immediately Invoked Function Expression）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="pi">    'use strict'</span>;</span><br><span class="line"></span><br><span class="line">    angular</span><br><span class="line">        .module(<span class="string">'app'</span>)</span><br><span class="line">        .factory(<span class="string">'storage'</span>, storage);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">storage</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+        <span itemprop="articleBody"><p>立即执行函数（IIFE -Immediately Invoked Function Expression）<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="pi">    'use strict'</span>;</span><br><span class="line"></span><br><span class="line">    angular</span><br><span class="line">        .module(<span class="string">'app'</span>)</span><br><span class="line">        .factory(<span class="string">'storage'</span>, storage);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">storage</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
 <p>注：IIFE阻止了测试代码访问私有成员（正则表达式、helper函数等），这对于自身测试是非常友好的。然而你可以把这些私有成员暴露到可访问成员中进行测试，例如把私有成员（正则表达式、helper函数等）放到factory或是constant中。</p>
 </span>
       
@@ -454,9 +462,6 @@
   </script>
     
      
-  	<script src="/js/ua-parser.min.js"></script>
-  	<script src="/js/hook-duoshuo.js"></script>
-  
 
     
   

@@ -16,6 +16,8 @@
 
 
 
+
+
   <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
@@ -39,16 +41,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="运行gradle idea 下载依赖的时候报下面的错误1234567Timeout waiting to lock buildscript class cache for build file &apos;/Users/twer/works/javaee/core/build.gradle&apos; (/Users/twer/.gradle/caches/2.2.1/scripts/build_dqoptxiza8">
+<meta name="description" content="运行gradle idea 下载依赖的时候报下面的错误``Timeout waiting to lock buildscript class cache for build file ‘/Users/twer/works/javaee/core/build.gradle’ (/Users/twer/.gradle/caches/2.2.1/scripts/build_dqoptxiza8a734u">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gradle file lock">
 <meta property="og:url" content="http://wangximing.github.io/2015/07/29/gradle-file-lock/index.html">
 <meta property="og:site_name" content="sigh">
-<meta property="og:description" content="运行gradle idea 下载依赖的时候报下面的错误1234567Timeout waiting to lock buildscript class cache for build file &apos;/Users/twer/works/javaee/core/build.gradle&apos; (/Users/twer/.gradle/caches/2.2.1/scripts/build_dqoptxiza8">
-<meta property="og:updated_time" content="2015-08-16T16:39:19.000Z">
+<meta property="og:description" content="运行gradle idea 下载依赖的时候报下面的错误``Timeout waiting to lock buildscript class cache for build file ‘/Users/twer/works/javaee/core/build.gradle’ (/Users/twer/.gradle/caches/2.2.1/scripts/build_dqoptxiza8a734u">
+<meta property="og:updated_time" content="2015-10-18T02:08:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gradle file lock">
-<meta name="twitter:description" content="运行gradle idea 下载依赖的时候报下面的错误1234567Timeout waiting to lock buildscript class cache for build file &apos;/Users/twer/works/javaee/core/build.gradle&apos; (/Users/twer/.gradle/caches/2.2.1/scripts/build_dqoptxiza8">
+<meta name="twitter:description" content="运行gradle idea 下载依赖的时候报下面的错误``Timeout waiting to lock buildscript class cache for build file ‘/Users/twer/works/javaee/core/build.gradle’ (/Users/twer/.gradle/caches/2.2.1/scripts/build_dqoptxiza8a734u">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,6 +59,8 @@
     sidebar: 'post'
   };
 </script>
+
+
 
   <title> gradle file lock | sigh </title>
 </head>
@@ -74,6 +78,8 @@
 <![endif]-->
   
 
+
+
   <script type="text/javascript">
     var _hmt = _hmt || [];
     (function() {
@@ -83,6 +89,7 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+
 
 
 
@@ -193,6 +200,7 @@
             </span>
           
         
+        
       </div>
     </header>
 
@@ -202,8 +210,7 @@
       
 
       
-        <span itemprop="articleBody"><p>运行gradle idea 下载依赖的时候报下面的错误<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Timeout waiting to <span class="operator"><span class="keyword">lock</span> buildscript <span class="keyword">class</span> <span class="keyword">cache</span> <span class="keyword">for</span> <span class="keyword">build</span> <span class="keyword">file</span> <span class="string">'/Users/twer/works/javaee/core/build.gradle'</span> (/<span class="keyword">Users</span>/twer/.gradle/caches/<span class="number">2.2</span><span class="number">.1</span>/scripts/build_dqoptxiza8a734uwm8mpmbw5h/ProjectScript/buildscript). It <span class="keyword">is</span> currently <span class="keyword">in</span> <span class="keyword">use</span> <span class="keyword">by</span> another Gradle <span class="keyword">instance</span>.</span><br><span class="line">     Owner PID: <span class="keyword">unknown</span></span><br><span class="line">     Our PID: <span class="number">4202</span></span><br><span class="line">     Owner Operation: <span class="keyword">unknown</span></span><br><span class="line">     Our operation: Initialize <span class="keyword">cache</span></span><br><span class="line">     <span class="keyword">Lock</span> <span class="keyword">file</span>: /<span class="keyword">Users</span>/twer/.gradle/caches/<span class="number">2.2</span>.</span><br><span class="line">     <span class="number">1</span>/scripts/build_dqoptxiza8a734uwm8mpmbw5h/ProjectScript/buildscript/<span class="keyword">cache</span>.properties.<span class="keyword">lock</span></span></span><br></pre></td></tr></table></figure></p>
-<p>这是因为我还开着其他的gradle 服务（jetty），关闭后gradle就可以正常下载依赖了。</p>
+        <span itemprop="articleBody"><p>运行gradle idea 下载依赖的时候报下面的错误<br>``<br>Timeout waiting to lock buildscript class cache for build file ‘/Users/twer/works/javaee/core/build.gradle’ (/Users/twer/.gradle/caches/2.2.1/scripts/build_dqoptxiza8a734uwm8mpmbw5h/ProjectScript/buildscript). It is currently in use by another Gradle instance.<br>     Owner PID: unknown<br>     Our PID: 4202<br>     Owner Operation: unknown<br>     Our operation: Initialize cache<br>     Lock file: /Users/twer/.gradle/caches/2.2.<br>     1/scripts/build_dqoptxiza8a734uwm8mpmbw5h/ProjectScript/buildscript/cache.properties.lock<br>```<br>这是因为我还开着其他的gradle 服务（jetty），关闭后gradle就可以正常下载依赖了。</p>
 </span>
       
     </div>
@@ -454,9 +461,6 @@
   </script>
     
      
-  	<script src="/js/ua-parser.min.js"></script>
-  	<script src="/js/hook-duoshuo.js"></script>
-  
 
     
   
