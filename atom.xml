@@ -4,7 +4,7 @@
   <subtitle><![CDATA[音乐是情感的独白]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wangximing.github.io/"/>
-  <updated>2015-10-18T02:07:51.000Z</updated>
+  <updated>2015-10-19T10:56:09.000Z</updated>
   <id>http://wangximing.github.io/</id>
   
   <author>
@@ -13,6 +13,102 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[MVC and MV*]]></title>
+    <link href="http://wangximing.github.io/2015/10/19/MVC-and-MV/"/>
+    <id>http://wangximing.github.io/2015/10/19/MVC-and-MV/</id>
+    <published>2015-10-19T10:55:56.000Z</published>
+    <updated>2015-10-19T10:56:09.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="MV*_都有什么是怎么区分的">MV* 都有什么是怎么区分的</h2><p>关于MV*这里还是有很多有趣的故事的.</p>
+<ul>
+<li>已经没有疑惑的有MVC是设计模式还是架构，</li>
+<li>还有至今疑惑的有当时听得一个关于MVC的解释(单纯讲MVC,没有说是在那个框架中得实现)，当时听得很疑惑，然后下来就查找了相关内容.</li>
+<li>疑惑的有MVC本身的定(Model1, Model2)）</li>
+<li>还有一个就是前端MVC和后端MVC的区别，</li>
+<li>再一个就是不同语言框架实现的区别。</li>
+<li>还有就是不同领域的问题，BS、CS、移动端。感觉理清楚还是很困难的</li>
+</ul>
+<blockquote>
+<ul>
+<li>这里还是很冉的看了<a href="http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html" target="_blank" rel="external">阮一峰的日志</a>和下面的评论，发现越看越冉了。</li>
+<li>主要的点主要是MVC，MVP，MVVP的图，而且不解释的也很是让人疑惑<br>其余的点还有 <a href="http://blog.nodejitsu.com/scaling-isomorphic-javascript-code/" target="_blank" rel="external">阮一峰博客中得引用</a> 还有这篇文章的引用</li>
+<li>和 Martin Fowler 的两篇介绍。<a href="http://martinfowler.com/eaaDev/ModelViewPresenter.html" target="_blank" rel="external">1</a>, <a href="http://martinfowler.com/eaaDev/uiArchs.html" target="_blank" rel="external">2</a>;</li>
+</ul>
+</blockquote>
+<p>认真研读完上面的资料再做一个总结吧，真的是很冉。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="MV*_都有什么是怎么区分的">MV* 都有什么是怎么区分的</h2><p>关于MV*这里还是有很多有趣的故事的.</p>
+<ul>
+<li>已经没有疑惑的有MVC是设计模式还是架构，</li>
+<li>还有至今疑惑的有当时听得一个关于MVC的解释(单纯讲MVC,]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Single Page Application ]]></title>
+    <link href="http://wangximing.github.io/2015/10/19/Single-Page-Application/"/>
+    <id>http://wangximing.github.io/2015/10/19/Single-Page-Application/</id>
+    <published>2015-10-19T10:55:00.000Z</published>
+    <updated>2015-10-19T10:55:34.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="参考">参考</h4><blockquote>
+<ul>
+<li><a href="https://github.com/lifesinger/lifesinger.github.io/issues/184" target="_blank" rel="external">参考一</a></li>
+<li><a href="https://github.com/xufei/blog/blob/master/posts/2014-10-21-build-single-page-application.md" target="_blank" rel="external">参考二</a></li>
+</ul>
+</blockquote>
+<ul>
+<li><p>前后端分离，什么是前后端分离。</p>
+<blockquote>
+<ul>
+<li>大家一致认同的前后端分离的例子就是SPA(Single-page application)，所有用到的展现数据都是后端通过异步接口(AJAX/JSONP)的方式提供的，前端只管展现。<br>从某种意义上来说，SPA确实做到了前后端分离.</li>
+<li>SPA式的前后端分离，是从物理层做区分（认为只要是客户端的就是前端，服务器端的就是后端），这种分法已经无法满足我们前后端分离的需求，我们认为从职责上划分才能满足目前我们的使用场景：<br>前端：负责View和Controller层。<br>后端：只负责Model层，业务处理/数据等。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="单页应用">单页应用</h3><ul>
+<li><p>SPA（单页面程序，Single Page Application）到底是什么</p>
+<blockquote>
+<p>所谓单页应用，指的是在一个页面上集成多种功能，甚至整个系统就只有一个页面，所有的业务功能都是它的子模块，通过特定的方式挂接到主界面上。它是AJAX技术的进一步升华，把AJAX的无刷新机制发挥到极致，因此能造就与桌面程序媲美的流畅用户体验。</p>
+</blockquote>
+</li>
+<li><p>单页应用的路由管理</p>
+<blockquote>
+<ul>
+<li>把产品功能划分为若干状态，每个状态映射到相应的路由，然后通过pushState这样的机制，动态解析路由，使之与功能界面匹配</li>
+<li>看了上面的解释还是不会</li>
+</ul>
+</blockquote>
+</li>
+<li><p>页面的渲染到底应该怎么做？1：浏览器会对请求回来的HTML解析渲染，2：但是发Ajax得到的HTML并不会被自动渲染，需要手动的渲染。1和2应该怎么取舍，怎么结合。</p>
+<blockquote>
+<p>当切换功能的时候，除了产生数据请求，还需要渲染界面，这个新渲染的界面部件一般是界面模板，它从哪里来呢？来源无非是两种，一种是即时请求，像请求数据那样通过AJAX获取过来，另一种是内置于主界面的某些位置，比如script标签或者不可见的textarea中</p>
+</blockquote>
+</li>
+<li><p>服务端通信</p>
+<blockquote>
+<p>传统的Web产品通常使用JSONP或者AJAX这样的方式与服务端通信，但在单页Web应用中，有很大一部分采用WebSocket这样的实时通讯方式。<br>WebSocket与传统基于HTTP的通信机制相比，有很大的优势。它可以让服务端很便利地使用反向推送，前端只响应确实产生业务数据的事件，减少一遍又一遍无意义的AJAX轮询。</p>
+</blockquote>
+</li>
+<li><p>内存管理</p>
+<blockquote>
+<p>传统的Web页面一般是不需要考虑内存的管理的，因为用户的停留时间相对少，即使出现内存泄漏，可能很快就被刷新页面之类的操作冲掉了，但单页应用是不同的，它的用户很可能会把它开一整天，因此，我们需要对其中的DOM操作、网络连接等部分格外小心。</p>
+</blockquote>
+</li>
+<li><p><del>Node带来的全栈时代？？？</del></p>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="参考">参考</h4><blockquote>
+<ul>
+<li><a href="https://github.com/lifesinger/lifesinger.github.io/issues/184" target="_blank" rel="extern]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Java File]]></title>
@@ -598,81 +694,6 @@
     </summary>
     
       <category term="Ruby 错误处理与异常" scheme="http://wangximing.github.io/tags/Ruby-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E4%B8%8E%E5%BC%82%E5%B8%B8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Ruby 基础学习 1]]></title>
-    <link href="http://wangximing.github.io/2014/12/28/Ruby-%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-1/"/>
-    <id>http://wangximing.github.io/2014/12/28/Ruby-基础学习-1/</id>
-    <published>2014-12-28T07:21:42.000Z</published>
-    <updated>2015-08-16T16:39:19.000Z</updated>
-    <content type="html"><![CDATA[<p>Ruby基础教程第九章</p>
-<h4 id="赋值运算符">赋值运算符</h4><p>= += -= &amp;&amp;= &amp;= **= 。。。。</p>
-<h4 id="逻辑运算符">逻辑运算符</h4><p>如果逻辑表达式的真假已经确定，则不会再判断剩余的表达式。</p>
-<h4 id="条件运算符(三元运算符）">条件运算符(三元运算符）</h4><p>条件 ？表达式1 ：表达式2</p>
-<h4 id="范围运算符">范围运算符</h4><p>在Ruby中，生成表示1到10的范围对象<br>Range.new(1, 10)   1..10  1…11</p>
-<blockquote>
-<p>x..y 和 x…y  的区别是x..y 是x到y（包括y），x…y是x到y-1（不包括y)</p>
-</blockquote>
-<h4 id="定义运算符">定义运算符</h4><p>Ruby中可以自己定义或者重定义运算符</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Ruby基础教程第九章</p>
-<h4 id="赋值运算符">赋值运算符</h4><p>= += -= &amp;&amp;= &amp;= **= 。。。。</p>
-<h4 id="逻辑运算符">逻辑运算符</h4><p>如果逻辑表达式的真假已经确定，则不会再判断剩余的表]]>
-    </summary>
-    
-      <category term="Ruby 运算符" scheme="http://wangximing.github.io/tags/Ruby-%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Ruby on Rails 环境搭建]]></title>
-    <link href="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    <id>http://wangximing.github.io/2014/12/19/Ruby-on-Rails-环境搭建/</id>
-    <published>2014-12-19T08:40:50.000Z</published>
-    <updated>2015-08-16T16:39:19.000Z</updated>
-    <content type="html"><![CDATA[<h4 id="开发环境">开发环境</h4><ol>
-<li>IDE RubyMine</li>
-<li>文本编辑器和命令行</li>
-<li>Chrome浏览器</li>
-</ol>
-<h4 id="Ruby，_RubyGems，_Rails，_Git_安装（MacOS）">Ruby， RubyGems， Rails， Git 安装（MacOS）</h4><ol>
-<li><a href="https://rvm.io/rvm/install" target="_blank" rel="external">RVM</a><ol>
-<li><code>curl -sSL https://get.rvm.io | bash -s</code> 进行安装。</li>
-<li><code>rvm get stable</code> 确保是最新版本。</li>
-<li><code>rvm requirements</code> 减产安装Ruby的需要条件。<blockquote>
-<p>若提示 <code>command not found</code>, 运行 <code>source ~/.rvm/scripts/rvm</code>。并根据提示安装相关环境。</p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li><code>rvm install 版本号</code> 安装Ruby。</li>
-<li><code>rvm use 版本号@别名 --create --default</code> 设置默认genset。</li>
-<li><p>安装RubyGems</p>
-<ol>
-<li>检查是否安装</li>
-<li>下载RubyGems，解压文件，并运行<code>ruby setup.rb</code></li>
-<li>在~/.gemrc 中配置不生成ri和rdoc文档<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install: --<span class="keyword">no</span>-rdoc --<span class="keyword">no</span>-ri</span><br><span class="line"><span class="keyword">update</span>: --<span class="keyword">no</span>-rdoc --<span class="keyword">no</span>-ri</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>安装Rails<code>gem install rails --version 4.0.4 --no-ri --no-rdoc</code></p>
-<blockquote>
-<p>rails -v 检查安装</p>
-</blockquote>
-</li>
-</ol>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h4 id="开发环境">开发环境</h4><ol>
-<li>IDE RubyMine</li>
-<li>文本编辑器和命令行</li>
-<li>Chrome浏览器</li>
-</ol>
-<h4 id="Ruby，_RubyGems，_Rails，_Git_安装（MacOS）">]]>
-    </summary>
     
   </entry>
   
