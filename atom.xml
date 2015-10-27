@@ -4,7 +4,7 @@
   <subtitle><![CDATA[音乐是情感的独白]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wangximing.github.io/"/>
-  <updated>2015-10-27T03:20:59.000Z</updated>
+  <updated>2015-10-27T03:23:10.000Z</updated>
   <id>http://wangximing.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://wangximing.github.io/2015/10/27/ionic-presentation/"/>
     <id>http://wangximing.github.io/2015/10/27/ionic-presentation/</id>
     <published>2015-10-27T03:07:00.000Z</published>
-    <updated>2015-10-27T03:20:59.000Z</updated>
+    <updated>2015-10-27T03:23:10.000Z</updated>
     <content type="html"><![CDATA[<h2 id="Ionic">Ionic</h2><h3 id="Ionic简介">Ionic简介</h3><p>Ionic是一个开源的前端开发框架，可以用HTML,CSS,JS来开发Hybird App.</p>
 <h3 id="Ionic_Stack">Ionic Stack</h3><ul>
 <li>AngularJS</li>
@@ -36,7 +36,7 @@
 <p>  <code>npm install -g cordova ionic</code></p>
 </li>
 <li><p>Create</p>
-<p>  <code>ionic start myApp tabs</code><br><img src="/image/ionic-structure.png =150*150" alt="Ionic 项目结构"></p>
+<p>  <code>ionic start myApp tabs</code><br><img src="/image/ionic-structure.png =150x150" alt="Ionic 项目结构"></p>
 </li>
 <li><p>Run</p>
 <p>  <code>ionic serve</code></p>
