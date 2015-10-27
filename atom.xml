@@ -4,7 +4,7 @@
   <subtitle><![CDATA[音乐是情感的独白]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wangximing.github.io/"/>
-  <updated>2015-10-27T03:24:10.000Z</updated>
+  <updated>2015-10-27T03:44:56.000Z</updated>
   <id>http://wangximing.github.io/</id>
   
   <author>
@@ -15,11 +15,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[ionic header bar]]></title>
+    <link href="http://wangximing.github.io/2015/10/27/ionic-header-bar/"/>
+    <id>http://wangximing.github.io/2015/10/27/ionic-header-bar/</id>
+    <published>2015-10-27T03:32:42.000Z</published>
+    <updated>2015-10-27T03:44:56.000Z</updated>
+    <content type="html"><![CDATA[<p>参考：<a href="http://learn.ionicframework.com/formulas/navigation-bar-vs-header-bar/" target="_blank" rel="external">ionic 官方教程</a>;</p>
+<p>我们可以用<code>ion-header-bar</code>,<code>ion-nav-bar</code>的任意一个来进行显示导航栏。<br>两者的区别在于，</p>
+<p><code>ion-header-bar</code>可以做进一步的样式设置扩展，比如说在两侧加上按钮等。</p>
+<p><img src="/image/nav-extention.png" alt="导航栏扩展"></p>
+<p><code>ion-nav-bar</code> 集成了<code>Ionic router</code>和历史路径的压栈。使用后可以回退到上一个浏览的页面。</p>
+<p><img src="/image/nav-back.png" alt="导航栏回退"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>参考：<a href="http://learn.ionicframework.com/formulas/navigation-bar-vs-header-bar/" target="_blank" rel="external">ionic 官方教程</a>;</p>
+<p]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[ionic presentation]]></title>
     <link href="http://wangximing.github.io/2015/10/27/ionic-presentation/"/>
     <id>http://wangximing.github.io/2015/10/27/ionic-presentation/</id>
     <published>2015-10-27T03:07:00.000Z</published>
-    <updated>2015-10-27T03:24:10.000Z</updated>
+    <updated>2015-10-27T03:32:21.000Z</updated>
     <content type="html"><![CDATA[<h2 id="Ionic">Ionic</h2><h3 id="Ionic简介">Ionic简介</h3><p>Ionic是一个开源的前端开发框架，可以用HTML,CSS,JS来开发Hybird App.</p>
 <h3 id="Ionic_Stack">Ionic Stack</h3><ul>
 <li>AngularJS</li>
@@ -721,20 +741,6 @@
     </summary>
     
       <category term="设计模式" scheme="http://wangximing.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Ruby on Rails 从零到部署]]></title>
-    <link href="http://wangximing.github.io/2015/01/04/Ruby-on-Rails-%E4%BB%8E%E9%9B%B6%E5%88%B0%E9%83%A8%E7%BD%B2/"/>
-    <id>http://wangximing.github.io/2015/01/04/Ruby-on-Rails-从零到部署/</id>
-    <published>2015-01-04T14:22:49.000Z</published>
-    <updated>2015-08-16T16:39:19.000Z</updated>
-    <content type="html"><![CDATA[<h4 id="环境搭建">环境搭建</h4><p>  <a href="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h4 id="环境搭建">环境搭建</h4><p>  <a href="http://wangximing.github.io/2014/12/19/Ruby-on-Rails-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></p]]>
-    </summary>
     
   </entry>
   
