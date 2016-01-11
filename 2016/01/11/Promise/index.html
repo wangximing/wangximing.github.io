@@ -43,20 +43,20 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="历史Promise是一个古老的概念（1976），又叫Deferred(延期的)，Futurejava.util.concurrent.Future。
+<meta name="description" content="简介Promise是一个古老的概念（1976），又叫Deferred(延期的)，Futurejava.util.concurrent.Future。
 Promise in JavaScriptWHY JavaScript是单线程，为了防止线程阻塞，在JS中有一种写法叫做回调
 123$.get(&apos;/users/123&apos;, function(user) &amp;#123;    //这里可以对User进行一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise">
 <meta property="og:url" content="http://wangximing.github.io/2016/01/11/Promise/index.html">
 <meta property="og:site_name" content="sigh">
-<meta property="og:description" content="历史Promise是一个古老的概念（1976），又叫Deferred(延期的)，Futurejava.util.concurrent.Future。
+<meta property="og:description" content="简介Promise是一个古老的概念（1976），又叫Deferred(延期的)，Futurejava.util.concurrent.Future。
 Promise in JavaScriptWHY JavaScript是单线程，为了防止线程阻塞，在JS中有一种写法叫做回调
 123$.get(&apos;/users/123&apos;, function(user) &amp;#123;    //这里可以对User进行一">
-<meta property="og:updated_time" content="2016-01-10T16:10:10.000Z">
+<meta property="og:updated_time" content="2016-01-11T06:59:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Promise">
-<meta name="twitter:description" content="历史Promise是一个古老的概念（1976），又叫Deferred(延期的)，Futurejava.util.concurrent.Future。
+<meta name="twitter:description" content="简介Promise是一个古老的概念（1976），又叫Deferred(延期的)，Futurejava.util.concurrent.Future。
 Promise in JavaScriptWHY JavaScript是单线程，为了防止线程阻塞，在JS中有一种写法叫做回调
 123$.get(&apos;/users/123&apos;, function(user) &amp;#123;    //这里可以对User进行一">
 
@@ -218,7 +218,7 @@ Promise in JavaScriptWHY JavaScript是单线程，为了防止线程阻塞，在
       
 
       
-        <span itemprop="articleBody"><h2 id="历史">历史</h2><p>Promise是一个古老的<strong>概念</strong>（1976），又叫Deferred(延期的)，Future<code>java.util.concurrent.Future</code>。</p>
+        <span itemprop="articleBody"><h2 id="简介">简介</h2><p>Promise是一个古老的<strong>概念</strong>（1976），又叫Deferred(延期的)，Future<code>java.util.concurrent.Future</code>。</p>
 <h2 id="Promise_in_JavaScript">Promise in JavaScript</h2><h3 id="WHY">WHY</h3><p> JavaScript是单线程，为了防止线程阻塞，在JS中有一种写法叫做<strong>回调</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.get(<span class="string">'/users/123'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//这里可以对User进行一些操作</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>这样就解决了JS单线程的问题了，但是又引出了一个新的问题 回调地狱</p>
@@ -445,7 +445,7 @@ Promise in JavaScriptWHY JavaScript是单线程，为了防止线程阻塞，在
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#历史"><span class="nav-number">1.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise_in_JavaScript"><span class="nav-number">2.</span> <span class="nav-text">Promise in JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WHY"><span class="nav-number">2.1.</span> <span class="nav-text">WHY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WHAT"><span class="nav-number">2.2.</span> <span class="nav-text">WHAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HOW"><span class="nav-number">2.3.</span> <span class="nav-text">HOW</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MORE"><span class="nav-number">3.</span> <span class="nav-text">MORE</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise_in_JavaScript"><span class="nav-number">2.</span> <span class="nav-text">Promise in JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WHY"><span class="nav-number">2.1.</span> <span class="nav-text">WHY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WHAT"><span class="nav-number">2.2.</span> <span class="nav-text">WHAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HOW"><span class="nav-number">2.3.</span> <span class="nav-text">HOW</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MORE"><span class="nav-number">3.</span> <span class="nav-text">MORE</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
