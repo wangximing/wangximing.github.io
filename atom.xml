@@ -4,7 +4,7 @@
   <subtitle><![CDATA[音乐是情感的独白]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wangximing.github.io/"/>
-  <updated>2016-01-11T06:59:57.000Z</updated>
+  <updated>2016-03-05T13:48:42.000Z</updated>
   <id>http://wangximing.github.io/</id>
   
   <author>
@@ -15,17 +15,66 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Angular Service 学习笔记]]></title>
+    <link href="http://wangximing.github.io/2016/03/02/AngularJS-Services/"/>
+    <id>http://wangximing.github.io/2016/03/02/AngularJS-Services/</id>
+    <published>2016-03-02T08:33:45.000Z</published>
+    <updated>2016-03-05T13:48:42.000Z</updated>
+    <content type="html"><![CDATA[<p>##创建服务的5中方式</p>
+<ul>
+<li>factory()</li>
+<li>service()</li>
+<li>contant()</li>
+<li>value()</li>
+<li>provider()</li>
+</ul>
+<p><strong>service在Angular中是单例，只会被创建一次。</strong></p>
+<h3 id="factory">factory</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> angular.module(<span class="string">'app'</span>)</span><br><span class="line"> 	.factory(<span class="string">'serviceName'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> 		<span class="comment">//在创建服务实例时被调用，只会被调用一次</span></span><br><span class="line"> 		<span class="keyword">var</span> productService = &#123;</span><br><span class="line"> 			filed: <span class="string">'hello'</span>;,</span><br><span class="line"> 			method: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> 			&#125;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		<span class="keyword">return</span> productService;</span><br><span class="line"> 	&#125;);</span><br><span class="line"></span><br><span class="line"> angular.controller(<span class="string">'Controller'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">serviceName</span>) </span>&#123;</span><br><span class="line">	serviceName.method();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="service()">service()</h3><p>service()函数会在创建实例时通过new关键字来实例化服务对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">angular.service(<span class="string">'serviceName'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.method =  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">	<span class="keyword">this</span>.filed = <span class="string">'hello'</span>;</span><br><span class="line">&#125;);</span><br><span class="line">angular.controller(<span class="string">'Controller'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">serviceName</span>) </span>&#123;</span><br><span class="line">	serviceName.method();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="provider()">provider()</h3><h4 id="factory()和provider()_**">factory()和provider() <em>**</em></h4><p>所有的factory()都是由$provider服务创建的, 假定传入的函数就是$get(), factory()就是provider()的简略形式。</p>
+<blockquote>
+<ul>
+<li>$provider 和provider()的关系</li>
+<li>$provider 和服务的关系</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>)</span><br><span class="line">  .provider(<span class="string">'myService'</span>, &#123;</span><br><span class="line">  		$get: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .factory(<span class="string">'myService'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="provider()定义的服务，可用于config()">provider()定义的服务，可用于config()</h4><p>myService是定义provider的名字，myServerProvider是服务的提供者。<br>如下使用（未验证）；</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>)</span><br><span class="line">  .provider(<span class="string">'myService'</span>, &#123;</span><br><span class="line">  		<span class="keyword">var</span> message = <span class="string">''</span>;</span><br><span class="line">  		setMessage: <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</span><br><span class="line">  			message = message;</span><br><span class="line">  		&#125;</span><br><span class="line">  		$get: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">  			<span class="built_in">console</span>.log(message);</span><br><span class="line">  		&#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .config(<span class="function"><span class="keyword">function</span>(<span class="params">myServiceProvider</span>) </span>&#123;</span><br><span class="line">  		myServiceProvider.setMessage(<span class="string">'say hello'</span>);</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="constant(),value()">constant(),value()</h3><p>constant()和value()都是注册一个变量为服务，可以注入到应用的其他部分。<br>不同的是<strong>constant()可以注入到config()中，而value()不可以</strong></p>
+<h3 id="decorator()">decorator()</h3><p>decorator()可以对AngularJS的核心服务或者我们自己的服务进行里纳西，中断或者替换，Angular总的测试就是借助的$provider.decorator()建立的。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">decorator</span><span class="params">(<span class="string">'name'</span>, decoratorFn)</span></span></span><br><span class="line">name: 将要拦截的服务名称</span><br><span class="line">decoratorFn: 处理拦截的函数</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>).config(<span class="function"><span class="keyword">function</span> (<span class="params">$provider</span>) </span>&#123;</span><br><span class="line">	$provider.decorator(<span class="string">'myService'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">//怎么做还没弄明白</span></span><br><span class="line">	&#125;)</span><br><span class="line">&#125;) ;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>什么时候用factory()什么时候用service();<br>service()–&gt;factory()–&gt;provider()</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>##创建服务的5中方式</p>
+<ul>
+<li>factory()</li>
+<li>service()</li>
+<li>contant()</li>
+<li>value()</li>
+<li>provider()</li>
+</ul>
+<p><strong>servi]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Promise]]></title>
     <link href="http://wangximing.github.io/2016/01/11/Promise/"/>
     <id>http://wangximing.github.io/2016/01/11/Promise/</id>
     <published>2016-01-10T16:01:38.000Z</published>
-    <updated>2016-01-11T06:59:57.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="简介">简介</h2><p>Promise是一个古老的<strong>概念</strong>（1976），又叫Deferred(延期的)，Future<code>java.util.concurrent.Future</code>。</p>
-<h2 id="Promise_in_JavaScript">Promise in JavaScript</h2><h3 id="WHY">WHY</h3><p> JavaScript是单线程，为了防止线程阻塞，在JS中有一种写法叫做<strong>回调</strong></p>
+    <updated>2016-01-15T07:34:57.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Promise_in_JavaScript">Promise in JavaScript</h2><h3 id="WHY">WHY</h3><p> Promise是一个古老的<strong>概念</strong>（1976），又叫Deferred(延期的)，Future<code>java.util.concurrent.Future</code>。<br> JavaScript是单线程，为了防止线程阻塞，在JS中有一种写法叫做<strong>回调</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.get(<span class="string">'/users/123'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//这里可以对User进行一些操作</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>这样就解决了JS单线程的问题了，但是又引出了一个新的问题 回调地狱</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$.get(<span class="string">'/users/123'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">class</span>) </span>&#123;</span><br><span class="line">     $.get(<span class="string">'/class/4'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">school</span>) </span>&#123;</span><br><span class="line">         $.get(<span class="string">'/schooles/123/chairman'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">class</span>) </span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="string">'get data'</span>);</span><br><span class="line">         &#125;)</span><br><span class="line">     &#125;)</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
-<p>回调地狱存在的明显的问题 难读 也就是不优雅而且也难测。然后为了解决这些问题，降低异步编程的复杂性，开发人员一直寻找简便的方法来处理异步操作，就出现了一个概念<strong>Promise</strong>和Promise的一系列的实现。Promise代表了一种可能会长时间运行而且不一定必须完整的操作的结果.</p>
+<p>回调地狱存在的明显的问题 难读而且也难测。然后为了解决这些问题，降低异步编程的复杂性，开发人员一直寻找简便的方法来处理异步操作，就出现了一个概念<strong>Promise</strong>和Promise的一系列的实现。Promise代表了一种可能会长时间运行而且不一定必须完整的操作的结果.</p>
 <h3 id="WHAT">WHAT</h3><p>所谓Promise，字面上可以理解为”承诺”，就是说A调用B，B返回一个”承诺”给A，然后A就可以在写计划的时候这么写：当B返回结果给我的时候，A执行方案S1，反之如果B因为什么原因没有给到A想要的结果，那么A执行应急方案S2，这样一来，所有的潜在风险都在A的可控范围之内了。</p>
 <p>Promise有三种状态</p>
 <ul>
@@ -59,10 +108,21 @@
 <li><a href="https://promisesaplus.com/#point-11" target="_blank" rel="external">Promises/A+</a></li>
 <li><a href="http://callbackhell.com/" target="_blank" rel="external">回调地狱</a></li>
 </ul>
+<h2 id="OTHERS">OTHERS</h2><p><a href="https://github.com/kuitos/kuitos.github.io/issues/32#issuecomment-170256304" target="_blank" rel="external">2015前端生态发展回顾</a></p>
+<ul>
+<li>年初React Native的发布，引领React正式走上历史舞台。</li>
+<li>3月angular2.0第一个预览版发布</li>
+<li>5月 http/2.0标准正式发布，同月 iojs 与 nodejs合并。</li>
+<li>6月 ES6 和 WebAssembly 落地</li>
+<li>7月 迄今为止React生态圈影响最大的Flux实现redux发布1.0版本</li>
+<li>8月 Facebook公开了在React上应用GraphQL的relay框架的技术预览版</li>
+<li>9月 React Native for Andriod 发布</li>
+<li>11月伊始，es标准委员会宣布将历时3年研究的Object.observe从草案中移除，尽管它原本已经是stage2，几乎已经是ES7的事实标准。双十一刚一结束，阿里手淘团队发布了名为 无线电商动态化解决方案 的 Weex，也有人给了它一个更具象的名字，vue native。</li>
+<li>12月，赶在2015的尾巴，aurelia和angular2先后发布beta版。</li>
+</ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="简介">简介</h2><p>Promise是一个古老的<strong>概念</strong>（1976），又叫Deferred(延期的)，Future<code>java.util.concurrent.Future</code>。</p>
-<h2 id="Pro]]>
+    <![CDATA[<h2 id="Promise_in_JavaScript">Promise in JavaScript</h2><h3 id="WHY">WHY</h3><p> Promise是一个古老的<strong>概念</strong>（1976），又叫Deferred(延期的)，Fut]]>
     </summary>
     
       <category term="JavaScript Promise" scheme="http://wangximing.github.io/tags/JavaScript-Promise/"/>
@@ -652,20 +712,6 @@
 <li>在index.html中引入angula.js angular-router.js 相关js。和自己实现的app.js ,controller 的js，service的js。</li>
 </ul>]]>
     
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[DOM event]]></title>
-    <link href="http://wangximing.github.io/2015/07/28/jQuery-event/"/>
-    <id>http://wangximing.github.io/2015/07/28/jQuery-event/</id>
-    <published>2015-07-28T05:48:23.000Z</published>
-    <updated>2015-08-16T16:39:19.000Z</updated>
-    <content type="html"><![CDATA[<p><a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-flow" target="_blank" rel="external">http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</a>  w3c事件派遣与事件流<br><a href="http://chajn.org/project/javascript-events-responding-user/" target="_blank" rel="external">http://chajn.org/project/javascript-events-responding-user/</a> 事件<br><a href="http://segmentfault.com/a/1190000002613617" target="_blank" rel="external">http://segmentfault.com/a/1190000002613617</a> 事件委托与代理</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-flow" target="_blank" rel="external">http://www.w3.org/TR/DOM-Level-3-Events/#eve]]>
     </summary>
     
   </entry>

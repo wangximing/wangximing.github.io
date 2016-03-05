@@ -2,6 +2,8 @@
 <html class="theme-next use-motion ">
 <head>
   
+    
+
 
 <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -41,25 +43,43 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="AngularJS配置：
-下载AngularJS源文件，angular.js, angular-router.js等必须使用的源文件。
-在跟路径（可以是其他路径，建议根路径）新建index.html文件，index.html的目录，将会作为整个angular的根路径。
-在index.html 中标记出ng-app=”appname”,和ng-views=” “。ng-app的 appname将会作">
+<meta name="description" content="##创建服务的5中方式
+
+factory()
+service()
+contant()
+value()
+provider()
+
+service在Angular中是单例，只会被创建一次。
+factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;serviceName&apos;, function () &amp;#123; 		//在创建服务实例时被调用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AnjularJS">
-<meta property="og:url" content="http://wangximing.github.io/2015/07/28/AnjularJS/index.html">
+<meta property="og:title" content="Angular Service 学习笔记">
+<meta property="og:url" content="http://wangximing.github.io/2016/03/02/AngularJS-Services/index.html">
 <meta property="og:site_name" content="sigh">
-<meta property="og:description" content="AngularJS配置：
-下载AngularJS源文件，angular.js, angular-router.js等必须使用的源文件。
-在跟路径（可以是其他路径，建议根路径）新建index.html文件，index.html的目录，将会作为整个angular的根路径。
-在index.html 中标记出ng-app=”appname”,和ng-views=” “。ng-app的 appname将会作">
-<meta property="og:updated_time" content="2015-08-16T16:39:19.000Z">
+<meta property="og:description" content="##创建服务的5中方式
+
+factory()
+service()
+contant()
+value()
+provider()
+
+service在Angular中是单例，只会被创建一次。
+factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;serviceName&apos;, function () &amp;#123; 		//在创建服务实例时被调用">
+<meta property="og:updated_time" content="2016-03-05T13:48:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AnjularJS">
-<meta name="twitter:description" content="AngularJS配置：
-下载AngularJS源文件，angular.js, angular-router.js等必须使用的源文件。
-在跟路径（可以是其他路径，建议根路径）新建index.html文件，index.html的目录，将会作为整个angular的根路径。
-在index.html 中标记出ng-app=”appname”,和ng-views=” “。ng-app的 appname将会作">
+<meta name="twitter:title" content="Angular Service 学习笔记">
+<meta name="twitter:description" content="##创建服务的5中方式
+
+factory()
+service()
+contant()
+value()
+provider()
+
+service在Angular中是单例，只会被创建一次。
+factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;serviceName&apos;, function () &amp;#123; 		//在创建服务实例时被调用">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -71,7 +91,7 @@
 
 
 
-  <title> AnjularJS | sigh </title>
+  <title> Angular Service 学习笔记 | sigh </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -183,7 +203,7 @@
           
           
             
-              AnjularJS
+              Angular Service 学习笔记
             
           
         </h1>
@@ -192,8 +212,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-07-28T16:33:45+08:00" content="2015-07-28">
-            2015-07-28
+          <time itemprop="dateCreated" datetime="2016-03-02T16:33:45+08:00" content="2016-03-02">
+            2016-03-02
           </time>
         </span>
 
@@ -203,8 +223,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/07/28/AnjularJS/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/28/AnjularJS/" itemprop="commentsCount"></span>
+              <a href="/2016/03/02/AngularJS-Services/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/02/AngularJS-Services/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -219,41 +239,34 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="AngularJS配置：">AngularJS配置：</h2><ul>
-<li>下载AngularJS源文件，<code>angular.js</code>, <code>angular-router.js</code>等必须使用的源文件。</li>
-<li>在跟路径（可以是其他路径，建议根路径）新建index.html文件，index.html的目录，将会作为整个angular的根路径。</li>
-<li>在index.html 中标记出ng-app=”appname”,和ng-views=” “。ng-app的 <code>appname</code>将会作为为整个angular的项目名称。在app.js和controller、service的配置文件中要保持一致。</li>
-<li>新建app.js文件，app.js中写的是angular的配置信息。如router等。</li>
-<li>新建一个Controller。</li>
-<li>新建一个Service。</li>
-<li>在index.html中引入angula.js angular-router.js 相关js。和自己实现的app.js ,controller 的js，service的js。</li>
-</ul>
-<a id="more"></a>
-<h2 id="AngularJS启动机制：">AngularJS启动机制：</h2><p>一直有一个疑问就是：在index.html文件中引入了要用的js文件后，怎么就可以确定AngularJS已经配置好了，它是怎么管理前台的呢？怎么的就会启动AngularJS了呢？</p>
-<p>查了一些资料后整理如下。</p>
+        <span itemprop="articleBody"><p>##创建服务的5中方式</p>
 <ul>
-<li>系统加载文档结构，加载所有引用的js。</li>
-<li>文档加载完成后，angular.js自动执行去寻找 “ng-app”确认系统边界。</li>
-<li>根据ng-app的名称去app.js里面寻找相同名称的模块，并注入。</li>
-<li>根据模块名称寻找controller，service。</li>
-<li>项目被AngularJS接手。<br>要注意的是index.js 和app.js 是默认名称，不可更改。</li>
+<li>factory()</li>
+<li>service()</li>
+<li>contant()</li>
+<li>value()</li>
+<li>provider()</li>
 </ul>
-<p><a href="https://github.com/johnpapa/angular-styleguide/blob/master/i18n/zh-CN.md" target="_blank" rel="external">https://github.com/johnpapa/angular-styleguide/blob/master/i18n/zh-CN.md</a> 很好的教程。</p>
-<h2 id="AngularJS_小知识">AngularJS 小知识</h2><ul>
-<li>$location.path(“要去页面的AngularJS路由”) 可以实现controller内页面跳转。</li>
-<li>AngularJS scope,研究下AngularJS的scope。<blockquote>
-<p>有两个页面（页面A，页面B）绑定的是相同的controller（commonController），<br>在一个页面（页面A）中触发commonController.changePage()方法，<br>changePage()方法，先给scope赋值（$scope.user = user）,再跳转到页面B。<br>这时在页面B中无法获取$scope.user的值。<br>排除写错的可能后，页面也没有刷新。认为是scope范围的问题：<br>两个页面共用一个controller时，controller作用于不同页面的时候，$scope是不同的两个$scope。</p>
-</blockquote>
-</li>
-<li>AngularJS多选（select）提供默认值。<blockquote>
-<p>注意ng-model的类型和ng-option中for和in中间的变量类型要一致。即<code>addedUser.employee</code>和<code>employee</code>都是employee。还有就是ng-model的值必须是ng-option的一个index的值，否则也会造成类型的不一致。<br>如下面的值。</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-------------JavaScript------------</span><br><span class="line"><span class="variable">$scope</span>.employees = data;</span><br><span class="line"><span class="variable">$scope</span>.addedUser = &#123;employee: data[<span class="number">0</span>]&#125;;</span><br><span class="line"></span><br><span class="line">----------HTML---------------------</span><br><span class="line">&lt;select ng-model=<span class="string">"addedUser.employee"</span> ng-options = <span class="string">"employee.name for employee in employees"</span>&gt;&lt;/select&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">----------HTML---------------------</span><br><span class="line">&lt;select ng-model=<span class="string">"employee"</span> ng-options = <span class="string">"employee.name for employee in employees"</span>&gt;&lt;/select&gt;</span><br><span class="line">---------JavaScript----------------</span><br><span class="line"><span class="variable">$scope</span>.employees = employees;// 从后台获取的api/employees</span><br><span class="line"><span class="variable">$scope</span>.employee = employee;// 从后台获取的 api/employees/employee</span><br><span class="line">//这样子获取的话AngularJS对数组和普通对象的值封装是不同的</span><br><span class="line">console.log(employees[<span class="number">0</span>]);//Object &#123;class: <span class="string">"com.tw.core.model.Employee"</span>, gender: <span class="string">"男"</span>, id: <span class="number">4</span>, name: <span class="string">"周杰伦"</span>, role: <span class="string">"Coach"</span>&#125;</span><br><span class="line">console.log(employee);//Object &#123;id: <span class="number">4</span>, name: <span class="string">"周杰伦"</span>, gender: <span class="string">"男"</span>, role: <span class="string">"Coach"</span>, $<span class="variable">$hashKey</span>: <span class="string">"object:6"</span>&#125;</span><br><span class="line">// 可以看到我们以为的一样其实是错的。</span><br></pre></td></tr></table></figure>
+<p><strong>service在Angular中是单例，只会被创建一次。</strong></p>
+<h3 id="factory">factory</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> angular.module(<span class="string">'app'</span>)</span><br><span class="line"> 	.factory(<span class="string">'serviceName'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> 		<span class="comment">//在创建服务实例时被调用，只会被调用一次</span></span><br><span class="line"> 		<span class="keyword">var</span> productService = &#123;</span><br><span class="line"> 			filed: <span class="string">'hello'</span>;,</span><br><span class="line"> 			method: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> 			&#125;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		<span class="keyword">return</span> productService;</span><br><span class="line"> 	&#125;);</span><br><span class="line"></span><br><span class="line"> angular.controller(<span class="string">'Controller'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">serviceName</span>) </span>&#123;</span><br><span class="line">	serviceName.method();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="service()">service()</h3><p>service()函数会在创建实例时通过new关键字来实例化服务对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">angular.service(<span class="string">'serviceName'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.method =  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">	<span class="keyword">this</span>.filed = <span class="string">'hello'</span>;</span><br><span class="line">&#125;);</span><br><span class="line">angular.controller(<span class="string">'Controller'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">serviceName</span>) </span>&#123;</span><br><span class="line">	serviceName.method();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="provider()">provider()</h3><h4 id="factory()和provider()_**">factory()和provider() <em>**</em></h4><p>所有的factory()都是由$provider服务创建的, 假定传入的函数就是$get(), factory()就是provider()的简略形式。</p>
 <blockquote>
-<p><a href="https://docs.angularjs.org/api/ng/directive/ngOptions" target="_blank" rel="external">官网例子是这么写的</a></p>
+<ul>
+<li>$provider 和provider()的关系</li>
+<li>$provider 和服务的关系</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>)</span><br><span class="line">  .provider(<span class="string">'myService'</span>, &#123;</span><br><span class="line">  		$get: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .factory(<span class="string">'myService'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="provider()定义的服务，可用于config()">provider()定义的服务，可用于config()</h4><p>myService是定义provider的名字，myServerProvider是服务的提供者。<br>如下使用（未验证）；</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>)</span><br><span class="line">  .provider(<span class="string">'myService'</span>, &#123;</span><br><span class="line">  		<span class="keyword">var</span> message = <span class="string">''</span>;</span><br><span class="line">  		setMessage: <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</span><br><span class="line">  			message = message;</span><br><span class="line">  		&#125;</span><br><span class="line">  		$get: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">  			<span class="built_in">console</span>.log(message);</span><br><span class="line">  		&#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .config(<span class="function"><span class="keyword">function</span>(<span class="params">myServiceProvider</span>) </span>&#123;</span><br><span class="line">  		myServiceProvider.setMessage(<span class="string">'say hello'</span>);</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="constant(),value()">constant(),value()</h3><p>constant()和value()都是注册一个变量为服务，可以注入到应用的其他部分。<br>不同的是<strong>constant()可以注入到config()中，而value()不可以</strong></p>
+<h3 id="decorator()">decorator()</h3><p>decorator()可以对AngularJS的核心服务或者我们自己的服务进行里纳西，中断或者替换，Angular总的测试就是借助的$provider.decorator()建立的。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">decorator</span><span class="params">(<span class="string">'name'</span>, decoratorFn)</span></span></span><br><span class="line">name: 将要拦截的服务名称</span><br><span class="line">decoratorFn: 处理拦截的函数</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>).config(<span class="function"><span class="keyword">function</span> (<span class="params">$provider</span>) </span>&#123;</span><br><span class="line">	$provider.decorator(<span class="string">'myService'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">//怎么做还没弄明白</span></span><br><span class="line">	&#125;)</span><br><span class="line">&#125;) ;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>什么时候用factory()什么时候用service();<br>service()–&gt;factory()–&gt;provider()</p>
 </blockquote>
 </span>
       
@@ -266,13 +279,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/29/gradle-file-lock/" rel="prev">gradle file lock</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/28/jQuery-event/" rel="next">DOM event</a>
+              <a href="/2016/01/11/Promise/" rel="next">Promise</a>
             
           </div>
         </div>
@@ -324,8 +335,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/07/28/AnjularJS/"
-                   data-title="AnjularJS" data-url="http://wangximing.github.io/2015/07/28/AnjularJS/">
+              <div class="ds-thread" data-thread-key="2016/03/02/AngularJS-Services/"
+                   data-title="Angular Service 学习笔记" data-url="http://wangximing.github.io/2016/03/02/AngularJS-Services/">
               </div>
             
           </div>
@@ -439,7 +450,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AngularJS配置："><span class="nav-number">1.</span> <span class="nav-text">AngularJS配置：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AngularJS启动机制："><span class="nav-number">2.</span> <span class="nav-text">AngularJS启动机制：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AngularJS_小知识"><span class="nav-number">3.</span> <span class="nav-text">AngularJS 小知识</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#factory"><span class="nav-number">1.</span> <span class="nav-text">factory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service()"><span class="nav-number">2.</span> <span class="nav-text">service()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#provider()"><span class="nav-number">3.</span> <span class="nav-text">provider()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#factory()和provider()_**"><span class="nav-number">3.1.</span> <span class="nav-text">factory()和provider() **</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#provider()定义的服务，可用于config()"><span class="nav-number">3.2.</span> <span class="nav-text">provider()定义的服务，可用于config()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constant(),value()"><span class="nav-number">4.</span> <span class="nav-text">constant(),value()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#decorator()"><span class="nav-number">5.</span> <span class="nav-text">decorator()</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
