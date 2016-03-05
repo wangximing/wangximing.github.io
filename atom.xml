@@ -4,7 +4,7 @@
   <subtitle><![CDATA[音乐是情感的独白]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wangximing.github.io/"/>
-  <updated>2016-03-05T13:48:42.000Z</updated>
+  <updated>2016-03-05T13:52:34.000Z</updated>
   <id>http://wangximing.github.io/</id>
   
   <author>
@@ -19,9 +19,8 @@
     <link href="http://wangximing.github.io/2016/03/02/AngularJS-Services/"/>
     <id>http://wangximing.github.io/2016/03/02/AngularJS-Services/</id>
     <published>2016-03-02T08:33:45.000Z</published>
-    <updated>2016-03-05T13:48:42.000Z</updated>
-    <content type="html"><![CDATA[<p>##创建服务的5中方式</p>
-<ul>
+    <updated>2016-03-05T13:52:34.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="创建服务的5中方式">创建服务的5中方式</h2><ul>
 <li>factory()</li>
 <li>service()</li>
 <li>contant()</li>
@@ -51,15 +50,14 @@
 </blockquote>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>##创建服务的5中方式</p>
-<ul>
+    <![CDATA[<h2 id="创建服务的5中方式">创建服务的5中方式</h2><ul>
 <li>factory()</li>
 <li>service()</li>
 <li>contant()</li>
 <li>value()</li>
 <li>provider()</li>
 </ul>
-<p><strong>servi]]>
+<p]]>
     </summary>
     
   </entry>
