@@ -2,6 +2,8 @@
 <html class="theme-next use-motion ">
 <head>
   
+    
+
 
 <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -41,40 +43,22 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="创建服务的5中方式
-factory()
-service()
-contant()
-value()
-provider()
-
-service在Angular中是单例，只会被创建一次。
-factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;serviceName&apos;, function () &amp;#123; 		//在创建服务实例时被调用，只会">
+<meta name="description" content="Angular Conncet with ServerAngular与服务器通过$http通信。$http 服务简单的封装了浏览器原生的XMLHttpRequest对象。在Angular中，可以通过使用 $http, $resource, Restangular与服务器交互。
+$http$http返回一个promise对象
+1var promise = $http(&amp;#123;method: &apos;G">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Angular Service 学习笔记">
-<meta property="og:url" content="http://wangximing.github.io/2016/03/02/AngularJS-Services/index.html">
+<meta property="og:title" content="Angular Conncet with Server">
+<meta property="og:url" content="http://wangximing.github.io/2016/03/08/Angular-connect-with-server/index.html">
 <meta property="og:site_name" content="sigh">
-<meta property="og:description" content="创建服务的5中方式
-factory()
-service()
-contant()
-value()
-provider()
-
-service在Angular中是单例，只会被创建一次。
-factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;serviceName&apos;, function () &amp;#123; 		//在创建服务实例时被调用，只会">
-<meta property="og:updated_time" content="2016-03-05T13:52:34.000Z">
+<meta property="og:description" content="Angular Conncet with ServerAngular与服务器通过$http通信。$http 服务简单的封装了浏览器原生的XMLHttpRequest对象。在Angular中，可以通过使用 $http, $resource, Restangular与服务器交互。
+$http$http返回一个promise对象
+1var promise = $http(&amp;#123;method: &apos;G">
+<meta property="og:updated_time" content="2016-03-10T14:06:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angular Service 学习笔记">
-<meta name="twitter:description" content="创建服务的5中方式
-factory()
-service()
-contant()
-value()
-provider()
-
-service在Angular中是单例，只会被创建一次。
-factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;serviceName&apos;, function () &amp;#123; 		//在创建服务实例时被调用，只会">
+<meta name="twitter:title" content="Angular Conncet with Server">
+<meta name="twitter:description" content="Angular Conncet with ServerAngular与服务器通过$http通信。$http 服务简单的封装了浏览器原生的XMLHttpRequest对象。在Angular中，可以通过使用 $http, $resource, Restangular与服务器交互。
+$http$http返回一个promise对象
+1var promise = $http(&amp;#123;method: &apos;G">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -86,7 +70,7 @@ factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;servi
 
 
 
-  <title> Angular Service 学习笔记 | sigh </title>
+  <title> Angular Conncet with Server | sigh </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -198,7 +182,7 @@ factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;servi
           
           
             
-              Angular Service 学习笔记
+              Angular Conncet with Server
             
           
         </h1>
@@ -207,8 +191,8 @@ factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;servi
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-03-02T16:33:45+08:00" content="2016-03-02">
-            2016-03-02
+          <time itemprop="dateCreated" datetime="2016-03-08T16:33:45+08:00" content="2016-03-08">
+            2016-03-08
           </time>
         </span>
 
@@ -218,8 +202,8 @@ factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;servi
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/03/02/AngularJS-Services/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/02/AngularJS-Services/" itemprop="commentsCount"></span>
+              <a href="/2016/03/08/Angular-connect-with-server/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/08/Angular-connect-with-server/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -234,35 +218,63 @@ factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;servi
       
 
       
-        <span itemprop="articleBody"><h2 id="创建服务的5中方式">创建服务的5中方式</h2><ul>
-<li>factory()</li>
-<li>service()</li>
-<li>contant()</li>
-<li>value()</li>
-<li>provider()</li>
+        <span itemprop="articleBody"><h2 id="Angular_Conncet_with_Server">Angular Conncet with Server</h2><p>Angular与服务器通过<code>$http</code>通信。$http 服务简单的封装了浏览器原生的XMLHttpRequest对象。<br>在Angular中，可以通过使用 <code>$http</code>, <code>$resource</code>, <code>Restangular</code>与服务器交互。</p>
+<h3 id="$http">$http</h3><p>$http返回一个promise对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = $http(&#123;method: <span class="string">'GET'</span>, url: <span class="string">'/api/users'</span>, params: &#123;&#125;&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>$http</code>还提供了一些快捷方法$http.get(),$http.delete()等。</p>
+<h3 id="$resource">$resource</h3><p>Angular 提供了一个 <code>$resource</code> 服务，用于创建资源对象，我们可以用$resource 方便的与 RESTful的服务端进行交互。</p>
+<p>$resource的参数为$resourec(‘url’, {paramDefaults}, {actions})</p>
+<h4 id="定义一个resource">定义一个resource</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="keyword">var</span> Users = $resource(<span class="string">'/api/users/:id'</span>, &#123;id: <span class="string">'@id'</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//简单使用</span></span><br><span class="line">Users.get(); <span class="comment">//get users list</span></span><br><span class="line">Users.get(&#123;id: <span class="string">'333'</span>&#125;); <span class="comment">// get /api/users/333</span></span><br></pre></td></tr></table></figure>
+<p>可以看出<code>$resource</code> 使用起来比<code>$http</code>使用起来方便好多。<code>$resource</code>还支持 save(), delete等方法。</p>
+<ul>
+<li>get类方法的参数如下 get({params, successHandle, errorHandle})</li>
+<li>非get类方法的参数 save({params, postData, successHandle, errorHandle})</li>
 </ul>
-<p><strong>service在Angular中是单例，只会被创建一次。</strong></p>
-<h3 id="factory">factory</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> angular.module(<span class="string">'app'</span>)</span><br><span class="line"> 	.factory(<span class="string">'serviceName'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> 		<span class="comment">//在创建服务实例时被调用，只会被调用一次</span></span><br><span class="line"> 		<span class="keyword">var</span> productService = &#123;</span><br><span class="line"> 			filed: <span class="string">'hello'</span>;,</span><br><span class="line"> 			method: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> 			&#125;</span><br><span class="line"> 		&#125;</span><br><span class="line"> 		<span class="keyword">return</span> productService;</span><br><span class="line"> 	&#125;);</span><br><span class="line"></span><br><span class="line"> angular.controller(<span class="string">'Controller'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">serviceName</span>) </span>&#123;</span><br><span class="line">	serviceName.method();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="service()">service()</h3><p>service()函数会在创建实例时通过new关键字来实例化服务对象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">angular.service(<span class="string">'serviceName'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.method =  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">	<span class="keyword">this</span>.filed = <span class="string">'hello'</span>;</span><br><span class="line">&#125;);</span><br><span class="line">angular.controller(<span class="string">'Controller'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">serviceName</span>) </span>&#123;</span><br><span class="line">	serviceName.method();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="provider()">provider()</h3><h4 id="factory()和provider()_**">factory()和provider() <em>**</em></h4><p>所有的factory()都是由$provider服务创建的, 假定传入的函数就是$get(), factory()就是provider()的简略形式。</p>
+<h4 id="$resource的附加属性">$resource的附加属性</h4><ul>
+<li>$promise</li>
+<li><p>$resolved</p>
+<blockquote>
+<p>这里不理解</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="自定义$resource">自定义$resource</h4><p>前面的关于user的例子</p>
+<ul>
+<li>可以用get方法获取一个user.</li>
+<li>可以根据id获取users</li>
+</ul>
+<p>那么就引申出两个问题</p>
+<ul>
+<li>怎么使用PATCH方法来修改user的一个字段</li>
+<li>怎么根据username来获取一个user</li>
+</ul>
+<p>在这里就可以使用<code>$resource</code>的action 参数来自定义$resource<br>action的参数为<code>action1: {method:?, params:?, isArray:?, headers:?, ...}</code></p>
+<ul>
+<li><p>使用patch方法</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$resource(<span class="string">'/api/users/:id'</span>, &#123;id: <span class="string">'@id'</span>&#125;, &#123;</span><br><span class="line">	patch: &#123;method: <span class="string">'PATCH'</span>&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据username获取user</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$resource(<span class="string">'/api/users/:id'</span>, &#123;id: <span class="string">'@id'</span>&#125;, &#123;</span><br><span class="line">	getByName: &#123;method: <span class="string">'GET'</span>, url: <span class="string">'/api/users/username-:username, params: &#123;username: '</span>@username<span class="string">'&#125;'</span>&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>  这个容易犯一个错误就是为了根据用户名获取重新定义一个resource，但其实访问的都是users资源，是同一个，所以不应该建两个resource.</p>
+</li>
+</ul>
+<h3 id="Restangular">Restangular</h3><p>是一个专门的Angular发RESTful的请求的库。<br><strong>需要新开一篇</strong></p>
 <blockquote>
 <ul>
-<li>$provider 和provider()的关系</li>
-<li>$provider 和服务的关系</li>
+<li>ETags </li>
+<li>If-NoneMatch</li>
 </ul>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>)</span><br><span class="line">  .provider(<span class="string">'myService'</span>, &#123;</span><br><span class="line">  		$get: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .factory(<span class="string">'myService'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-<h4 id="provider()定义的服务，可用于config()">provider()定义的服务，可用于config()</h4><p>myService是定义provider的名字，myServerProvider是服务的提供者。<br>如下使用（未验证）；</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>)</span><br><span class="line">  .provider(<span class="string">'myService'</span>, &#123;</span><br><span class="line">  		<span class="keyword">var</span> message = <span class="string">''</span>;</span><br><span class="line">  		setMessage: <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</span><br><span class="line">  			message = message;</span><br><span class="line">  		&#125;</span><br><span class="line">  		$get: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">  			<span class="built_in">console</span>.log(message);</span><br><span class="line">  		&#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .config(<span class="function"><span class="keyword">function</span>(<span class="params">myServiceProvider</span>) </span>&#123;</span><br><span class="line">  		myServiceProvider.setMessage(<span class="string">'say hello'</span>);</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="constant(),value()">constant(),value()</h3><p>constant()和value()都是注册一个变量为服务，可以注入到应用的其他部分。<br>不同的是<strong>constant()可以注入到config()中，而value()不可以</strong></p>
-<h3 id="decorator()">decorator()</h3><p>decorator()可以对AngularJS的核心服务或者我们自己的服务进行里纳西，中断或者替换，Angular总的测试就是借助的$provider.decorator()建立的。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">decorator</span><span class="params">(<span class="string">'name'</span>, decoratorFn)</span></span></span><br><span class="line">name: 将要拦截的服务名称</span><br><span class="line">decoratorFn: 处理拦截的函数</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>).config(<span class="function"><span class="keyword">function</span> (<span class="params">$provider</span>) </span>&#123;</span><br><span class="line">	$provider.decorator(<span class="string">'myService'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">//怎么做还没弄明白</span></span><br><span class="line">	&#125;)</span><br><span class="line">&#125;) ;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>什么时候用factory()什么时候用service();<br>service()–&gt;factory()–&gt;provider()</p>
-</blockquote>
-</span>
+<h3 id="拦截器">拦截器</h3><p>如果我们要添加全局性的功能，如身份验证，错误处理的时候。就要用到拦截器。</p>
+<p>拦截器的核心是服务工厂，通过向$httpProvider.intercetors数组中添加 factory service。</p>
+<p>一共有四种拦截器，两种成功的，两种失败的</p>
+<ul>
+<li>request 请求成功</li>
+<li>response 响应失败</li>
+<li>requestError 请求失败 <strong>这个有什么用？</strong></li>
+<li>responseError 响应失败</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>).factory(<span class="string">'AuthHandler'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$q, $injector, loginUser</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> AuthHandler = &#123;&#125;;</span><br><span class="line">  AuthHandler.request = <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (config.data &amp;&amp; config.data.$skipAuthHandler) &#123;</span><br><span class="line">      config.$skipAuthHandler = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">delete</span> config.data.$skipAuthHandler;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (config.params &amp;&amp; config.params.$skipAuthHandler) &#123;</span><br><span class="line">      config.$skipAuthHandler = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">delete</span> config.params.$skipAuthHandler;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    config.headers.Authorization = loginUser.authorization();</span><br><span class="line">    <span class="keyword">return</span> $q.when(config);</span><br><span class="line">  &#125;;</span><br><span class="line">  AuthHandler.responseError = <span class="function"><span class="keyword">function</span> (<span class="params">rejection</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (rejection.status === <span class="number">401</span> &amp;&amp; rejection.config &amp;&amp; !rejection.config.$skipAuthHandler) &#123;</span><br><span class="line">      $injector.get(<span class="string">'$state'</span>).go(<span class="string">'unauthorized'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $q.reject(rejection);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> AuthHandler;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line">angular.module(<span class="string">'app'</span>).config(<span class="function"><span class="keyword">function</span> (<span class="params">RewriteHandlerProvider, $httpProvider</span>) </span>&#123;</span><br><span class="line">  $httpProvider.interceptors.push(<span class="string">'AuthHandler'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></span>
       
     </div>
 
@@ -273,13 +285,11 @@ factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;servi
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/08/Angular-connect-with-server/" rel="prev">Angular Conncet with Server</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/11/Promise/" rel="next">Promise</a>
+              <a href="/2016/03/02/AngularJS-Services/" rel="next">Angular Service 学习笔记</a>
             
           </div>
         </div>
@@ -331,8 +341,8 @@ factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;servi
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2016/03/02/AngularJS-Services/"
-                   data-title="Angular Service 学习笔记" data-url="http://wangximing.github.io/2016/03/02/AngularJS-Services/">
+              <div class="ds-thread" data-thread-key="2016/03/08/Angular-connect-with-server/"
+                   data-title="Angular Conncet with Server" data-url="http://wangximing.github.io/2016/03/08/Angular-connect-with-server/">
               </div>
             
           </div>
@@ -446,7 +456,7 @@ factory1234567891011121314 angular.module(&apos;app&apos;) 	.factory(&apos;servi
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建服务的5中方式"><span class="nav-number">1.</span> <span class="nav-text">创建服务的5中方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#factory"><span class="nav-number">1.1.</span> <span class="nav-text">factory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service()"><span class="nav-number">1.2.</span> <span class="nav-text">service()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#provider()"><span class="nav-number">1.3.</span> <span class="nav-text">provider()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#factory()和provider()_**"><span class="nav-number">1.3.1.</span> <span class="nav-text">factory()和provider() **</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#provider()定义的服务，可用于config()"><span class="nav-number">1.3.2.</span> <span class="nav-text">provider()定义的服务，可用于config()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constant(),value()"><span class="nav-number">1.4.</span> <span class="nav-text">constant(),value()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#decorator()"><span class="nav-number">1.5.</span> <span class="nav-text">decorator()</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular_Conncet_with_Server"><span class="nav-number">1.</span> <span class="nav-text">Angular Conncet with Server</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#$http"><span class="nav-number">1.1.</span> <span class="nav-text">$http</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#$resource"><span class="nav-number">1.2.</span> <span class="nav-text">$resource</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义一个resource"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义一个resource</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#$resource的附加属性"><span class="nav-number">1.2.2.</span> <span class="nav-text">$resource的附加属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义$resource"><span class="nav-number">1.2.3.</span> <span class="nav-text">自定义$resource</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Restangular"><span class="nav-number">1.3.</span> <span class="nav-text">Restangular</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拦截器"><span class="nav-number">1.4.</span> <span class="nav-text">拦截器</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

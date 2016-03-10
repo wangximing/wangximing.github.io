@@ -4,7 +4,7 @@
   <subtitle><![CDATA[音乐是情感的独白]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wangximing.github.io/"/>
-  <updated>2016-03-05T13:52:34.000Z</updated>
+  <updated>2016-03-10T14:06:05.000Z</updated>
   <id>http://wangximing.github.io/</id>
   
   <author>
@@ -13,6 +13,75 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Angular Conncet with Server]]></title>
+    <link href="http://wangximing.github.io/2016/03/08/Angular-connect-with-server/"/>
+    <id>http://wangximing.github.io/2016/03/08/Angular-connect-with-server/</id>
+    <published>2016-03-08T08:33:45.000Z</published>
+    <updated>2016-03-10T14:06:05.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Angular_Conncet_with_Server">Angular Conncet with Server</h2><p>Angular与服务器通过<code>$http</code>通信。$http 服务简单的封装了浏览器原生的XMLHttpRequest对象。<br>在Angular中，可以通过使用 <code>$http</code>, <code>$resource</code>, <code>Restangular</code>与服务器交互。</p>
+<h3 id="$http">$http</h3><p>$http返回一个promise对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = $http(&#123;method: <span class="string">'GET'</span>, url: <span class="string">'/api/users'</span>, params: &#123;&#125;&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>$http</code>还提供了一些快捷方法$http.get(),$http.delete()等。</p>
+<h3 id="$resource">$resource</h3><p>Angular 提供了一个 <code>$resource</code> 服务，用于创建资源对象，我们可以用$resource 方便的与 RESTful的服务端进行交互。</p>
+<p>$resource的参数为$resourec(‘url’, {paramDefaults}, {actions})</p>
+<h4 id="定义一个resource">定义一个resource</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="keyword">var</span> Users = $resource(<span class="string">'/api/users/:id'</span>, &#123;id: <span class="string">'@id'</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//简单使用</span></span><br><span class="line">Users.get(); <span class="comment">//get users list</span></span><br><span class="line">Users.get(&#123;id: <span class="string">'333'</span>&#125;); <span class="comment">// get /api/users/333</span></span><br></pre></td></tr></table></figure>
+<p>可以看出<code>$resource</code> 使用起来比<code>$http</code>使用起来方便好多。<code>$resource</code>还支持 save(), delete等方法。</p>
+<ul>
+<li>get类方法的参数如下 get({params, successHandle, errorHandle})</li>
+<li>非get类方法的参数 save({params, postData, successHandle, errorHandle})</li>
+</ul>
+<h4 id="$resource的附加属性">$resource的附加属性</h4><ul>
+<li>$promise</li>
+<li><p>$resolved</p>
+<blockquote>
+<p>这里不理解</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="自定义$resource">自定义$resource</h4><p>前面的关于user的例子</p>
+<ul>
+<li>可以用get方法获取一个user.</li>
+<li>可以根据id获取users</li>
+</ul>
+<p>那么就引申出两个问题</p>
+<ul>
+<li>怎么使用PATCH方法来修改user的一个字段</li>
+<li>怎么根据username来获取一个user</li>
+</ul>
+<p>在这里就可以使用<code>$resource</code>的action 参数来自定义$resource<br>action的参数为<code>action1: {method:?, params:?, isArray:?, headers:?, ...}</code></p>
+<ul>
+<li><p>使用patch方法</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$resource(<span class="string">'/api/users/:id'</span>, &#123;id: <span class="string">'@id'</span>&#125;, &#123;</span><br><span class="line">	patch: &#123;method: <span class="string">'PATCH'</span>&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据username获取user</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$resource(<span class="string">'/api/users/:id'</span>, &#123;id: <span class="string">'@id'</span>&#125;, &#123;</span><br><span class="line">	getByName: &#123;method: <span class="string">'GET'</span>, url: <span class="string">'/api/users/username-:username, params: &#123;username: '</span>@username<span class="string">'&#125;'</span>&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>  这个容易犯一个错误就是为了根据用户名获取重新定义一个resource，但其实访问的都是users资源，是同一个，所以不应该建两个resource.</p>
+</li>
+</ul>
+<h3 id="Restangular">Restangular</h3><p>是一个专门的Angular发RESTful的请求的库。<br><strong>需要新开一篇</strong></p>
+<blockquote>
+<ul>
+<li>ETags </li>
+<li>If-NoneMatch</li>
+</ul>
+</blockquote>
+<h3 id="拦截器">拦截器</h3><p>如果我们要添加全局性的功能，如身份验证，错误处理的时候。就要用到拦截器。</p>
+<p>拦截器的核心是服务工厂，通过向$httpProvider.intercetors数组中添加 factory service。</p>
+<p>一共有四种拦截器，两种成功的，两种失败的</p>
+<ul>
+<li>request 请求成功</li>
+<li>response 响应失败</li>
+<li>requestError 请求失败 <strong>这个有什么用？</strong></li>
+<li>responseError 响应失败</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>).factory(<span class="string">'AuthHandler'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$q, $injector, loginUser</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> AuthHandler = &#123;&#125;;</span><br><span class="line">  AuthHandler.request = <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (config.data &amp;&amp; config.data.$skipAuthHandler) &#123;</span><br><span class="line">      config.$skipAuthHandler = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">delete</span> config.data.$skipAuthHandler;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (config.params &amp;&amp; config.params.$skipAuthHandler) &#123;</span><br><span class="line">      config.$skipAuthHandler = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">delete</span> config.params.$skipAuthHandler;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    config.headers.Authorization = loginUser.authorization();</span><br><span class="line">    <span class="keyword">return</span> $q.when(config);</span><br><span class="line">  &#125;;</span><br><span class="line">  AuthHandler.responseError = <span class="function"><span class="keyword">function</span> (<span class="params">rejection</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (rejection.status === <span class="number">401</span> &amp;&amp; rejection.config &amp;&amp; !rejection.config.$skipAuthHandler) &#123;</span><br><span class="line">      $injector.get(<span class="string">'$state'</span>).go(<span class="string">'unauthorized'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $q.reject(rejection);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> AuthHandler;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line">angular.module(<span class="string">'app'</span>).config(<span class="function"><span class="keyword">function</span> (<span class="params">RewriteHandlerProvider, $httpProvider</span>) </span>&#123;</span><br><span class="line">  $httpProvider.interceptors.push(<span class="string">'AuthHandler'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Angular_Conncet_with_Server">Angular Conncet with Server</h2><p>Angular与服务器通过<code>$http</code>通信。$http 服务简单的封装了浏览器原生的XMLHttpRequest]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Angular Service 学习笔记]]></title>
@@ -652,64 +721,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>运行gradle idea 下载依赖的时候报下面的错误<br>``<br>Timeout waiting to lock buildscript class cache for build file ‘/Users/twer/works/javaee/core/build.]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[AnjularJS]]></title>
-    <link href="http://wangximing.github.io/2015/07/28/AnjularJS/"/>
-    <id>http://wangximing.github.io/2015/07/28/AnjularJS/</id>
-    <published>2015-07-28T08:33:45.000Z</published>
-    <updated>2015-08-16T16:39:19.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="AngularJS配置：">AngularJS配置：</h2><ul>
-<li>下载AngularJS源文件，<code>angular.js</code>, <code>angular-router.js</code>等必须使用的源文件。</li>
-<li>在跟路径（可以是其他路径，建议根路径）新建index.html文件，index.html的目录，将会作为整个angular的根路径。</li>
-<li>在index.html 中标记出ng-app=”appname”,和ng-views=” “。ng-app的 <code>appname</code>将会作为为整个angular的项目名称。在app.js和controller、service的配置文件中要保持一致。</li>
-<li>新建app.js文件，app.js中写的是angular的配置信息。如router等。</li>
-<li>新建一个Controller。</li>
-<li>新建一个Service。</li>
-<li>在index.html中引入angula.js angular-router.js 相关js。和自己实现的app.js ,controller 的js，service的js。</li>
-</ul>
-<a id="more"></a>
-<h2 id="AngularJS启动机制：">AngularJS启动机制：</h2><p>一直有一个疑问就是：在index.html文件中引入了要用的js文件后，怎么就可以确定AngularJS已经配置好了，它是怎么管理前台的呢？怎么的就会启动AngularJS了呢？</p>
-<p>查了一些资料后整理如下。</p>
-<ul>
-<li>系统加载文档结构，加载所有引用的js。</li>
-<li>文档加载完成后，angular.js自动执行去寻找 “ng-app”确认系统边界。</li>
-<li>根据ng-app的名称去app.js里面寻找相同名称的模块，并注入。</li>
-<li>根据模块名称寻找controller，service。</li>
-<li>项目被AngularJS接手。<br>要注意的是index.js 和app.js 是默认名称，不可更改。</li>
-</ul>
-<p><a href="https://github.com/johnpapa/angular-styleguide/blob/master/i18n/zh-CN.md" target="_blank" rel="external">https://github.com/johnpapa/angular-styleguide/blob/master/i18n/zh-CN.md</a> 很好的教程。</p>
-<h2 id="AngularJS_小知识">AngularJS 小知识</h2><ul>
-<li>$location.path(“要去页面的AngularJS路由”) 可以实现controller内页面跳转。</li>
-<li>AngularJS scope,研究下AngularJS的scope。<blockquote>
-<p>有两个页面（页面A，页面B）绑定的是相同的controller（commonController），<br>在一个页面（页面A）中触发commonController.changePage()方法，<br>changePage()方法，先给scope赋值（$scope.user = user）,再跳转到页面B。<br>这时在页面B中无法获取$scope.user的值。<br>排除写错的可能后，页面也没有刷新。认为是scope范围的问题：<br>两个页面共用一个controller时，controller作用于不同页面的时候，$scope是不同的两个$scope。</p>
-</blockquote>
-</li>
-<li>AngularJS多选（select）提供默认值。<blockquote>
-<p>注意ng-model的类型和ng-option中for和in中间的变量类型要一致。即<code>addedUser.employee</code>和<code>employee</code>都是employee。还有就是ng-model的值必须是ng-option的一个index的值，否则也会造成类型的不一致。<br>如下面的值。</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-------------JavaScript------------</span><br><span class="line"><span class="variable">$scope</span>.employees = data;</span><br><span class="line"><span class="variable">$scope</span>.addedUser = &#123;employee: data[<span class="number">0</span>]&#125;;</span><br><span class="line"></span><br><span class="line">----------HTML---------------------</span><br><span class="line">&lt;select ng-model=<span class="string">"addedUser.employee"</span> ng-options = <span class="string">"employee.name for employee in employees"</span>&gt;&lt;/select&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">----------HTML---------------------</span><br><span class="line">&lt;select ng-model=<span class="string">"employee"</span> ng-options = <span class="string">"employee.name for employee in employees"</span>&gt;&lt;/select&gt;</span><br><span class="line">---------JavaScript----------------</span><br><span class="line"><span class="variable">$scope</span>.employees = employees;// 从后台获取的api/employees</span><br><span class="line"><span class="variable">$scope</span>.employee = employee;// 从后台获取的 api/employees/employee</span><br><span class="line">//这样子获取的话AngularJS对数组和普通对象的值封装是不同的</span><br><span class="line">console.log(employees[<span class="number">0</span>]);//Object &#123;class: <span class="string">"com.tw.core.model.Employee"</span>, gender: <span class="string">"男"</span>, id: <span class="number">4</span>, name: <span class="string">"周杰伦"</span>, role: <span class="string">"Coach"</span>&#125;</span><br><span class="line">console.log(employee);//Object &#123;id: <span class="number">4</span>, name: <span class="string">"周杰伦"</span>, gender: <span class="string">"男"</span>, role: <span class="string">"Coach"</span>, $<span class="variable">$hashKey</span>: <span class="string">"object:6"</span>&#125;</span><br><span class="line">// 可以看到我们以为的一样其实是错的。</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="https://docs.angularjs.org/api/ng/directive/ngOptions" target="_blank" rel="external">官网例子是这么写的</a></p>
-</blockquote>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="AngularJS配置：">AngularJS配置：</h2><ul>
-<li>下载AngularJS源文件，<code>angular.js</code>, <code>angular-router.js</code>等必须使用的源文件。</li>
-<li>在跟路径（可以是其他路径，建议根路径）新建index.html文件，index.html的目录，将会作为整个angular的根路径。</li>
-<li>在index.html 中标记出ng-app=”appname”,和ng-views=” “。ng-app的 <code>appname</code>将会作为为整个angular的项目名称。在app.js和controller、service的配置文件中要保持一致。</li>
-<li>新建app.js文件，app.js中写的是angular的配置信息。如router等。</li>
-<li>新建一个Controller。</li>
-<li>新建一个Service。</li>
-<li>在index.html中引入angula.js angular-router.js 相关js。和自己实现的app.js ,controller 的js，service的js。</li>
-</ul>]]>
-    
     </summary>
     
   </entry>
