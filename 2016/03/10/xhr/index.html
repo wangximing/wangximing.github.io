@@ -30,7 +30,7 @@
 
 
 
-  <meta name="keywords" content="Ruby 错误处理与异常," />
+  <meta name="keywords" content="Hexo,next" />
 
 
 
@@ -41,25 +41,34 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="异常处理的写法1234567begin	可能会发生异常的处理rescue =&amp;gt; ex	print ex.message, &quot;\n&quot;	发生异常的处理ensure	不管是否发生异常都希望执行的处理end
-主动抛出异常raise message  抛出RuntimeError异常，并把字符串作为message设置给新生成的异常对象
-raise 异常类 抛出指定异常
-raise 异常类， messa">
+<meta name="description" content="跨域：浏览器在全局层面禁止了页面在加载或执行与自身来源不同的域的任何脚本。
+
+使用JSONPjsonp的原理是通过标签发起一个GET请求来取代XHR请求。JSONP生成一个标签并插入到DOM中，然后浏览器会接管并向src属性所指向的地址发送请求。
+使用CORS
+CORS （跨域资源共享，Corss Origin Resource Sharing）
+
+使用代理服务器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ruby 基础学习 2">
-<meta property="og:url" content="http://wangximing.github.io/2014/12/28/Ruby-基础学习-2/index.html">
+<meta property="og:title" content="XHR 实践">
+<meta property="og:url" content="http://wangximing.github.io/2016/03/10/xhr/index.html">
 <meta property="og:site_name" content="sigh">
-<meta property="og:description" content="异常处理的写法1234567begin	可能会发生异常的处理rescue =&amp;gt; ex	print ex.message, &quot;\n&quot;	发生异常的处理ensure	不管是否发生异常都希望执行的处理end
-主动抛出异常raise message  抛出RuntimeError异常，并把字符串作为message设置给新生成的异常对象
-raise 异常类 抛出指定异常
-raise 异常类， messa">
-<meta property="og:updated_time" content="2015-08-16T16:39:19.000Z">
+<meta property="og:description" content="跨域：浏览器在全局层面禁止了页面在加载或执行与自身来源不同的域的任何脚本。
+
+使用JSONPjsonp的原理是通过标签发起一个GET请求来取代XHR请求。JSONP生成一个标签并插入到DOM中，然后浏览器会接管并向src属性所指向的地址发送请求。
+使用CORS
+CORS （跨域资源共享，Corss Origin Resource Sharing）
+
+使用代理服务器">
+<meta property="og:updated_time" content="2016-03-10T14:33:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ruby 基础学习 2">
-<meta name="twitter:description" content="异常处理的写法1234567begin	可能会发生异常的处理rescue =&amp;gt; ex	print ex.message, &quot;\n&quot;	发生异常的处理ensure	不管是否发生异常都希望执行的处理end
-主动抛出异常raise message  抛出RuntimeError异常，并把字符串作为message设置给新生成的异常对象
-raise 异常类 抛出指定异常
-raise 异常类， messa">
+<meta name="twitter:title" content="XHR 实践">
+<meta name="twitter:description" content="跨域：浏览器在全局层面禁止了页面在加载或执行与自身来源不同的域的任何脚本。
+
+使用JSONPjsonp的原理是通过标签发起一个GET请求来取代XHR请求。JSONP生成一个标签并插入到DOM中，然后浏览器会接管并向src属性所指向的地址发送请求。
+使用CORS
+CORS （跨域资源共享，Corss Origin Resource Sharing）
+
+使用代理服务器">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -71,7 +80,7 @@ raise 异常类， messa">
 
 
 
-  <title> Ruby 基础学习 2 | sigh </title>
+  <title> XHR 实践 | sigh </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -183,7 +192,7 @@ raise 异常类， messa">
           
           
             
-              Ruby 基础学习 2
+              XHR 实践
             
           
         </h1>
@@ -192,8 +201,8 @@ raise 异常类， messa">
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2014-12-28T15:53:25+08:00" content="2014-12-28">
-            2014-12-28
+          <time itemprop="dateCreated" datetime="2016-03-10T16:33:45+08:00" content="2016-03-10">
+            2016-03-10
           </time>
         </span>
 
@@ -203,8 +212,8 @@ raise 异常类， messa">
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2014/12/28/Ruby-基础学习-2/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/28/Ruby-基础学习-2/" itemprop="commentsCount"></span>
+              <a href="/2016/03/10/xhr/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/xhr/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -219,35 +228,31 @@ raise 异常类， messa">
       
 
       
-        <span itemprop="articleBody"><h4 id="异常处理的写法">异常处理的写法</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span></span><br><span class="line">	可能会发生异常的处理</span><br><span class="line"><span class="keyword">rescue</span> =&gt; ex</span><br><span class="line">	print ex.message, <span class="string">"\n"</span>	发生异常的处理</span><br><span class="line"><span class="keyword">ensure</span></span><br><span class="line">	不管是否发生异常都希望执行的处理</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<h4 id="主动抛出异常">主动抛出异常</h4><p>raise message  抛出RuntimeError异常，并把字符串作为message设置给新生成的异常对象</p>
-<p>raise 异常类 抛出指定异常</p>
-<p>raise 异常类， message</p>
-<p>raise</p>
-</span>
+        <span itemprop="articleBody"><ul>
+<li><strong>跨域</strong>：浏览器在全局层面禁止了页面在加载或执行与自身来源不同的域的任何脚本。</li>
+</ul>
+<h3 id="使用JSONP">使用JSONP</h3><p>jsonp的原理是通过<script>标签发起一个GET请求来取代XHR请求。JSONP生成一个<script>标签并插入到DOM中，然后浏览器会接管并向src属性所指向的地址发送请求。</p>
+<h3 id="使用CORS">使用CORS</h3><ul>
+<li>CORS （跨域资源共享，Corss Origin Resource Sharing）</li>
+</ul>
+<h3 id="使用代理服务器">使用代理服务器</h3></script></p></span>
       
     </div>
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Ruby-错误处理与异常/" rel="tag">#Ruby 错误处理与异常</a>
-          
-        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/01/04/Ruby-on-Rails-从零到部署/" rel="prev">Ruby on Rails 从零到部署</a>
+              <a href="/2016/03/14/css代码规范/" rel="prev"></a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/12/28/Ruby-基础学习-1/" rel="next">Ruby 基础学习 1</a>
+              <a href="/2016/03/08/Angular-connect-with-server/" rel="next">Angular Conncet with Server</a>
             
           </div>
         </div>
@@ -299,8 +304,8 @@ raise 异常类， messa">
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2014/12/28/Ruby-基础学习-2/"
-                   data-title="Ruby 基础学习 2" data-url="http://wangximing.github.io/2014/12/28/Ruby-基础学习-2/">
+              <div class="ds-thread" data-thread-key="2016/03/10/xhr/"
+                   data-title="XHR 实践" data-url="http://wangximing.github.io/2016/03/10/xhr/">
               </div>
             
           </div>
@@ -414,7 +419,7 @@ raise 异常类， messa">
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#异常处理的写法"><span class="nav-number">1.</span> <span class="nav-text">异常处理的写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主动抛出异常"><span class="nav-number">2.</span> <span class="nav-text">主动抛出异常</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用JSONP"><span class="nav-number">1.</span> <span class="nav-text">使用JSONP</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
