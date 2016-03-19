@@ -61,7 +61,7 @@
 并且这些中间节点可以获取你的用户名和密码，伪造为你和服务器通讯，或者伪造成服务器和你通讯（冒充风险）
 
 对于冒充风险，即使你对用户名和密码进行加密。但是这些中间节点依然可以转发你的认证信息同服务器进行通讯。这样是不是">
-<meta property="og:updated_time" content="2016-03-16T15:13:58.000Z">
+<meta property="og:updated_time" content="2016-03-19T06:20:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解HTTPS">
 <meta name="twitter:description" content="理解HTTPS为什么需要HTTPShttp协议是明文传输的，这样的话:
@@ -338,7 +338,8 @@
 <p>现在解决的<strong>窃听风险， 篡改风险，冒充风险</strong>，数据就可以安全的传输了，但是还有一些小问题，<br>如证书是怎么到浏览器的和其他的比较细节步骤，HTTPS是怎么做的呢？</p>
 <p>HTTPS有一个<strong>握手流程</strong>，在这个过程中的数据全部是明文传输的，然后协商出一个对称密钥为后面的具体通讯加密。</p>
 <pre><code>&gt;  <span class="comment">访问XX</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">HTTPS握手</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">协商出对称密钥</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">开始加密传输</span>
-</code></pre><h3 id="HTTPS握手">HTTPS握手</h3><ul>
+</code></pre><h3 id="HTTPS握手">HTTPS握手</h3><p><a href="image/https-shake-hands.png">HTTPS握手</a></p>
+<ul>
 <li><p>客户端发出请求,请求包含</p>
 <blockquote>
 <ul>

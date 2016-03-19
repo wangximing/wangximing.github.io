@@ -4,7 +4,7 @@
   <subtitle><![CDATA[音乐是情感的独白]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wangximing.github.io/"/>
-  <updated>2016-03-16T15:13:58.000Z</updated>
+  <updated>2016-03-19T06:20:17.000Z</updated>
   <id>http://wangximing.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://wangximing.github.io/2016/03/16/https/"/>
     <id>http://wangximing.github.io/2016/03/16/https/</id>
     <published>2016-03-16T08:33:45.000Z</published>
-    <updated>2016-03-16T15:13:58.000Z</updated>
+    <updated>2016-03-19T06:20:17.000Z</updated>
     <content type="html"><![CDATA[<h2 id="理解HTTPS">理解HTTPS</h2><h3 id="为什么需要HTTPS">为什么需要HTTPS</h3><p>http协议是明文传输的，这样的话:</p>
 <ul>
 <li>介于发送端和接收端的任何第三方节点都是可以看到传输的内容（窃听风险）</li>
@@ -128,7 +128,8 @@
 <p>现在解决的<strong>窃听风险， 篡改风险，冒充风险</strong>，数据就可以安全的传输了，但是还有一些小问题，<br>如证书是怎么到浏览器的和其他的比较细节步骤，HTTPS是怎么做的呢？</p>
 <p>HTTPS有一个<strong>握手流程</strong>，在这个过程中的数据全部是明文传输的，然后协商出一个对称密钥为后面的具体通讯加密。</p>
 <pre><code>&gt;  <span class="comment">访问XX</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">HTTPS握手</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">协商出对称密钥</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">开始加密传输</span>
-</code></pre><h3 id="HTTPS握手">HTTPS握手</h3><ul>
+</code></pre><h3 id="HTTPS握手">HTTPS握手</h3><p><a href="image/https-shake-hands.png">HTTPS握手</a></p>
+<ul>
 <li><p>客户端发出请求,请求包含</p>
 <blockquote>
 <ul>
