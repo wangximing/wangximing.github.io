@@ -83,6 +83,38 @@
   </entry>
   
   <entry>
+    <title><![CDATA[CSS 规范]]></title>
+    <link href="http://wangximing.github.io/2016/04/23/css%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
+    <id>http://wangximing.github.io/2016/04/23/css代码规范/</id>
+    <published>2016-04-23T03:33:45.000Z</published>
+    <updated>2016-04-29T03:34:05.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="css_顺序">css 顺序</h3><ul>
+<li>position</li>
+<li>display/box model</li>
+<li>others</li>
+</ul>
+<h3 id="一份规划良好的_CSS_应当按照如下排列：">一份规划良好的 CSS 应当按照如下排列：</h3><ul>
+<li>Reset 万物之根源</li>
+<li>元素类型 没有 class 的 h1、ul 等</li>
+<li>对象以及抽象内容 最一般、最基础的设计模式</li>
+<li>子元素 由对象延伸出来的所有拓展及其子元素</li>
+<li>修补 针对异常状态</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="css_顺序">css 顺序</h3><ul>
+<li>position</li>
+<li>display/box model</li>
+<li>others</li>
+</ul>
+<h3 id="一份规划良好的_CSS_应当按照如下排列：">一份规划良好的 CS]]>
+    </summary>
+    
+      <category term="CSS Background" scheme="http://wangximing.github.io/tags/CSS-Background/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[理解HTTPS]]></title>
     <link href="http://wangximing.github.io/2016/03/16/https/"/>
     <id>http://wangximing.github.io/2016/03/16/https/</id>
@@ -247,32 +279,6 @@
 <ul>
 <li>介于发送端和接收端的任何第三方节点都是可以看到传输的内容（窃听风险）</li>
 <]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://wangximing.github.io/2016/03/14/css%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
-    <id>http://wangximing.github.io/2016/03/14/css代码规范/</id>
-    <published>2016-03-14T06:56:08.000Z</published>
-    <updated>2016-03-14T06:56:08.000Z</updated>
-    <content type="html"><![CDATA[<p>一份规划良好的 CSS 应当按照如下排列：</p>
-<ul>
-<li>Reset 万物之根源</li>
-<li>元素类型 没有 class 的 h1、ul 等</li>
-<li>对象以及抽象内容 最一般、最基础的设计模式</li>
-<li>子元素 由对象延伸出来的所有拓展及其子元素</li>
-<li>修补 针对异常状态</li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>一份规划良好的 CSS 应当按照如下排列：</p>
-<ul>
-<li>Reset 万物之根源</li>
-<li>元素类型 没有 class 的 h1、ul 等</li>
-<li>对象以及抽象内容 最一般、最基础的设计模式</li>
-<li>子元素 由对象延伸出来的所有拓展及]]>
     </summary>
     
   </entry>
