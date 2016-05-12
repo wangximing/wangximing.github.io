@@ -4,7 +4,7 @@
   <subtitle><![CDATA[音乐是情感的独白]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wangximing.github.io/"/>
-  <updated>2016-04-29T03:30:21.000Z</updated>
+  <updated>2016-05-12T10:22:32.000Z</updated>
   <id>http://wangximing.github.io/</id>
   
   <author>
@@ -13,6 +13,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://wangximing.github.io/2016/05/12/%E5%89%8D%E7%AB%AF%E5%B0%8F%E7%9F%A5%E8%AF%86/"/>
+    <id>http://wangximing.github.io/2016/05/12/前端小知识/</id>
+    <published>2016-05-12T10:22:32.000Z</published>
+    <updated>2016-05-12T10:22:32.000Z</updated>
+    <content type="html"><![CDATA[<p>title: 前端小知识<br>date: 2016-05-12 11:33:45</p>
+<h2 id="tags:_前端">tags: 前端</h2><h3 id="HTML">HTML</h3><ul>
+<li>tabel 不能设置高</li>
+<li>form不能嵌套</li>
+<li><p>form提交</p>
+<blockquote>
+<ul>
+<li>If a form has only one input field then hitting enter in this field     &gt;    triggers form submit (ngSubmit)<br>如果表单只有一个input，那么在这个input中点击enter将会提交表单</li>
+<li>if a form has 2+ input fields and no buttons or input[type=submit]     &gt; then     hitting enter doesn’t trigger submit<br>如果表单中有多个input，而没有button或input[type=submit]，点击enter也不会提交表单。</li>
+<li>if a form has one or more input fields and one or more buttons or     &gt; input[type=submit] then hitting enter in any of the input fields will     &gt;trigger the click handler on the first button or input[type=submit]     –(ngClick) and a submit handler on the enclosing form (ngSubmit) 若表单中有若干input,和多个button/input[type=submit]。当在某个input中点击enter时，将会触发第一个button/input[type=submit]绑定的方法和ngSubmit绑定的方法。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>title: 前端小知识<br>date: 2016-05-12 11:33:45</p>
+<h2 id="tags:_前端">tags: 前端</h2><h3 id="HTML">HTML</h3><ul>
+<li>tabel 不能设置高</li>
+<li>form不能嵌]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[CSS Background]]></title>
@@ -87,7 +117,7 @@
     <link href="http://wangximing.github.io/2016/04/23/css%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
     <id>http://wangximing.github.io/2016/04/23/css代码规范/</id>
     <published>2016-04-23T03:33:45.000Z</published>
-    <updated>2016-04-29T03:34:05.000Z</updated>
+    <updated>2016-05-12T10:21:58.000Z</updated>
     <content type="html"><![CDATA[<h3 id="css_顺序">css 顺序</h3><ul>
 <li>position</li>
 <li>display/box model</li>
@@ -946,22 +976,6 @@
 <li>浏览器中使用jQuery读取图片，显示到网页上。</li>
 <li>将读取到的图片连同其他信息，如图片描述等信息一同上传到服务器</li>
 <li>从数据库读]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Thymeleaf]]></title>
-    <link href="http://wangximing.github.io/2015/10/17/Thymeleaf/"/>
-    <id>http://wangximing.github.io/2015/10/17/Thymeleaf/</id>
-    <published>2015-10-17T03:13:48.000Z</published>
-    <updated>2015-10-17T03:19:44.000Z</updated>
-    <content type="html"><![CDATA[<p>Thymeleaf是Java的一个模板引擎，和JSP类似。但是相比于JSP，Thymeleaf的语法更加语义化，而且写的是HTML代码（不是JSP）代码。<br>SpringBoot中默认支持ThymeLeaf 。</p>
-<h3 id="一些小语法">一些小语法</h3><p>th:src<br>th:attr=”data-id=9393”</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Thymeleaf是Java的一个模板引擎，和JSP类似。但是相比于JSP，Thymeleaf的语法更加语义化，而且写的是HTML代码（不是JSP）代码。<br>SpringBoot中默认支持ThymeLeaf 。</p>
-<h3 id="一些小语法">一些小语法</h3>]]>
     </summary>
     
   </entry>
