@@ -51,7 +51,7 @@ form提交
 If a form has only one input field then hitting enter in this field     &amp;gt;    triggers form submit (ngSubmit)如果表单只有一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sigh">
-<meta property="og:url" content="http://wangximing.github.io/2016/05/12/前端小知识/index.html">
+<meta property="og:url" content="http://wangximing.github.io/2016/06/01/前端小知识/index.html">
 <meta property="og:site_name" content="sigh">
 <meta property="og:description" content="title: 前端小知识date: 2016-05-12 11:33:45
 tags: 前端HTML
@@ -61,7 +61,7 @@ form提交
 
 
 If a form has only one input field then hitting enter in this field     &amp;gt;    triggers form submit (ngSubmit)如果表单只有一个">
-<meta property="og:updated_time" content="2016-05-12T10:22:32.000Z">
+<meta property="og:updated_time" content="2016-06-01T15:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sigh">
 <meta name="twitter:description" content="title: 前端小知识date: 2016-05-12 11:33:45
@@ -204,8 +204,8 @@ If a form has only one input field then hitting enter in this field     &amp;gt;
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-05-12T18:22:32+08:00" content="2016-05-12">
-            2016-05-12
+          <time itemprop="dateCreated" datetime="2016-06-01T23:00:00+08:00" content="2016-06-01">
+            2016-06-01
           </time>
         </span>
 
@@ -215,8 +215,8 @@ If a form has only one input field then hitting enter in this field     &amp;gt;
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/05/12/前端小知识/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/前端小知识/" itemprop="commentsCount"></span>
+              <a href="/2016/06/01/前端小知识/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/01/前端小知识/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -244,8 +244,28 @@ If a form has only one input field then hitting enter in this field     &amp;gt;
 </ul>
 </blockquote>
 </li>
+<li><p>当非float的元素和float的元素在一起的时候，如果非float元素在先，那么float的元素将被排斥也就是说，你的span是float:right，但是你文本还是float:none。</p>
+</li>
+<li><p>三栏布局</p>
+<ul>
+<li>参考<br>  <a href="http://www.zhangxinxu.com/wordpress/2009/11/%E6%88%91%E7%86%9F%E7%9F%A5%E7%9A%84%E4%B8%89%E7%A7%8D%E4%B8%89%E6%A0%8F%E7%BD%91%E9%A1%B5%E5%AE%BD%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94%E5%B8%83%E5%B1%80%E6%96%B9%E6%B3%95/" target="_blank" rel="external">我熟知的三栏布局</a></li>
+<li><p>绝对定位法</p>
+  <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"content"</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"left"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"main"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"right"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line"></span><br><span class="line">.content &#123;</span><br><span class="line">	position: relative;</span><br><span class="line">	</span><br><span class="line">	.main &#123;</span><br><span class="line">		margin: <span class="number">0</span> <span class="number">300</span>px; </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	.left &#123;</span><br><span class="line">		width:<span class="number">300</span>px;</span><br><span class="line">		position: absolute;</span><br><span class="line">		left: <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	.right &#123;</span><br><span class="line">		width:<span class="number">300</span>px;</span><br><span class="line">		position: absolute;</span><br><span class="line">		right: <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-</span>
+</li>
+</ul>
+<pre><code>* margin负值法
+
+    中间的主体要使用双层标签。外层div宽度100%显示，并且浮动（本例左浮动，下面所述依次为基础），内层div为真正的主体内容，含有左右210像素的margin值。左栏与右栏都是采用margin负值定位的，左栏左浮动，margin-left为-100%，由于前面的div宽度100%与浏览器，所以这里的-100%margin值正好使左栏div定位到了页面的左侧；右侧栏也是左浮动，其margin-left也是负值，大小为其本身的宽度即200像素。
+
+    <span class="comment"><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"content"</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"left"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"main"</span>&gt;</span><br><span class="line">		&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"body"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">	&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"right"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line"></span><br><span class="line">.main, .left, .right &#123;</span><br><span class="line">	float: left;</span><br><span class="line">&#125;</span><br><span class="line">.main &#123;</span><br><span class="line">	width: <span class="number">100</span>%;</span><br><span class="line">	.body &#123;</span><br><span class="line">		margin: <span class="number">0</span> <span class="number">210</span>px;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.left &#123;</span><br><span class="line">	margin-left: -<span class="number">100</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.right &#123;</span><br><span class="line">	margin-left: -<span class="number">200</span>px;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">.left, .right &#123;</span><br><span class="line">	width: <span class="number">200</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
+
+
+* 自身浮动法
+
+    <span class="comment"><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"content"</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"left"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"main"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"right"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line"></span><br><span class="line">.main &#123;</span><br><span class="line">	margin: <span class="number">0</span> <span class="number">210</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.left, .right &#123;</span><br><span class="line">	width: <span class="number">200</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.left, .main &#123;</span><br><span class="line">	float: left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.right &#123;</span><br><span class="line">	float: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
+</code></pre></span>
       
     </div>
 
@@ -255,6 +275,8 @@ If a form has only one input field then hitting enter in this field     &amp;gt;
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/21/JavaScript语言精粹/" rel="prev"></a>
             
           </div>
 
@@ -308,8 +330,8 @@ If a form has only one input field then hitting enter in this field     &amp;gt;
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2016/05/12/前端小知识/"
-                   data-title="" data-url="http://wangximing.github.io/2016/05/12/前端小知识/">
+              <div class="ds-thread" data-thread-key="2016/06/01/前端小知识/"
+                   data-title="" data-url="http://wangximing.github.io/2016/06/01/前端小知识/">
               </div>
             
           </div>
@@ -349,7 +371,7 @@ If a form has only one input field then hitting enter in this field     &amp;gt;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

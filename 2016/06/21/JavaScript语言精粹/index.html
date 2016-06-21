@@ -1,0 +1,824 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="sigh | 王西明 | wangximing" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="sigh" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="JavaScript语言精粹语法标识符
+由字母开头
+不能使用保留字
+JavaScript不允许在对象字面量中，或者用点运算符提取对象属相时，使用保留字作为属性名。
+
+数字只有一个数字类型，在内部被表示为64为浮点数，没有分离出整数类型。
+
+1=== 1.0
+NaN是一个数值，它表示一个不能产生正常结果的运算结果。NaN不等于任何值，包括它自己。
+Infinity 无穷大
+
+字符串
+JavaScri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sigh">
+<meta property="og:url" content="http://wangximing.github.io/2016/06/21/JavaScript语言精粹/index.html">
+<meta property="og:site_name" content="sigh">
+<meta property="og:description" content="JavaScript语言精粹语法标识符
+由字母开头
+不能使用保留字
+JavaScript不允许在对象字面量中，或者用点运算符提取对象属相时，使用保留字作为属性名。
+
+数字只有一个数字类型，在内部被表示为64为浮点数，没有分离出整数类型。
+
+1=== 1.0
+NaN是一个数值，它表示一个不能产生正常结果的运算结果。NaN不等于任何值，包括它自己。
+Infinity 无穷大
+
+字符串
+JavaScri">
+<meta property="og:updated_time" content="2016-06-21T13:39:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sigh">
+<meta name="twitter:description" content="JavaScript语言精粹语法标识符
+由字母开头
+不能使用保留字
+JavaScript不允许在对象字面量中，或者用点运算符提取对象属相时，使用保留字作为属性名。
+
+数字只有一个数字类型，在内部被表示为64为浮点数，没有分离出整数类型。
+
+1=== 1.0
+NaN是一个数值，它表示一个不能产生正常结果的运算结果。NaN不等于任何值，包括它自己。
+Infinity 无穷大
+
+字符串
+JavaScri">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title>  | sigh </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?daab666adc82c82f6c589c5d2b639f15";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">sigh</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-06-21T21:39:02+08:00" content="2016-06-21">
+            2016-06-21
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/06/21/JavaScript语言精粹/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/21/JavaScript语言精粹/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="JavaScript语言精粹">JavaScript语言精粹</h1><h2 id="语法">语法</h2><h3 id="标识符">标识符</h3><ul>
+<li>由字母开头</li>
+<li>不能使用保留字</li>
+<li>JavaScript不允许在<strong>对象字面量</strong>中，或者用点运算符提取对象属相时，使用保留字作为属性名。</li>
+</ul>
+<h3 id="数字">数字</h3><p>只有一个数字类型，在内部被表示为64为浮点数，没有分离出整数类型。</p>
+<ul>
+<li>1=== 1.0</li>
+<li>NaN是一个数值，它表示一个不能产生正常结果的运算结果。NaN不等于任何值，包括它自己。</li>
+<li>Infinity 无穷大</li>
+</ul>
+<h3 id="字符串">字符串</h3><ul>
+<li>JavaScript中所有字符都是16位的。</li>
+<li>字符串是不可变的，一旦字符串被创建，就无法改变它。</li>
+<li>两个包含着完全相同的字符切字符顺序也相同的字符串被认为是相同的字符串。  <code>&#39;a&#39; + &#39;b&#39; = &#39;ab&#39;</code></li>
+</ul>
+<h3 id="语句（Statements）">语句（Statements）</h3><ul>
+<li>包在花括号中的语句不会创建作用域。</li>
+<li>当 var语句被用字函数内部时，它定义的是这个函数的私有变量。</li>
+<li><p>falsy </p>
+<blockquote>
+<p>false,null,undefined, ‘’, 0, NaN</p>
+</blockquote>
+</li>
+<li><p>truly</p>
+<blockquote>
+<p>true, ‘false’等所有。</p>
+</blockquote>
+</li>
+<li><p>简单的for循环</p>
+</li>
+<li>for..in循环<br>  for..in会枚举一个对象的所有属性名，并且通常要通过object.hasOwnProperty(variable)来约定这个属性名是该对象的成员还是来自原型链。</li>
+</ul>
+<h3 id="表达式（Expressions）">表达式（Expressions）</h3><ul>
+<li><p>typeof的值有 ‘number’, ‘string’, ‘boolean’, ‘undefined’, ‘function’, ‘object’。</p>
+<blockquote>
+<ul>
+<li>typeof null //object</li>
+<li>type [] //object</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="字面量">字面量</h3><p>对象字面量是一种可以方面的按指定规格创建对象的表示法</p>
+<ul>
+<li>{}， []</li>
+</ul>
+<h3 id="函数_Functions">函数 Functions</h3><h2 id="对象">对象</h2><p>简单数据类型： 数字，字符串，布尔值，null，undefined</p>
+<p>对象： 函数，数组，对象。</p>
+<h3 id="对象字面量">对象字面量</h3><ul>
+<li>{}</li>
+</ul>
+<h3 id="检索">检索</h3><ul>
+<li>a.b</li>
+<li>a[b]</li>
+<li>|| 运算符可以用来填充默认值 <code>var name = a.b || &#39;Bob&#39;</code></li>
+<li><p>&amp;&amp; 可以用来避免错误 </p>
+<blockquote>
+<ul>
+<li>flight.a   //undefined</li>
+<li>flight.a.b  //error</li>
+<li>flight.a &amp;&amp; flight.a.b  //undefined </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="引用">引用</h3><p>对象通过引用来传递，它们永远不会被复制</p>
+<h3 id="原型">原型</h3><ul>
+<li>set不会更新原型</li>
+<li>get会检索原型</li>
+</ul>
+<h3 id="反射">反射</h3><p>原型链中的任何属性都会产生值</p>
+<ul>
+<li>typeof flight.toString  //function</li>
+<li>typeof flight.constructor  //function</li>
+</ul>
+<h3 id="枚举">枚举</h3><p>for..in 语句可与来遍历一个对象的所有属性，不过要排除原型链中的属性</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(name in <span class="class"><span class="keyword">object</span>)&#123;</span></span><br><span class="line">	<span class="keyword">if</span>(typeof <span class="class"><span class="keyword">object</span>[</span>name] !== function &amp;&amp; <span class="class"><span class="keyword">object</span>.<span class="title">hasOWnProperty</span>(</span>name))&#123;</span><br><span class="line">		console.log(<span class="class"><span class="keyword">object</span>[</span>name])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>for..in属性名出现的是不固定的</li>
+</ul>
+<h3 id="删除">删除</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;b: <span class="string">'b'</span>, c: <span class="string">'c'</span>&#125;;</span><br><span class="line"></span><br><span class="line">delete a.b;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 减少全局变量的污染</span></span><br><span class="line"></span><br><span class="line">使用命名空间减少全局遍历的污染</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">## 函数</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 函数对象</span></span><br><span class="line"></span><br><span class="line">每个函数再创建的时候回附加两个属性，函数的上下文和实现函数行为的代码。</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 函数字面量</span></span><br><span class="line"></span><br><span class="line">函数字面量创建的函数对象包含一个连接到外部的上下文，被称为闭包。</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 调用</span></span><br><span class="line"></span><br><span class="line">* 函数调用时会传两个附加参数 <span class="keyword">this</span>,arguemnts。</span><br><span class="line">* 当实际参数个数比形参多时，超出的参数会被忽略。</span><br><span class="line">* 实际参数比形参少时，缺失的值会被置为undefined。</span><br><span class="line">* 四种调用模式：方法调用模式，函数调用模式，构造器调用模式，apply调用模式。</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 方法调用模式</span></span><br><span class="line"></span><br><span class="line">当一个函数被保存为一个对象的属性时，成为方法。而这时的调用成为方法调用。</span><br></pre></td></tr></table></figure>
+<p>var object = {<br>    value: 0;<br>    doSomething : function() {<br>        this.value = 9;<br>    }<br>}<br>object.doSometing();<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这时方法内的<span class="keyword">this</span>指的是方法所在的<span class="keyword">object</span>。所以它可以访问和修改对象的属性。</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 函数调用模式</span></span><br><span class="line"></span><br><span class="line">当一个函数并非一个对象的属性时，它就是被当做函数来调用的。这时函数内的<span class="keyword">this</span>绑定的是全局对象。</span><br><span class="line"></span><br><span class="line">解决办法是把这个函数包一层并绑定到一个对象上</span><br></pre></td></tr></table></figure></p>
+<p>var a = add(4, 5)<br>object.double  = function(){<br>    var that = this;<br>    var helper = function(){<br>        return add(that.a, that.b);<br>    };</p>
+<pre><code>helper()<span class="comment">;</span>
+</code></pre><p>}<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 构造器调用模式</span></span><br><span class="line"></span><br><span class="line">使用<span class="keyword">new</span>的方式调用。</span><br></pre></td></tr></table></figure></p>
+<p>var Person = function(firstName) {<br>  this.firstName = firstName;<br>};</p>
+<p>Person.prototype.walk = function(){<br>  console.log(“I am walking!”);<br>};</p>
+<p>function Student(firstName, subject) {<br>  Person.call(this, firstName);<br>  this.subject = subject;<br>}</p>
+<p>Student.prototype = Object.create(Person.prototype);</p>
+<p>Student.prototype.constructor = Student;<br><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">### apply调用模式</span></span><br><span class="line"></span><br><span class="line">函数可以拥有方法，<span class="keyword">apply</span>方法让我们传递一个参数数组给函数</span><br></pre></td></tr></table></figure></p>
+<p>var array = [3, 4];<br>app.apply(null, array);<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">apply 方法接受两个参数，第一个用于绑定<span class="keyword">this</span>,第二个用于传递参数。</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 返回</span></span><br><span class="line"></span><br><span class="line">* 函数总会有返回值，如果没有指定则返回undefined；</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 异常</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 扩充类型的功能</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 递归</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 作用域</span></span><br><span class="line"></span><br><span class="line">* JavaScript有函数作用域，定义在函数内部的参数和变量在外部是不可见的。</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 闭包（P38）</span></span><br><span class="line"></span><br><span class="line">* 作用域的好处是内部的函数可以访问定义它们的外部函数的参数和变量（除<span class="keyword">this</span>，arguments）。</span><br><span class="line">* 内部函数比外部函数有更长的生命周期。</span><br></pre></td></tr></table></figure></p>
+<p>var quo = function(status) {<br>    return {<br>        get_status: function(){<br>            return status;<br>        }<br>    }<br>}</p>
+<p>var myQuo = quo(‘hello’);<br>console.log(myQuo.get_status());<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="bullet">* </span>即使quo已经返回了，但get_status方法仍然享有访问quo对象status属性的权利</span><br><span class="line"><span class="bullet">* </span>get_status返回的并不是status参数的一个副本，返回的就是status属性本身。</span><br><span class="line"><span class="bullet">* </span>函数可以访问它被创建是所处的上下文，这被成为闭包。</span><br><span class="line"></span><br><span class="line"><span class="header">### 回调</span></span><br><span class="line"></span><br><span class="line"><span class="header">### 模块</span></span><br><span class="line">通过使用函数和闭包来构造模块</span><br></pre></td></tr></table></figure></p>
+<p>var a = function() {<br>    var x = 9;</p>
+<pre><code><span class="tag">return</span> <span class="rules">{
+    <span class="rule"><span class="attribute">setX</span>:<span class="value"> <span class="function">function</span>(input) {
+        x = input</span></span>;
+    }</span>,
+    <span class="rule"><span class="attribute">getX</span>:<span class="value"> <span class="function">function</span>() {
+        return x</span></span>;
+    }
+}
+</code></pre><p>}<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">### 级联</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 柯里化</span></span><br><span class="line"></span><br><span class="line">把函数和传递给它的参数结合，生成一个新的函数。</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 记忆？？？</span></span><br><span class="line"></span><br><span class="line">函数可以将先前的操作结果记录在某个对象中，从而避免无所谓的重复计算。这种优化被称为「记忆」</span><br><span class="line"></span><br><span class="line">p44</span><br><span class="line"></span><br><span class="line">斐波那契的例子</span><br></pre></td></tr></table></figure></p>
+<p>var fibonacci = function() {<br>    return n &lt; 2 ? n : fibonacci(n-1) + fibonicci(n-2);<br>}</p>
+<p>for(var i = 0; i &lt;= 10; i++) {<br>    console.log(fibonacci(i));<br>}</p>
+<p>fibonacci共被调用了453次，我们调用11次，本身调用442次</p>
+<p>var fibonacci  = function() {<br>    var memo = [0, 1];</p>
+<pre><code><span class="keyword">var</span> fib = function(n) {
+    <span class="keyword">var</span> <span class="literal">result</span> = memo[n];
+
+    <span class="keyword">if</span>(typeof <span class="literal">result</span> !== 'number') {
+        <span class="literal">result</span> = fib(n-<span class="number">1</span>) + fib(n-<span class="number">2</span>);
+        memo[n] = reuslt;
+    }
+    <span class="literal">result</span> <span class="literal">result</span>;
+};
+
+retuern fib;
+</code></pre><p>}</p>
+<p>计算29次，我们调用11次，自己调用18次。<br>```</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/01/前端小知识/" rel="next"></a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/06/21/JavaScript语言精粹/"
+                   data-title="" data-url="http://wangximing.github.io/2016/06/21/JavaScript语言精粹/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="王西明" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">王西明</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">sigh | 王西明 | wangximing</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sighwang" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iamsigh" target="_blank">weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">douban</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">zhihu</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://github.com/sighwang" target="_blank">github</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript语言精粹"><span class="nav-number">1.</span> <span class="nav-text">JavaScript语言精粹</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标识符"><span class="nav-number">1.1.1.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字"><span class="nav-number">1.1.2.</span> <span class="nav-text">数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">1.1.3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语句（Statements）"><span class="nav-number">1.1.4.</span> <span class="nav-text">语句（Statements）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式（Expressions）"><span class="nav-number">1.1.5.</span> <span class="nav-text">表达式（Expressions）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字面量"><span class="nav-number">1.1.6.</span> <span class="nav-text">字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数_Functions"><span class="nav-number">1.1.7.</span> <span class="nav-text">函数 Functions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">1.2.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象字面量"><span class="nav-number">1.2.1.</span> <span class="nav-text">对象字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检索"><span class="nav-number">1.2.2.</span> <span class="nav-text">检索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用"><span class="nav-number">1.2.3.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型"><span class="nav-number">1.2.4.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">1.2.5.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举"><span class="nav-number">1.2.6.</span> <span class="nav-text">枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">1.2.7.</span> <span class="nav-text">删除</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王西明</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wangximing"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
