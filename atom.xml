@@ -4,7 +4,7 @@
   <subtitle><![CDATA[音乐是情感的独白]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://wangximing.github.io/"/>
-  <updated>2016-06-21T14:14:59.000Z</updated>
+  <updated>2016-06-23T13:42:04.000Z</updated>
   <id>http://wangximing.github.io/</id>
   
   <author>
@@ -15,11 +15,107 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[JavaScript语言精粹]]></title>
+    <title><![CDATA[JavaScript语言精粹（2）]]></title>
+    <link href="http://wangximing.github.io/2016/06/22/JavaScript%E8%AF%AD%E8%A8%80%E7%B2%BE%E7%B2%B92/"/>
+    <id>http://wangximing.github.io/2016/06/22/JavaScript语言精粹2/</id>
+    <published>2016-06-22T03:33:45.000Z</published>
+    <updated>2016-06-23T13:42:04.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="正则表达式">正则表达式</h2><h2 id="方法">方法</h2><h3 id="Array数组">Array数组</h3><ul>
+<li><p>array.concat()  合并多个数组</p>
+<p>  var c = a.concat(b);//不会改变a和b数组</p>
+</li>
+<li><p>array.join(separator)</p>
+<p>  把array构造成字符串，默认separator为「，」</p>
+</li>
+<li><p>array.pop() 移除数组中的最后一个元素，并返回这个元素(被移除的元素)</p>
+</li>
+<li><p>array.push() 添加数据到数组，并返回数组的长度</p>
+</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> a</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line"><span class="variable"><span class="keyword">var</span> b</span> = [<span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable"><span class="keyword">var</span> c</span> = a.push(b, <span class="literal">false</span>);</span><br><span class="line"><span class="comment">//a [1, 2, 3, [4, 5], false]</span></span><br><span class="line"><span class="comment">//c 5</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>array.reverse() 反转array的数组，并返回</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">var b = a.reverse;</span><br><span class="line"><span class="comment">//a,b 都是 [2, 1]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>array.shift() 移除并返回第一个元素</li>
+<li>array.slice(start, end) 从数组中截取一段end默认为数组长度，不会改变数组。</li>
+<li>array.splice(start, deleteCount, item..)。 从数组中移除元素，并用items替换。会改变元素。</li>
+<li>array.sort(compareFunction) 不能正确的给数字排序。</li>
+<li>array.unshift(item..)从头部插入并返回新数组的长度。</li>
+</ul>
+<h3 id="Function_函数">Function 函数</h3><ul>
+<li><p>function.apply(this, arguments)</p>
+<p>apply方法调用function，传递 this对象（上下文）和参数列表。</p>
+</li>
+</ul>
+<h3 id="Number_数字">Number 数字</h3><ul>
+<li><p>number.toExponential(小数位数)。</p>
+<p>将number转换为指数形式，其中小数位数必须为0~20.</p>
+</li>
+<li><p>number.toFixed(小数位数) </p>
+<p>  将数字转换为n为小数的字符串，小数位数默认为0， 可选范围为0~20。</p>
+</li>
+<li><p>number.toPrecision(percision) 把数字转换为精度为n的字符串。</p>
+</li>
+<li>number.toString()</li>
+</ul>
+<h3 id="Object_对象">Object 对象</h3><ul>
+<li><p>object.hasOwnProperty(name)</p>
+<p>  判断对象是否具有某属性</p>
+</li>
+</ul>
+<h3 id="RegExp_正则表达式">RegExp 正则表达式</h3><ul>
+<li><p>regexp.exec(string)</p>
+<p>匹配成功将返回数组</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">下标<span class="number">0</span>  [<span class="number">0</span>] 是匹配的字符串</span><br><span class="line">下标<span class="number">1</span>  [<span class="number">1</span>] 是第一个捕获文本</span><br><span class="line">下标<span class="number">2</span>  [<span class="number">2</span>] 是第二个捕获文本</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>regexp.test(string) 匹配返回true，不匹配返回 false。</p>
+</li>
+</ul>
+<h3 id="String_字符串">String 字符串</h3><ul>
+<li>string.charAt(n) 返回第n个位置的字符</li>
+<li>string.charCodeAt(n) 返回第n个位置的字符码</li>
+<li>string.indexOf() 查找</li>
+<li>string.lastIndexOf() 查找</li>
+<li>string.match()</li>
+<li>string.replace(serarchValue, replaceValue).</li>
+<li>string.slice(start, end) 截取字符串</li>
+<li>string.subString(start, end)</li>
+<li><p>string.split(分隔符， limit)。</p>
+<p>  将字符串分割成数组</p>
+</li>
+</ul>
+<h2 id="糟粕">糟粕</h2><h3 id="typeOf">typeOf</h3><ul>
+<li>typeOf null  //object</li>
+</ul>
+<h3 id="parseInt">parseInt</h3><p>指定进制，不然如果数字的第一个是0，则会基于8进制来转换</p>
+<h3 id="NaN">NaN</h3><ul>
+<li><p>typeOf NaN === ‘number’;</p>
+</li>
+<li><p>非数字转换成字符串时</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+<span class="string">'0'</span> <span class="comment">//0</span></span><br><span class="line">+<span class="string">'oops'</span> <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>NaN !== NaN //true</p>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="正则表达式">正则表达式</h2><h2 id="方法">方法</h2><h3 id="Array数组">Array数组</h3><ul>
+<li><p>array.concat()  合并多个数组</p>
+<p>  var c = a.concat(b);//不]]>
+    </summary>
+    
+      <category term="前端" scheme="http://wangximing.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JavaScript语言精粹（1）]]></title>
     <link href="http://wangximing.github.io/2016/06/12/JavaScript%E8%AF%AD%E8%A8%80%E7%B2%BE%E7%B2%B9/"/>
     <id>http://wangximing.github.io/2016/06/12/JavaScript语言精粹/</id>
     <published>2016-06-12T03:33:45.000Z</published>
-    <updated>2016-06-21T14:14:59.000Z</updated>
+    <updated>2016-06-23T12:54:35.000Z</updated>
     <content type="html"><![CDATA[<h2 id="语法">语法</h2><h3 id="标识符">标识符</h3><ul>
 <li>由字母开头</li>
 <li>不能使用保留字</li>
@@ -140,9 +236,37 @@
 
 retuern fib;
 </code></pre><p>}</p>
-<p>计算29次，我们调用11次，自己调用18次。<br>```</p>
-<h2 id="继承">继承</h2><h3 id="简介">简介</h3><p>JavaScript是一门基于原型的语言，着意味着对象直接从其他对象继承。</p>
-]]></content>
+<p>计算29次，我们调用11次，自己调用18次。<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">## 继承</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 简介</span></span><br><span class="line"></span><br><span class="line">JavaScript是一门基于原型的语言，着意味着对象直接从其他对象继承。</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 模拟基于类的继承</span></span><br></pre></td></tr></table></figure></p>
+<p>var Person = function(firstName) {<br>  this.firstName = firstName;<br>};</p>
+<p>Person.prototype.walk = function(){<br>  console.log(“I am walking!”);<br>};</p>
+<p>function Student(firstName, subject) {<br>  Person.call(this, firstName);<br>  this.subject = subject;<br>}</p>
+<p>Student.prototype = Object.create(Person.prototype);</p>
+<p>Student.prototype.constructor = Student;<br>```</p>
+<h3 id="函数化">函数化</h3><p>使用应用块模式来完成私有变量模式。</p>
+<h3 id="部件">部件</h3><h2 id="数组">数组</h2><h3 id="数组字面量">数组字面量</h3><p>var array = [];<br>var numbers = [1, 2, 3];</p>
+<ul>
+<li>JS允许数组包含任意混合类型的值</li>
+</ul>
+<h3 id="长度">长度</h3><ul>
+<li>length属性的值是这个数组的最大整数属性名加上1， 他不一定等于数组里属性的个数</li>
+<li>设置更大的length不会给数组分配更多的空间，而把length设小将导致下标大于等于length的属性被删除</li>
+<li>给数组追加一个值 numbers[numbers.length] = ‘hello’, numbers.push(‘hello’);</li>
+</ul>
+<h3 id="删除-1">删除</h3><ul>
+<li><p>使用delete删除数组元素后会留下一个空洞 delete numbers[2],</p>
+</li>
+<li><p>使用splice删除元素，numbers.splice(start, length);</p>
+</li>
+</ul>
+<h3 id="遍历">遍历</h3><h3 id="区别数组和对象">区别数组和对象</h3><ul>
+<li><p>input &amp;&amp; typeof input === ‘object’ &amp;&amp; input.constructor === Array;</p>
+<p>  但识别从不同窗口，帧构建的数组时会失败</p>
+</li>
+<li><p>Object.prototype.toString.apply(value) === ‘[object Array]’;//true 数组</p>
+<p>  这种方式适合各种情况</p>
+</li>
+</ul>
+<h3 id="扩展数组方法">扩展数组方法</h3><h3 id="指定初始值">指定初始值</h3>]]></content>
     <summary type="html">
     <![CDATA[<h2 id="语法">语法</h2><h3 id="标识符">标识符</h3><ul>
 <li>由字母开头</li>
@@ -1077,32 +1201,6 @@ retuern fib;
     <summary type="html">
     <![CDATA[<p>先写一下使用BootStrap Switch使用中得一个问题，在写BootStrap的使用。</p>
 <h3 id="问题">问题</h3><p>在BootStrap Switch 的switchChange方法中调用Ajax请求，请求的的error回调中调用<br>sta]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[JavaScript Pagination]]></title>
-    <link href="http://wangximing.github.io/2015/10/17/JavaScript-Pagination/"/>
-    <id>http://wangximing.github.io/2015/10/17/JavaScript-Pagination/</id>
-    <published>2015-10-17T06:34:10.000Z</published>
-    <updated>2015-10-17T07:59:44.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="闲谈">闲谈</h3><p>写这段文字的时候，想起了之前的一个小故事。以前在做一个项目的时候，要做一个翻页功能，就<strong>翻页</strong>关键字再一直搜索，可想而知搜出来的都是一些CSDN上的博客，帮助不大，没有直观认识。<br>自从学会了<strong>Pagination</strong>关键字，一搜索就出来了可以用的插件。对，你没有看错，这段字就是想说我不知道翻页的英语是pagination,也想说下英语多么的重要<br>。翻页===pagination</p>
-<h3 id="正文">正文</h3><p>这里主要介绍一下一个jQuery pagination plugin，<a href="http://esimakin.github.io/twbs-pagination/" target="_blank" rel="external">twbspagination</a><br>一个非常好用的翻页工具。</p>
-<ul>
-<li>下载twbspagination文件，引入到要用的HTML文件中。</li>
-<li><p>在HTML和js中分别添加下面的代码，就可以显示出分页效果。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"pagination-demo"</span> <span class="attribute">class</span>=<span class="value">"pagination-sm"</span>&gt;</span><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>启动并初始化插件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#pagination-demo'</span>).twbsPagination(&#123;</span><br><span class="line">        totalPages: <span class="number">35</span>,</span><br><span class="line">        visiblePages: <span class="number">7</span>,</span><br><span class="line">        onPageClick: <span class="function"><span class="keyword">function</span> (<span class="params">event, page</span>) </span>&#123;</span><br><span class="line">            $(<span class="string">'#page-content'</span>).text(<span class="string">'Page '</span> + page);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一个使用pagination插件的实例代码(差一点掉入回调地狱的代码)；</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(<span class="string">'/apps/totalNumber'</span>)</span><br><span class="line">      .done(<span class="function"><span class="keyword">function</span> (<span class="params">total</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">var</span> totalPages = total % <span class="number">20</span> === <span class="number">0</span> ? total / <span class="number">20</span> : total / <span class="number">20</span> + <span class="number">1</span>;</span><br><span class="line">          $(<span class="string">'#pagination-app'</span>).twbsPagination(&#123;</span><br><span class="line">              totalPages: totalPages,</span><br><span class="line">              visiblePages: <span class="number">5</span> &gt; totalPages ? <span class="number">5</span> : totalPages,</span><br><span class="line">              first: <span class="string">'首页'</span>,</span><br><span class="line">              prev: <span class="string">'前一页'</span>,</span><br><span class="line">              next: <span class="string">'下一页'</span>,</span><br><span class="line">              last: <span class="string">'末页'</span>,</span><br><span class="line">              onPageClick: <span class="function"><span class="keyword">function</span> (<span class="params">event, page</span>) </span>&#123;</span><br><span class="line">                  $.ajax(<span class="string">'/apps'</span>, &#123;data: &#123;pageSize: <span class="number">20</span>, pageNumber: page&#125;&#125;)</span><br><span class="line">                      .done(<span class="function"><span class="keyword">function</span> (<span class="params">apps</span>) </span>&#123;</span><br><span class="line">                          <span class="keyword">var</span> html;</span><br><span class="line">                          apps.content.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">app</span>) </span>&#123;</span><br><span class="line">                              html += getAppTr(app);</span><br><span class="line">                          &#125;);</span><br><span class="line"></span><br><span class="line">                          <span class="keyword">var</span> result = <span class="string">'&lt;tbody&gt;'</span> + html + <span class="string">'&lt;/tbody&gt;'</span>;</span><br><span class="line">                          $(<span class="string">'tbody'</span>).replaceWith(result);</span><br><span class="line"></span><br><span class="line">                          setUpBootstrapSwitch();</span><br><span class="line">                          imageOnError();</span><br><span class="line">                      &#125;)</span><br><span class="line">                      .error(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">                      &#125;);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="闲谈">闲谈</h3><p>写这段文字的时候，想起了之前的一个小故事。以前在做一个项目的时候，要做一个翻页功能，就<strong>翻页</strong>关键字再一直搜索，可想而知搜出来的都是一些CSDN上的博客，帮助不大，没有直观认识。<br>自从学会了<stro]]>
     </summary>
     
   </entry>

@@ -55,7 +55,7 @@ Infinity 无穷大
 字符串
 JavaScript中所有字符都是16位的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript语言精粹">
+<meta property="og:title" content="JavaScript语言精粹（1）">
 <meta property="og:url" content="http://wangximing.github.io/2016/06/12/JavaScript语言精粹/index.html">
 <meta property="og:site_name" content="sigh">
 <meta property="og:description" content="语法标识符
@@ -71,9 +71,9 @@ Infinity 无穷大
 
 字符串
 JavaScript中所有字符都是16位的。">
-<meta property="og:updated_time" content="2016-06-21T14:14:59.000Z">
+<meta property="og:updated_time" content="2016-06-23T12:54:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript语言精粹">
+<meta name="twitter:title" content="JavaScript语言精粹（1）">
 <meta name="twitter:description" content="语法标识符
 由字母开头
 不能使用保留字
@@ -98,7 +98,7 @@ JavaScript中所有字符都是16位的。">
 
 
 
-  <title> JavaScript语言精粹 | sigh </title>
+  <title> JavaScript语言精粹（1） | sigh </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -210,7 +210,7 @@ JavaScript中所有字符都是16位的。">
           
           
             
-              JavaScript语言精粹
+              JavaScript语言精粹（1）
             
           
         </h1>
@@ -366,9 +366,37 @@ JavaScript中所有字符都是16位的。">
 
 retuern fib;
 </code></pre><p>}</p>
-<p>计算29次，我们调用11次，自己调用18次。<br>```</p>
-<h2 id="继承">继承</h2><h3 id="简介">简介</h3><p>JavaScript是一门基于原型的语言，着意味着对象直接从其他对象继承。</p>
-</span>
+<p>计算29次，我们调用11次，自己调用18次。<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">## 继承</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 简介</span></span><br><span class="line"></span><br><span class="line">JavaScript是一门基于原型的语言，着意味着对象直接从其他对象继承。</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">### 模拟基于类的继承</span></span><br></pre></td></tr></table></figure></p>
+<p>var Person = function(firstName) {<br>  this.firstName = firstName;<br>};</p>
+<p>Person.prototype.walk = function(){<br>  console.log(“I am walking!”);<br>};</p>
+<p>function Student(firstName, subject) {<br>  Person.call(this, firstName);<br>  this.subject = subject;<br>}</p>
+<p>Student.prototype = Object.create(Person.prototype);</p>
+<p>Student.prototype.constructor = Student;<br>```</p>
+<h3 id="函数化">函数化</h3><p>使用应用块模式来完成私有变量模式。</p>
+<h3 id="部件">部件</h3><h2 id="数组">数组</h2><h3 id="数组字面量">数组字面量</h3><p>var array = [];<br>var numbers = [1, 2, 3];</p>
+<ul>
+<li>JS允许数组包含任意混合类型的值</li>
+</ul>
+<h3 id="长度">长度</h3><ul>
+<li>length属性的值是这个数组的最大整数属性名加上1， 他不一定等于数组里属性的个数</li>
+<li>设置更大的length不会给数组分配更多的空间，而把length设小将导致下标大于等于length的属性被删除</li>
+<li>给数组追加一个值 numbers[numbers.length] = ‘hello’, numbers.push(‘hello’);</li>
+</ul>
+<h3 id="删除-1">删除</h3><ul>
+<li><p>使用delete删除数组元素后会留下一个空洞 delete numbers[2],</p>
+</li>
+<li><p>使用splice删除元素，numbers.splice(start, length);</p>
+</li>
+</ul>
+<h3 id="遍历">遍历</h3><h3 id="区别数组和对象">区别数组和对象</h3><ul>
+<li><p>input &amp;&amp; typeof input === ‘object’ &amp;&amp; input.constructor === Array;</p>
+<p>  但识别从不同窗口，帧构建的数组时会失败</p>
+</li>
+<li><p>Object.prototype.toString.apply(value) === ‘[object Array]’;//true 数组</p>
+<p>  这种方式适合各种情况</p>
+</li>
+</ul>
+<h3 id="扩展数组方法">扩展数组方法</h3><h3 id="指定初始值">指定初始值</h3></span>
       
     </div>
 
@@ -384,6 +412,8 @@ retuern fib;
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/22/JavaScript语言精粹2/" rel="prev">JavaScript语言精粹（2）</a>
             
           </div>
 
@@ -442,7 +472,7 @@ retuern fib;
           <div class="comments" id="comments">
             
               <div class="ds-thread" data-thread-key="2016/06/12/JavaScript语言精粹/"
-                   data-title="JavaScript语言精粹" data-url="http://wangximing.github.io/2016/06/12/JavaScript语言精粹/">
+                   data-title="JavaScript语言精粹（1）" data-url="http://wangximing.github.io/2016/06/12/JavaScript语言精粹/">
               </div>
             
           </div>
@@ -482,7 +512,7 @@ retuern fib;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -556,7 +586,7 @@ retuern fib;
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标识符"><span class="nav-number">1.1.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字"><span class="nav-number">1.2.</span> <span class="nav-text">数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">1.3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语句（Statements）"><span class="nav-number">1.4.</span> <span class="nav-text">语句（Statements）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式（Expressions）"><span class="nav-number">1.5.</span> <span class="nav-text">表达式（Expressions）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字面量"><span class="nav-number">1.6.</span> <span class="nav-text">字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数_Functions"><span class="nav-number">1.7.</span> <span class="nav-text">函数 Functions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">2.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象字面量"><span class="nav-number">2.1.</span> <span class="nav-text">对象字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检索"><span class="nav-number">2.2.</span> <span class="nav-text">检索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用"><span class="nav-number">2.3.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型"><span class="nav-number">2.4.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">2.5.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举"><span class="nav-number">2.6.</span> <span class="nav-text">枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">2.7.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">3.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">3.1.</span> <span class="nav-text">简介</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标识符"><span class="nav-number">1.1.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字"><span class="nav-number">1.2.</span> <span class="nav-text">数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">1.3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语句（Statements）"><span class="nav-number">1.4.</span> <span class="nav-text">语句（Statements）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式（Expressions）"><span class="nav-number">1.5.</span> <span class="nav-text">表达式（Expressions）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字面量"><span class="nav-number">1.6.</span> <span class="nav-text">字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数_Functions"><span class="nav-number">1.7.</span> <span class="nav-text">函数 Functions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">2.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象字面量"><span class="nav-number">2.1.</span> <span class="nav-text">对象字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检索"><span class="nav-number">2.2.</span> <span class="nav-text">检索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用"><span class="nav-number">2.3.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型"><span class="nav-number">2.4.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">2.5.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举"><span class="nav-number">2.6.</span> <span class="nav-text">枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">2.7.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数化"><span class="nav-number">2.8.</span> <span class="nav-text">函数化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部件"><span class="nav-number">2.9.</span> <span class="nav-text">部件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">3.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组字面量"><span class="nav-number">3.1.</span> <span class="nav-text">数组字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长度"><span class="nav-number">3.2.</span> <span class="nav-text">长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除-1"><span class="nav-number">3.3.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历"><span class="nav-number">3.4.</span> <span class="nav-text">遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别数组和对象"><span class="nav-number">3.5.</span> <span class="nav-text">区别数组和对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展数组方法"><span class="nav-number">3.6.</span> <span class="nav-text">扩展数组方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定初始值"><span class="nav-number">3.7.</span> <span class="nav-text">指定初始值</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
