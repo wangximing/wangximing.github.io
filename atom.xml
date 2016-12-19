@@ -609,8 +609,15 @@ retuern fib;
     <link href="http://wangximing.github.io/2016/04/29/CSS_Background/"/>
     <id>http://wangximing.github.io/2016/04/29/CSS_Background/</id>
     <published>2016-04-29T03:33:45.000Z</published>
-    <updated>2016-04-29T03:30:21.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="CSS_Background">CSS Background</h3><ul>
+    <updated>2016-12-19T13:10:19.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>background-image: contain 伸缩图片显示到父容器， 但<strong>不会超出父容器</strong>的范围，</p>
+<p>background-size: cover；伸缩图片到父容器，会<strong>充满父容器</strong>，</p>
+<p>background-clip 规定了背景渲染的范围 默认为 border+padding+content,常见例子比如border的颜色和content的背景色不同。就需要设置background-clip: content-box</p>
+<p>缩写的顺序 color–&gt;image–&gt;repeat–&gt;attachment–&gt;position</p>
+<p>background: #ffffff url(“img_tree.png”) no-repeat right top;</p>
+</blockquote>
+<h3 id="CSS_Background">CSS Background</h3><ul>
 <li>background</li>
 <li>background-image</li>
 <li>background-size</li>
@@ -632,7 +639,7 @@ retuern fib;
 <li>padding-box–图片显示的范围 padding + content</li>
 <li>content-box–图片显示范围 content</li>
 </ul>
-<h4 id="background-clip-1">background-clip</h4><p>指定背景图开始的位置</p>
+<h4 id="background-origin">background-origin</h4><p>指定背景图开始的位置</p>
 <ul>
 <li>border-box–从border的左上角落位置开始</li>
 <li>padding-box–(default) 从padding的左上角落位置开始</li>
@@ -659,13 +666,22 @@ retuern fib;
 <li>background-origin –specifies where the background image is positioned.</li>
 </ul>
 <p><strong>这三个的分别怎么用？</strong></p>
+<ul>
+<li>参考 <a href="http://www.cnblogs.com/2050/archive/2012/11/13/2768289.html" target="_blank" rel="external">http://www.cnblogs.com/2050/archive/2012/11/13/2768289.html</a></li>
+<li>background-clip规定了border，padding等是否显示背景<ul>
+<li>若显示背景且背景存在，则显示</li>
+<li>若不显示背景，不管背景存不存在，都不显示</li>
+</ul>
+</li>
+<li>background-origin 规定了开始绘制背景的原点</li>
+<li>background-positon 规定了背景相对于background-origin的位置，center left等。</li>
+</ul>
+<p>总结来看就是 background-origin和background-positon规定了背景的位置。而background-clip规定了其可显示的范围</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="CSS_Background">CSS Background</h3><ul>
-<li>background</li>
-<li>background-image</li>
-<li>background-size</li>
-<li>background-origin]]>
+    <![CDATA[<blockquote>
+<p>background-image: contain 伸缩图片显示到父容器， 但<strong>不会超出父容器</strong>的范围，</p>
+<p>background-size: cover；伸缩图片到父容器，会<strong>充满父容器</s]]>
     </summary>
     
       <category term="CSS Background" scheme="http://wangximing.github.io/tags/CSS-Background/"/>
