@@ -549,7 +549,7 @@ retuern fib;
     <link href="http://wangximing.github.io/2016/05/12/%E5%89%8D%E7%AB%AF%E5%B0%8F%E7%9F%A5%E8%AF%86/"/>
     <id>http://wangximing.github.io/2016/05/12/前端小知识/</id>
     <published>2016-05-12T03:33:45.000Z</published>
-    <updated>2016-07-21T01:51:04.000Z</updated>
+    <updated>2016-12-19T13:28:31.000Z</updated>
     <content type="html"><![CDATA[<h3 id="HTML">HTML</h3><ul>
 <li>tabel 不能设置高</li>
 <li>form不能嵌套</li>
@@ -589,6 +589,41 @@ retuern fib;
 <li><code>this.options   = $.extend({}, Button.DEFAULTS, options)</code></li>
 <li><a href="https://github.com/angular/angular.js/issues/11565" target="_blank" rel="external">$scope.$watch</a></li>
 </ul>
+<h3 id="像素">像素</h3><ul>
+<li>参考链接 <a href="https://github.com/amfe/article/issues/17#issuecomment-267261779" target="_blank" rel="external">https://github.com/amfe/article/issues/17#issuecomment-267261779</a></li>
+<li><p>物理像素</p>
+<p>  物理像素又被称为设备像素，他是显示设备中一个最微小的物理部件。</p>
+</li>
+<li><p>设备独立像素</p>
+<p>  设备独立像素也称为密度无关像素，可以认为是计算机坐标系统中的一个点，这个点代表一个可以由程序使用的虚拟像素(比如说CSS像素)，</p>
+</li>
+<li><p>设备像素比（Device Pixel Ratio）</p>
+<p>  设备像素比简称为dpr，其定义了物理像素和设备独立像素的对应关系。它的值可以按下面的公式计算得到：</p>
+<blockquote>
+<p>设备像素比 ＝ 物理像素 / 设备独立像素</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="meta_标签">meta 标签</h4><p><meta>标签有很多种，而这里要着重说的是viewport的meta标签，其主要用来告诉浏览器如何规范的渲染Web页面，而你则需要告诉它视窗有多大。在开发移动端页面，我们需要设置meta标签如下：</p>
+<blockquote>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="HTML">HTML</h3><ul>
